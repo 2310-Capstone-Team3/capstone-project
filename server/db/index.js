@@ -62,15 +62,16 @@ const seed = async()=> {
   await client.query(SQL);
 
   const [moe, lucy, ethyl] = await Promise.all([
-    createUser({ username: 'moe', password: 'm_password', is_admin: false}),
-    createUser({ username: 'lucy', password: 'l_password', is_admin: false}),
-    createUser({ username: 'ethyl', password: '1234', is_admin: true})
+    createUser({ username: 'Dylan', password: 'dylanpass', is_admin: true}),
+    createUser({ username: 'Seth', password: 'sethpass', is_admin: true}),
+    createUser({ username: 'Aubrionna', password: 'aubrionnapass', is_admin: true}),
+    createUser({username: 'Elly', password: 'ellypass', is_admin: true})
   ]);
   const [foo, bar, bazz] = await Promise.all([
-    createProduct({ name: 'foo' }),
-    createProduct({ name: 'bar' }),
-    createProduct({ name: 'bazz' }),
-    createProduct({ name: 'quq' }),
+    createProduct({ name: '4 Week Course' }),
+    createProduct({ name: '8 Week Course' }),
+    createProduct({ name: '12 Week Course' }),
+    createProduct({ name: '24 Week Course' }),
   ]);
   let orders = await fetchOrders(ethyl.id);
   let cart = orders.find(order => order.is_cart);
