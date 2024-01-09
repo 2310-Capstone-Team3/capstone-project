@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
-import { Link, HashRouter, Routes, Route } from 'react-router-dom';
+import { Link, HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Products from './Products';
 import Orders from './Orders';
 import Cart from './Cart';
@@ -12,6 +12,7 @@ const App = ()=> {
   const [orders, setOrders] = useState([]);
   const [lineItems, setLineItems] = useState([]);
   const [auth, setAuth] = useState({});
+  const navigate = useNavigate()
 
   const attemptLoginWithToken = async()=> {
     await api.attemptLoginWithToken(setAuth);
@@ -77,6 +78,7 @@ const App = ()=> {
 
   const logout = ()=> {
     api.logout(setAuth);
+    navigate('/login')
   }
 
   return (
@@ -94,37 +96,45 @@ const App = ()=> {
               </span>
             </nav>
             <main>
-              <Products
+              <Routes>
+                <Route path='/products' element={<Products
                 auth = { auth }
                 products={ products }
                 cartItems = { cartItems }
                 createLineItem = { createLineItem }
                 updateLineItem = { updateLineItem }
-              />
-              <Cart
+              />}></Route>
+                <Route path='/cart' element={<Cart
                 cart = { cart }
                 lineItems = { lineItems }
                 products = { products }
                 updateOrder = { updateOrder }
                 removeFromCart = { removeFromCart }
-              />
-              <Orders
+              />}></Route>
+                <Route path='/orders' element={<Orders
                 orders = { orders }
                 products = { products }
                 lineItems = { lineItems }
-              />
+              />}></Route>
+              </Routes>
             </main>
             </>
         ):(
           <div>
-            <Login login={ login }/>
-            <Products
+            <nav>
+              <Link to='/login'>Login</Link>
+              <Link to='/products'>Products</Link>
+            </nav>
+            <Routes>
+              <Route path='/login' element={<Login login = {login}/>}></Route>
+              <Route path='/products' element={<Products
               products={ products }
               cartItems = { cartItems }
               createLineItem = { createLineItem }
               updateLineItem = { updateLineItem }
               auth = { auth }
-            />
+            />}></Route>
+            </Routes>
           </div>
         )
       }
