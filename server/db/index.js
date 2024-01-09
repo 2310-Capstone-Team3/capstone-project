@@ -1,15 +1,8 @@
-const client = require('./client')
+const client = require("./client");
 
-const {
-  fetchProducts,
-  createProduct
-} = require('./products');
+const { fetchProducts, createProduct } = require("./products");
 
-const {
-  createUser,
-  authenticate,
-  findUserByToken
-} = require('./auth');
+const { createUser, authenticate, findUserByToken } = require("./auth");
 
 const {
   fetchLineItems,
@@ -17,11 +10,10 @@ const {
   updateLineItem,
   deleteLineItem,
   updateOrder,
-  fetchOrders
-} = require('./cart');
+  fetchOrders,
+} = require("./cart");
 
-
-const seed = async()=> {
+const seed = async () => {
   const SQL = `
     DROP TABLE IF EXISTS line_items;
     DROP TABLE IF EXISTS products;
@@ -64,23 +56,58 @@ const seed = async()=> {
   await client.query(SQL);
 
   const [dylan, seth, aubrionna, elly] = await Promise.all([
-    createUser({ username: 'Dylan', password: 'dylanpass', is_admin: true}),
-    createUser({ username: 'Seth', password: 'sethpass', is_admin: true}),
-    createUser({ username: 'Aubrionna', password: 'aubrionnapass', is_admin: true}),
-    createUser({ username: 'Elly', password: 'ellypass', is_admin: true})
+    createUser({ username: "Dylan", password: "dylanpass", is_admin: true }),
+    createUser({ username: "Seth", password: "sethpass", is_admin: true }),
+    createUser({
+      username: "Aubrionna",
+      password: "aubrionnapass",
+      is_admin: true,
+    }),
+    createUser({ username: "Elly", password: "ellypass", is_admin: true }),
   ]);
-  const [fourWeekCourse, eightWeekCourse, twelveWeekCourse, twentyFourWeekCourse] = await Promise.all([
-    createProduct({ name: '4 Week Course', price: 1000, description: "Our shortest section, meant to help guide those with previous experience!" }),
-    createProduct({ name: '8 Week Course', price: 2000, description: "Our shortest section for those that have minimal experience!" }),
-    createProduct({ name: '12 Week Course', price: 2800, description: "Our mid range section that helps those with little to no experience get started as a web developer!" }),
-    createProduct({ name: '24 Week Course', price: 5000, description: "Our longest section that is meant for those that either want a longer section or learn at a slower pace, goes the most in-depth!" }),
+  const [
+    fourWeekCourse,
+    eightWeekCourse,
+    twelveWeekCourse,
+    twentyFourWeekCourse,
+  ] = await Promise.all([
+    createProduct({
+      name: "4 Week Course",
+      price: 1000,
+      description:
+        "Our shortest section, meant to help guide those with previous experience!",
+    }),
+    createProduct({
+      name: "8 Week Course",
+      price: 2000,
+      description:
+        "Our shortest section for those that have minimal experience!",
+    }),
+    createProduct({
+      name: "12 Week Course",
+      price: 2800,
+      description:
+        "Our mid range section that helps those with little to no experience get started as a web developer!",
+    }),
+    createProduct({
+      name: "24 Week Course",
+      price: 5000,
+      description:
+        "Our longest section that is meant for those that either want a longer section or learn at a slower pace, goes the most in-depth!",
+    }),
   ]);
   let orders = await fetchOrders(dylan.id);
-  let cart = orders.find(order => order.is_cart);
-  let lineItem = await createLineItem({ order_id: cart.id, product_id: fourWeekCourse.id});
+  let cart = orders.find((order) => order.is_cart);
+  let lineItem = await createLineItem({
+    order_id: cart.id,
+    product_id: fourWeekCourse.id,
+  });
   lineItem.quantity++;
   await updateLineItem(lineItem);
-  lineItem = await createLineItem({ order_id: cart.id, product_id: eightWeekCourse.id});
+  lineItem = await createLineItem({
+    order_id: cart.id,
+    product_id: eightWeekCourse.id,
+  });
   cart.is_cart = false;
   await updateOrder(cart);
 };
@@ -96,5 +123,5 @@ module.exports = {
   authenticate,
   findUserByToken,
   seed,
-  client
+  client,
 };
