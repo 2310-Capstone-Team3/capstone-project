@@ -35,3 +35,4 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth})=
 };
 
 export default Products;
+
