@@ -39,7 +39,9 @@ const seed = async()=> {
     CREATE TABLE products(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
-      name VARCHAR(100) UNIQUE NOT NULL
+      name VARCHAR(100) UNIQUE NOT NULL,
+      price INTEGER NOT NULL,
+      description TEXT
     );
 
     CREATE TABLE orders(
@@ -68,10 +70,10 @@ const seed = async()=> {
     createUser({ username: 'Elly', password: 'ellypass', is_admin: true})
   ]);
   const [fourWeekCourse, eightWeekCourse, twelveWeekCourse, twentyFourWeekCourse] = await Promise.all([
-    createProduct({ name: '4 Week Course' }),
-    createProduct({ name: '8 Week Course' }),
-    createProduct({ name: '12 Week Course' }),
-    createProduct({ name: '24 Week Course' }),
+    createProduct({ name: '4 Week Course', price: 1000, description: "Our shortest section, meant to help guide those with previous experience!" }),
+    createProduct({ name: '8 Week Course', price: 2000, description: "Our shortest section for those that have minimal experience!" }),
+    createProduct({ name: '12 Week Course', price: 2800, description: "Our mid range section that helps those with little to no experience get started as a web developer!" }),
+    createProduct({ name: '24 Week Course', price: 5000, description: "Our longest section that is meant for those that either want a longer section or learn at a slower pace, goes the most in-depth!" }),
   ]);
   let orders = await fetchOrders(dylan.id);
   let cart = orders.find(order => order.is_cart);
