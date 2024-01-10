@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Orders = ({ orders, products, lineItems })=> {
+  let totalItems = []
   return (
     <div>
       <h2>Orders</h2>
@@ -18,6 +19,7 @@ const Orders = ({ orders, products, lineItems })=> {
                       return (
                         <li key={ lineItem.id }>
                           { product ? product.name: '' }
+                          {totalItems.push(product.price * lineItem.quantity)}
                         </li>
                       );
                     })
@@ -28,6 +30,7 @@ const Orders = ({ orders, products, lineItems })=> {
           })
         }
       </ul>
+      Total Price: ${totalItems.reduce((arr, curr) => arr += curr, 0)}
     </div>
   );
 };
