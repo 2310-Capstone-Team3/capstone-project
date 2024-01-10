@@ -16,10 +16,10 @@ const Orders = ({ orders, products, lineItems })=> {
                   {
                     orderLineItems.map( lineItem => {
                       const product = products.find(product => product.id === lineItem.product_id);
+                      {totalItems.push(product.price * lineItem.quantity)}
                       return (
                         <li key={ lineItem.id }>
                           { product ? product.name: '' }
-                          {totalItems.push(product.price * lineItem.quantity)}
                         </li>
                       );
                     })
