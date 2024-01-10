@@ -7,7 +7,7 @@ const {
 
 const express = require('express');
 const app = express.Router();
-const { isLoggedIn, isAdmin } = require('./middleware');
+const { isLoggedIn, isAdmin, isVIP } = require('./middleware');
 
 app.get('/', isLoggedIn, async(req, res, next)=> {
   try {
