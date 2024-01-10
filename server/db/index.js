@@ -33,7 +33,8 @@ const seed = async()=> {
       created_at TIMESTAMP DEFAULT now(),
       username VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
-      is_admin BOOLEAN DEFAULT false NOT NULL
+      is_admin BOOLEAN DEFAULT false NOT NULL,
+      is_vip BOOLEAN DEFAULT false NOT NULL
     );
 
     CREATE TABLE products(
@@ -64,10 +65,10 @@ const seed = async()=> {
   await client.query(SQL);
 
   const [dylan, seth, aubrionna, elly] = await Promise.all([
-    createUser({ username: 'Dylan', password: 'dylanpass', is_admin: true}),
-    createUser({ username: 'Seth', password: 'sethpass', is_admin: true}),
-    createUser({ username: 'Aubrionna', password: 'aubrionnapass', is_admin: true}),
-    createUser({ username: 'Elly', password: 'ellypass', is_admin: true})
+    createUser({ username: 'Dylan', password: 'dylanpass', is_admin: true, is_vip: true}),
+    createUser({ username: 'Seth', password: 'sethpass', is_admin: true, is_vip: true}),
+    createUser({ username: 'Aubrionna', password: 'aubrionnapass', is_admin: true, is_vip: true}),
+    createUser({ username: 'Elly', password: 'ellypass', is_admin: true, is_vip: true})
   ]);
   const [fourWeekCourse, eightWeekCourse, twelveWeekCourse, twentyFourWeekCourse] = await Promise.all([
     createProduct({ name: '4 Week Course', price: 1000, description: "Our shortest section, meant to help guide those with previous experience!" }),
