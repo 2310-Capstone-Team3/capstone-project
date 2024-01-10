@@ -99,5 +99,3 @@ module.exports = {
   seed,
   client
 };
-
-// fix please
