@@ -13,7 +13,7 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth})=
               <li key={ product.id }>
                 { product.name } (${product.price})
                 <br />
-                 -- {product.description}
+                -- {product.description}
                 <br />
                 {
                   auth.id ? (
