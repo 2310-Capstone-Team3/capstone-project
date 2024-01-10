@@ -25,13 +25,16 @@ const seed = async () => {
       created_at TIMESTAMP DEFAULT now(),
       username VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
-      is_admin BOOLEAN DEFAULT false NOT NULL
+      is_admin BOOLEAN DEFAULT false NOT NULL,
+      is_vip BOOLEAN DEFAULT false NOT NULL
     );
 
     CREATE TABLE products(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
-      name VARCHAR(100) UNIQUE NOT NULL
+      name VARCHAR(100) UNIQUE NOT NULL,
+      price INTEGER NOT NULL,
+      description TEXT
     );
 
     CREATE TABLE orders(
@@ -53,26 +56,24 @@ const seed = async () => {
   `;
   await client.query(SQL);
 
-  const [moe, lucy, ethyl] = await Promise.all([
-    createUser({ username: "moe", password: "m_password", is_admin: false }),
-    createUser({ username: "lucy", password: "l_password", is_admin: false }),
-    createUser({ username: "ethyl", password: "1234", is_admin: true }),
+  const [dylan, seth, aubrionna, elly] = await Promise.all([
+    createUser({ username: 'Dylan', password: 'dylanpass', is_admin: true, is_vip: true}),
+    createUser({ username: 'Seth', password: 'sethpass', is_admin: true, is_vip: true}),
+    createUser({ username: 'Aubrionna', password: 'aubrionnapass', is_admin: true, is_vip: true}),
+    createUser({ username: 'Elly', password: 'ellypass', is_admin: true, is_vip: true})
   ]);
   const [foo, bar, bazz] = await Promise.all([
-    createProduct({ name: "foo" }),
-    createProduct({ name: "bar" }),
-    createProduct({ name: "bazz" }),
-    createProduct({ name: "quq" }),
+    createProduct({ name: 'foo' }),
+    createProduct({ name: 'bar' }),
+    createProduct({ name: 'bazz' }),
+    createProduct({ name: 'quq' }),
   ]);
   let orders = await fetchOrders(ethyl.id);
-  let cart = orders.find((order) => order.is_cart);
-  let lineItem = await createLineItem({
-    order_id: cart.id,
-    product_id: foo.id,
-  });
+  let cart = orders.find(order => order.is_cart);
+  let lineItem = await createLineItem({ order_id: cart.id, product_id: foo.id});
   lineItem.quantity++;
   await updateLineItem(lineItem);
-  lineItem = await createLineItem({ order_id: cart.id, product_id: bar.id });
+  lineItem = await createLineItem({ order_id: cart.id, product_id: bar.id});
   cart.is_cart = false;
   await updateOrder(cart);
 };
