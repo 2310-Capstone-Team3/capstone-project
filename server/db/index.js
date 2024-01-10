@@ -6,6 +6,10 @@ const {
 } = require('./products');
 
 const {
+  fetchUsers
+} = require('./users')
+
+const {
   createUser,
   authenticate,
   findUserByToken
@@ -97,5 +101,7 @@ module.exports = {
   authenticate,
   findUserByToken,
   seed,
-  client
+  client,
+  createUser,
+  fetchUsers
 };

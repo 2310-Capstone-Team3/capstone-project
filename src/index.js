@@ -13,10 +13,18 @@ const App = ()=> {
   const [lineItems, setLineItems] = useState([]);
   const [auth, setAuth] = useState({});
   const navigate = useNavigate()
+  const [users, setUsers] = useState([])
 
   const attemptLoginWithToken = async()=> {
     await api.attemptLoginWithToken(setAuth);
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchUsers(setUsers);
+    };
+    fetchData();
+  }, []);
 
   useEffect(()=> {
     attemptLoginWithToken();
@@ -76,6 +84,11 @@ const App = ()=> {
     await api.login({ credentials, setAuth });
   }
 
+  const signUp = async(credentials) => {
+    const response = await api.signUp({ credentials })
+    return response.data
+  }
+
   const logout = ()=> {
     api.logout(setAuth);
     navigate('/account')
@@ -126,7 +139,7 @@ const App = ()=> {
               <Link to='/products'>Products</Link>
             </nav>
             <Routes>
-              <Route path='/account' element={<Account login = {login}/>}></Route>
+              <Route path='/account' element={<Account login = {login} signUp = {signUp} users = {users} setUsers = {setUsers}/>}></Route>
               <Route path='/products' element={<Products
               products={ products }
               cartItems = { cartItems }
