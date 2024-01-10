@@ -4,7 +4,7 @@ import { Link, HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import Products from './Products';
 import Orders from './Orders';
 import Cart from './Cart';
-import Login from './Login';
+import Account from './Account';
 import api from './api';
 
 const App = ()=> {
@@ -78,7 +78,7 @@ const App = ()=> {
 
   const logout = ()=> {
     api.logout(setAuth);
-    navigate('/login')
+    navigate('/account')
   }
 
   return (
@@ -122,11 +122,11 @@ const App = ()=> {
         ):(
           <div>
             <nav>
-              <Link to='/login'>Login</Link>
+              <Link to='/account'>Account</Link>
               <Link to='/products'>Products</Link>
             </nav>
             <Routes>
-              <Route path='/login' element={<Login login = {login}/>}></Route>
+              <Route path='/account' element={<Account login = {login}/>}></Route>
               <Route path='/products' element={<Products
               products={ products }
               cartItems = { cartItems }
