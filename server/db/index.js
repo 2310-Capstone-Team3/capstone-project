@@ -57,7 +57,6 @@ const seed = async () => {
   await client.query(SQL);
 
   const [dylan, seth, aubrionna, elly] = await Promise.all([
-<<<<<<< HEAD
     createUser({ username: "Dylan", password: "dylanpass", is_admin: true }),
     createUser({ username: "Seth", password: "sethpass", is_admin: true }),
     createUser({
@@ -66,12 +65,6 @@ const seed = async () => {
       is_admin: true,
     }),
     createUser({ username: "Elly", password: "ellypass", is_admin: true }),
-=======
-    createUser({ username: 'Dylan', password: 'dylanpass', is_admin: true, is_vip: true}),
-    createUser({ username: 'Seth', password: 'sethpass', is_admin: true, is_vip: true}),
-    createUser({ username: 'Aubrionna', password: 'aubrionnapass', is_admin: true, is_vip: true}),
-    createUser({ username: 'Elly', password: 'ellypass', is_admin: true, is_vip: true})
->>>>>>> a1ee1b9951a10493f25329899743a321456c4e44
   ]);
   const [
     fourWeekCourse,
