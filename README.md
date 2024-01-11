@@ -16,13 +16,13 @@
 - [  ] as a user if I decrement a quantity to zero, the line_item should be deleted
 - [ done ] as a user I should see an error message if my credentials are not correct
 - [ done ] as a user I should be able to create an account.
-- [  ] as a user I should have profile settings which I can edit
+- [ done ] as a user I should have profile settings which I can edit
 - [  ] as a user I should be able to add a shipping address to an order
 - [  ] as a user I should be able see reviews for products on the product detail page
 - [  ] as a user I should be able to leave a review on the product detail page
 - [  ] as a user I should be able to search for products, based on the name of the product.
 - [  ] as a user I should be able to add and remove products from a wish list
-- [  ] as a vip user I should be able to see that I am a vip user
+- [ done ] as a vip user I should be able to see that I am a vip user
 - [  ] as a vip user I should be able to see vip_only products
 - [  ] as a non-vip user, I should not be able to see vip_only products
 - [  ] as an administrator I should be able to add and edit products

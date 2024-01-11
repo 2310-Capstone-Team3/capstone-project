@@ -117,6 +117,24 @@ const resetPassword = async({ user, password }) => {
   }
 }
 
+const resetUsername = async({ user, username }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/reset-username`, { id: user.id, username: username });
+  } catch (error) {
+    console.error('Error during username reset:', error)
+    throw error
+  }
+}
+
+const resetEmail = async({ user, email }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/reset-email`, { id: user.id, email: email });
+  } catch (error) {
+    console.error('Error during email reset:', error)
+    throw error
+  }
+}
+
 const logout = (setAuth)=> {
   window.localStorage.removeItem('token');
   setAuth({});
@@ -137,7 +155,9 @@ const api = {
   minusOne,
   signUp,
   fetchUsers,
-  resetPassword
+  resetPassword,
+  resetUsername,
+  resetEmail
 };
 
 export default api;
