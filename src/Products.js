@@ -21,9 +21,10 @@ const Products = ({
               <br />
               -- {product.description}
               <br />
-              {/* <button classname="product-deets">
-                <Link to={product}> Click for Details!</Link>
-              </button> */}
+              <button className="details">
+              <Link to={`/products/${product.id}/details`}>Click For Details!</Link>
+          
+              </button>
               {auth.id ? (
                 cartItem ? (
                   <button onClick={() => updateLineItem(cartItem)}>

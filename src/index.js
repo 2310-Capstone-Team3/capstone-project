@@ -14,8 +14,10 @@ const App = ()=> {
   const [orders, setOrders] = useState([]);
   const [lineItems, setLineItems] = useState([]);
   const [auth, setAuth] = useState({});
-  const navigate = useNavigate()
-  const [users, setUsers] = useState([])
+  const navigate = useNavigate();
+  const [users, setUsers] = useState([]);
+  const [details, setDetails] = useState([])
+
 
   const attemptLoginWithToken = async()=> {
     await api.attemptLoginWithToken(setAuth);
@@ -56,6 +58,10 @@ const App = ()=> {
       fetchData();
     }
   }, [auth]);
+
+  // const createDetails = async(product) => {
+  //   await api.createDetails({ product, details, setDetails});
+  // }
 
 
   const createLineItem = async(product)=> {
@@ -123,7 +129,10 @@ const App = ()=> {
                 cartItems = { cartItems }
                 createLineItem = { createLineItem }
                 updateLineItem = { updateLineItem }
+                createDetails={ createDetails}
               />}></Route>
+              <Route path='/products/:id/details' element = {<Products products ={products}/>}></Route> 
+              details = { details}
                 <Route path='/cart' element={<Cart
                 cart = { cart }
                 lineItems = { lineItems }
@@ -153,6 +162,7 @@ const App = ()=> {
               createLineItem = { createLineItem }
               updateLineItem = { updateLineItem }
               auth = { auth }
+            
             />}></Route>
             <Route path='/register' element={<Register
                 users = { users }
