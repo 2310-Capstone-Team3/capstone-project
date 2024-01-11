@@ -87,6 +87,15 @@ const signUp = async({ credentials }) => {
   }
 }
 
+const resetPassword = async({ user, password }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/reset-password`, { id: user.id, password: password });
+  } catch (error) {
+    console.error('Error during password reset:', error)
+    throw error
+  }
+}
+
 const logout = (setAuth)=> {
   window.localStorage.removeItem('token');
   setAuth({});
@@ -104,7 +113,8 @@ const api = {
   removeFromCart,
   attemptLoginWithToken,
   signUp,
-  fetchUsers
+  fetchUsers,
+  resetPassword
 };
 
 export default api;
