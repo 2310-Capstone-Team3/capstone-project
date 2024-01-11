@@ -79,6 +79,18 @@ const App = ()=> {
   const removeFromCart = async(lineItem)=> {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
   };
+  
+  const plusOne = async(lineItem) => {
+    await api.plusOne({lineItem, lineItems, setLineItems, cart});
+  };
+
+  const minusOne = async(lineItem) => {
+    await api.minusOne({lineItem, lineItems, setLineItems, cart});
+  };
+
+  const decrement = async(lineItem) => {
+    await api.decrement({lineItem, lineItems, setLineItems, cart});
+  };
 
   const cart = orders.find(order => order.is_cart) || {};
 
@@ -102,9 +114,24 @@ const App = ()=> {
     return response.data
   }
 
+  const resetUsername = async(user, username) => {
+    const response = await api.resetUsername({ user, username })
+    return response.data
+  }
+
+  const resetEmail = async(user, email) => {
+    const response = await api.resetEmail({ user, email })
+    return response.data
+  }
+
   const logout = ()=> {
     api.logout(setAuth);
     navigate('/account')
+  }
+
+  const fetchUser = () => {
+    const user = users.data.find(user => user.username === auth.username)
+    return user
   }
 
   return (
@@ -116,6 +143,7 @@ const App = ()=> {
               <Link to='/products'>Products ({ products.length })</Link>
               <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
               <Link to='/cart'>Cart ({ cartCount })</Link>
+              <Link to='/account'>Account</Link>
               <span>
                 Welcome { auth.username }!
                 <button onClick={ logout }>Logout</button>
@@ -139,11 +167,20 @@ const App = ()=> {
                 products = { products }
                 updateOrder = { updateOrder }
                 removeFromCart = { removeFromCart }
+                plusOne = { plusOne }
+                minusOne = { minusOne }
               />}></Route>
                 <Route path='/orders' element={<Orders
                 orders = { orders }
                 products = { products }
                 lineItems = { lineItems }
+              />}></Route>
+                <Route path='/account' element={<Account
+                authId = { auth.id }
+                user = { fetchUser() }
+                resetPassword = { resetPassword }
+                resetUsername = { resetUsername }
+                resetEmail = { resetEmail }
               />}></Route>
               </Routes>
             </main>

@@ -28,6 +28,9 @@ const Register = ({ signUp, users, setUsers })=> {
         } else {
         setSignedUpStatus("exists")
         }
+        setUsername('')
+        setPassword('')
+        setEmail('')
     };
 
     return (

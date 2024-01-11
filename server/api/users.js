@@ -2,7 +2,9 @@ const {
     fetchUsers,
     createUser,
     fetchUserById,
-    resetUserPassword
+    resetUserPassword,
+    resetUserUsername,
+    resetUserEmail
 } = require('../db');
 
 const express = require('express');
@@ -42,6 +44,28 @@ app.patch('/:userId/reset-password', async (req, res, next) => {
         const userId = req.params.userId;
         const newPassword = req.body.password;
         const updatedUser = await resetUserPassword(userId, newPassword);
+        res.send(updatedUser);
+    } catch (error) {
+        next(error);
+    }
+});
+
+app.patch('/:userId/reset-username', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const newUsername = req.body.username;
+        const updatedUser = await resetUserUsername(userId, newUsername);
+        res.send(updatedUser);
+    } catch (error) {
+        next(error);
+    }
+});
+
+app.patch('/:userId/reset-email', async (req, res, next) => {
+    try {
+        const userId = req.params.userId;
+        const newEmail = req.body.email;
+        const updatedUser = await resetUserEmail(userId, newEmail);
         res.send(updatedUser);
     } catch (error) {
         next(error);

@@ -6,15 +6,17 @@ const {
 } = require('./products');
 
 const {
-  fetchUsers
+  fetchUsers,
+  resetUserPassword,
+  resetUserUsername,
+  resetUserEmail
 } = require('./users')
 
 const {
   createUser,
   authenticate,
   findUserByToken,
-  fetchUserById,
-  resetUserPassword
+  fetchUserById
 } = require('./auth');
 
 const {
@@ -112,5 +114,7 @@ module.exports = {
   createUser,
   fetchUsers,
   fetchUserById,
-  resetUserPassword
+  resetUserPassword,
+  resetUserUsername,
+  resetUserEmail
 };
