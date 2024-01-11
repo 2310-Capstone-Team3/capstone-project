@@ -13,6 +13,11 @@ const fetchProducts = async(setProducts)=> {
   setProducts(response.data);
 };
 
+const fetchUsers = async(setUsers) => {
+  const response = await axios.get('/api/users')
+  setUsers(response)
+}
+
 const fetchOrders = async(setOrders)=> {
   const response = await axios.get('/api/orders', getHeaders());
   setOrders(response.data);
@@ -93,6 +98,25 @@ const login = async({ credentials, setAuth })=> {
   attemptLoginWithToken(setAuth);
 }
 
+const signUp = async({ credentials }) => {
+  console.log(credentials)
+  try {
+    return await axios.post('/api/users', credentials)
+  } catch (error) {
+    console.error('Error during user registration:', error)
+    throw error
+  }
+}
+
+const resetPassword = async({ user, password }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/reset-password`, { id: user.id, password: password });
+  } catch (error) {
+    console.error('Error during password reset:', error)
+    throw error
+  }
+}
+
 const logout = (setAuth)=> {
   window.localStorage.removeItem('token');
   setAuth({});
@@ -109,8 +133,9 @@ const api = {
   updateOrder,
   removeFromCart,
   attemptLoginWithToken,
-  plusOne,
-  minusOne
+  signUp,
+  fetchUsers,
+  resetPassword
 };
 
 export default api;
