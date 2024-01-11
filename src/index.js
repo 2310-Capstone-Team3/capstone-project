@@ -73,6 +73,18 @@ const App = ()=> {
   const removeFromCart = async(lineItem)=> {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
   };
+  
+  const plusOne = async(lineItem) => {
+    await api.plusOne({lineItem, lineItems, setLineItems, cart});
+  };
+
+  const minusOne = async(lineItem) => {
+    await api.minusOne({lineItem, lineItems, setLineItems, cart});
+  };
+
+  const decrement = async(lineItem) => {
+    await api.decrement({lineItem, lineItems, setLineItems, cart});
+  };
 
   const cart = orders.find(order => order.is_cart) || {};
 
@@ -130,6 +142,8 @@ const App = ()=> {
                 products = { products }
                 updateOrder = { updateOrder }
                 removeFromCart = { removeFromCart }
+                plusOne = { plusOne }
+                minusOne = { minusOne }
               />}></Route>
                 <Route path='/orders' element={<Orders
                 orders = { orders }

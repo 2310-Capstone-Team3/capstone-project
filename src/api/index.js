@@ -50,9 +50,30 @@ const updateOrder = async({ order, setOrders })=> {
   setOrders(response.data);
 };
 
-const removeFromCart = async({ lineItem, lineItems, setLineItems })=> {
+const removeFromCart = async({ lineItem, lineItems, setLineItems})=> {
   const response = await axios.delete(`/api/lineItems/${lineItem.id}`, getHeaders());
   setLineItems(lineItems.filter( _lineItem => _lineItem.id !== lineItem.id));
+};
+
+const plusOne = async({lineItem, lineItems, setLineItems, cart}) => {
+  const response = await axios.put(`/api/lineItems/${lineItem.id}`, {
+    quantity: lineItem.quantity + 1,
+    order_id: cart.id
+  }, getHeaders());
+  setLineItems(lineItems.map( lineItem => lineItem.id == response.data.id ? response.data: lineItem));
+};
+
+const minusOne = async({lineItem, lineItems, setLineItems, cart}) => {
+  if (lineItem.quantity > 1) {
+    const response = await axios.put(`/api/lineItems/${lineItem.id}`, {
+      quantity: lineItem.quantity - 1,
+      order_id: cart.id
+    }, getHeaders());
+    return setLineItems(lineItems.map( lineItem => lineItem.id == response.data.id ? response.data: lineItem));
+  } else {
+    const response = await axios.delete(`/api/lineItems/${lineItem.id}`, getHeaders());
+    return setLineItems(lineItems.filter( _lineItem => _lineItem.id !== lineItem.id));
+  }
 };
 
 const attemptLoginWithToken = async(setAuth)=> {
@@ -112,6 +133,8 @@ const api = {
   updateOrder,
   removeFromCart,
   attemptLoginWithToken,
+  plusOne,
+  minusOne,
   signUp,
   fetchUsers,
   resetPassword
