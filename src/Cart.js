@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne, minusOne })=> {
+const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne, minusOne, decrement })=> {
   let totalItems = []
 
   return (

@@ -72,6 +72,10 @@ const App = ()=> {
     await api.minusOne({lineItem, lineItems, setLineItems, cart});
   };
 
+  const decrement = async(lineItem) => {
+    await api.decrement({lineItem, lineItems, setLineItems, cart});
+  };
+
   const cart = orders.find(order => order.is_cart) || {};
 
   const cartItems = lineItems.filter(lineItem => lineItem.order_id === cart.id);

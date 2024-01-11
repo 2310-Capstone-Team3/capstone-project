@@ -59,11 +59,16 @@ const plusOne = async({lineItem, lineItems, setLineItems, cart}) => {
 };
 
 const minusOne = async({lineItem, lineItems, setLineItems, cart}) => {
-  const response = await axios.put(`/api/lineItems/${lineItem.id}`, {
-    quantity: lineItem.quantity - 1,
-    order_id: cart.id
-  }, getHeaders());
-  setLineItems(lineItems.map( lineItem => lineItem.id == response.data.id ? response.data: lineItem));
+  if (lineItem.quantity > 1) {
+    const response = await axios.put(`/api/lineItems/${lineItem.id}`, {
+      quantity: lineItem.quantity - 1,
+      order_id: cart.id
+    }, getHeaders());
+    return setLineItems(lineItems.map( lineItem => lineItem.id == response.data.id ? response.data: lineItem));
+  } else {
+    const response = await axios.delete(`/api/lineItems/${lineItem.id}`, getHeaders());
+    return setLineItems(lineItems.filter( _lineItem => _lineItem.id !== lineItem.id));
+  }
 };
 
 const attemptLoginWithToken = async(setAuth)=> {
