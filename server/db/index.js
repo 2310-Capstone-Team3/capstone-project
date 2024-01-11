@@ -6,9 +6,15 @@ const {
 } = require('./products');
 
 const {
+  fetchUsers
+} = require('./users')
+
+const {
   createUser,
   authenticate,
-  findUserByToken
+  findUserByToken,
+  fetchUserById,
+  resetUserPassword
 } = require('./auth');
 
 const {
@@ -35,6 +41,7 @@ const seed = async()=> {
       created_at TIMESTAMP DEFAULT now(),
       username VARCHAR(100) UNIQUE NOT NULL,
       password VARCHAR(100) NOT NULL,
+      email VARCHAR(256) UNIQUE NOT NULL,
       is_admin BOOLEAN DEFAULT false NOT NULL,
       is_vip BOOLEAN DEFAULT false NOT NULL
     );
@@ -68,10 +75,10 @@ const seed = async()=> {
   await client.query(SQL);
 
   const [dylan, seth, aubrionna, elly] = await Promise.all([
-    createUser({ username: 'Dylan', password: 'dylanpass', is_admin: true, is_vip: true}),
-    createUser({ username: 'Seth', password: 'sethpass', is_admin: true, is_vip: true}),
-    createUser({ username: 'Aubrionna', password: 'aubrionnapass', is_admin: true, is_vip: true}),
-    createUser({ username: 'Elly', password: 'ellypass', is_admin: true, is_vip: true})
+    createUser({ username: 'Dylan', password: 'dylanpass', email: 'dylan@team3.com',is_admin: true, is_vip: true}),
+    createUser({ username: 'Seth', password: 'sethpass', email: 'seth@team3.com', is_admin: true, is_vip: true}),
+    createUser({ username: 'Aubrionna', password: 'aubrionnapass', email: 'aubrionna@team3.com', is_admin: true, is_vip: true}),
+    createUser({ username: 'Elly', password: 'ellypass', email: 'elly@team3.com', is_admin: true, is_vip: true})
   ]);
   const [fourWeekCourse, eightWeekCourse, twelveWeekCourse, twentyFourWeekCourse] = await Promise.all([
     createProduct({ name: '4 Week Course', price: 1000, description: "Our shortest section, meant to help guide those with previous experience!" }),
@@ -101,5 +108,9 @@ module.exports = {
   authenticate,
   findUserByToken,
   seed,
-  client
+  client,
+  createUser,
+  fetchUsers,
+  fetchUserById,
+  resetUserPassword
 };
