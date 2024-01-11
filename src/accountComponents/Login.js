@@ -21,6 +21,8 @@ const Login = ({ login, users })=> {
         } else {
         setLoginStatus("na")
         }
+        setUsername('')
+        setPassword('')
     }
 
     return (
