@@ -5,6 +5,7 @@ const {
   createProduct
 } = require('./products');
 
+
 const {
   fetchUsers,
   resetUserPassword,
@@ -35,7 +36,6 @@ const seed = async()=> {
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
-    DROP TABLE IF EXISTS productdeets;
 
 
     CREATE TABLE users(
@@ -116,5 +116,5 @@ module.exports = {
   fetchUserById,
   resetUserPassword,
   resetUserUsername,
-  resetUserEmail
+  resetUserEmail,
 };

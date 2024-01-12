@@ -22,7 +22,7 @@ const Products = ({
               -- {product.description}
               <br />
               <button className="details">
-              <Link to={`/products/${product.id}/details`}>Click For Details!</Link>
+              <Link to={`/details`}>Click For Details!</Link>
           
               </button>
               {auth.id ? (
