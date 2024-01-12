@@ -147,8 +147,8 @@ const App = () => {
             <div className="navi">
             <nav>
             <Link to='/home'>Home</Link>
-              <Link to='/products'>Products ({ products.length })</Link>
-              <Link to='/orders'>Courses ({ orders.filter(order => !order.is_cart).length })</Link>
+              <Link to='/products'>Courses ({ products.length })</Link>
+              <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
               <Link to='/cart'>Cart ({ cartCount })</Link>
               <Link to='/account'>Account</Link>
               <span>
