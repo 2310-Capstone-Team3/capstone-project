@@ -8,6 +8,10 @@ import Account from './Account';
 import api from './api';
 import Register from './accountComponents/Register'
 import PassReset from './accountComponents/PassReset'
+import Security from './accountComponents/Security';
+import SecurityUsers from './accountComponents/SecurityUsers';
+import SecurityProducts from './accountComponents/SecurityProducts';
+import DisplaySingleUser from './accountComponents/DisplaySingleUser';
 
 const App = ()=> {
   const [products, setProducts] = useState([]);
@@ -118,6 +122,16 @@ const App = ()=> {
     return response.data
   }
 
+  const changeVipStatus = async(user, status) => {
+    const response = await api.changeVipStatus({ user, status })
+    return response.data
+  }
+
+  const changeAdminStatus = async(user, status) => {
+    const response = await api.changeAdminStatus({ user, status })
+    return response.data
+  }
+
   const logout = ()=> {
     api.logout(setAuth);
     navigate('/account')
@@ -138,6 +152,12 @@ const App = ()=> {
               <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
               <Link to='/cart'>Cart ({ cartCount })</Link>
               <Link to='/account'>Account</Link>
+              {
+              fetchUser().is_admin === true ? (
+              <Link to='/security'>Security</Link>
+              ) : (
+                null
+              )}
               <span>
                 Welcome { auth.username }!
                 <button onClick={ logout }>Logout</button>
@@ -173,6 +193,18 @@ const App = ()=> {
                 resetUsername = { resetUsername }
                 resetEmail = { resetEmail }
               />}></Route>
+              <Route path='/security/*' element={<Security
+              />}></Route>
+              <Route path='/security/users/*' element={<SecurityUsers
+                users = { users }
+              />}></Route>
+              <Route path='/security/products/*' element={<SecurityProducts
+              />}></Route>
+              <Route path='/security/users/:userId' element={<DisplaySingleUser
+                users = {users}
+                changeVipStatus = {changeVipStatus}
+                changeAdminStatus = {changeAdminStatus}
+              />}></Route>
               </Routes>
             </main>
             </>
@@ -183,7 +215,12 @@ const App = ()=> {
               <Link to='/products'>Products</Link>
             </nav>
             <Routes>
-              <Route path='/account/*' element={<Account login = {login} signUp = {signUp} users = {users} setUsers = {setUsers}/>}></Route>
+              <Route path='/account/*' element={<Account 
+              login = {login} 
+              signUp = {signUp} 
+              users = {users} 
+              setUsers = {setUsers}
+              />}></Route>
               <Route path='/products' element={<Products
               products={ products }
               cartItems = { cartItems }

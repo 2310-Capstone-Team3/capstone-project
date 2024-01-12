@@ -13,7 +13,7 @@
 - [ done ] as a user I should see a description for a product
 - [ done ] as a user I should see the total amount in my cart as well as my orders
 - [ done ] as a user I should be able to increment and decrement items in my cart
-- [  ] as a user if I decrement a quantity to zero, the line_item should be deleted
+- [ done ] as a user if I decrement a quantity to zero, the line_item should be deleted
 - [ done ] as a user I should see an error message if my credentials are not correct
 - [ done ] as a user I should be able to create an account.
 - [ done ] as a user I should have profile settings which I can edit
@@ -26,8 +26,8 @@
 - [  ] as a vip user I should be able to see vip_only products
 - [  ] as a non-vip user, I should not be able to see vip_only products
 - [  ] as an administrator I should be able to add and edit products
-- [  ] as an administrator I should be able to see all users
-- [  ] as an administrator I should be able to make a user a vip
+- [ done ] as an administrator I should be able to see all users
+- [ done ] as an administrator I should be able to make a user a vip
 - [  ] as an administrator I should be able to mark a product as vip_only, which can only be purchased by vip users.
 - [  ] as an administrator I should be able to see all orders
 

@@ -77,9 +77,53 @@ const resetUserEmail = async (userId, newEmail) => {
     }
 }
 
+const changeVipStatus = async (userId, status) => {
+    try {
+        const SQL = `
+        UPDATE users
+        SET is_vip = $1
+        WHERE id = $2
+        RETURNING id, username, email, is_admin, is_vip;
+        `
+
+        const response = await client.query(SQL, [status, userId])
+
+        if (!response.rows.length) {
+            throw Error('User not found')
+        }
+
+        return response.rows[0]
+    } catch (error) {
+        throw error
+    }
+}
+
+const changeAdminStatus = async (userId, status) => {
+    try {
+        const SQL = `
+        UPDATE users
+        SET is_admin = $1
+        WHERE id = $2
+        RETURNING id, username, email, is_admin, is_vip;
+        `
+
+        const response = await client.query(SQL, [status, userId])
+
+        if (!response.rows.length) {
+            throw Error('User not found')
+        }
+
+        return response.rows[0]
+    } catch (error) {
+        throw error
+    }
+}
+
 module.exports = {
     fetchUsers,
     resetUserPassword,
     resetUserUsername,
-    resetUserEmail
+    resetUserEmail,
+    changeVipStatus,
+    changeAdminStatus
 };
