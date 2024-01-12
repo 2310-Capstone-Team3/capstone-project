@@ -239,7 +239,7 @@ const App = () => {
               users = {users} 
               setUsers = {setUsers}
               />}></Route>
-              <Route path='/home' element={<Home/>}</Route>
+              <Route path='/home' element={<Home/>}></Route>
               <Route path='/products' element={<Products
               products={ products }
               cartItems = { cartItems }
