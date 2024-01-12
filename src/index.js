@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom/client";
-import { Link, HashRouter, Routes, Route, useNavigate } from "react-router-dom";
-import Products from "./Products";
-import Orders from "./Orders";
-import Cart from "./Cart";
-import Account from "./Account";
-import api from "./api";
-import Register from "./accountComponents/Register";
-import PassReset from "./accountComponents/PassReset";
-import ProductDeets from "./ProductDeets";
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom/client';
+import { Link, HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import Products from './Products';
+import Orders from './Orders';
+import Cart from './Cart';
+import Account from './Account';
+import api from './api';
+import Register from './accountComponents/Register';
+import PassReset from './accountComponents/PassReset';
+import Home from './Home';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -141,133 +141,82 @@ const App = () => {
 
   return (
     <div>
-      {auth.id ? (
-        <>
-          <nav>
-            <Link to="/products">Products ({products.length})</Link>
-            <Link to="/orders">
-              Orders ({orders.filter((order) => !order.is_cart).length})
-            </Link>
-            <Link to="/cart">Cart ({cartCount})</Link>
-            <Link to="/account">Account</Link>
-            <span>
-              Welcome {auth.username}!<button onClick={logout}>Logout</button>
-            </span>
-          </nav>
-          <main>
+      {
+        auth.id ? (
+          <>
+            <nav>
+              <Link to='/products'>Products ({ products.length })</Link>
+              <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
+              <Link to='/cart'>Cart ({ cartCount })</Link>
+              <Link to='/account'>Account</Link>
+              <span>
+                Welcome { auth.username }!
+                <button onClick={ logout }>Logout</button>
+              </span>
+            </nav>
+            <main>
+              <Routes>
+                <Route path='/products' element={<Products
+                auth = { auth }
+                products={ products }
+                cartItems = { cartItems }
+                createLineItem = { createLineItem }
+                updateLineItem = { updateLineItem }
+              />}></Route>
+                <Route path='/cart' element={<Cart
+                cart = { cart }
+                lineItems = { lineItems }
+                products = { products }
+                updateOrder = { updateOrder }
+                removeFromCart = { removeFromCart }
+                plusOne = { plusOne }
+                minusOne = { minusOne }
+              />}></Route>
+                <Route path='/orders' element={<Orders
+                orders = { orders }
+                products = { products }
+                lineItems = { lineItems }
+              />}></Route>
+                <Route path='/account' element={<Account
+                authId = { auth.id }
+                user = { fetchUser() }
+                resetPassword = { resetPassword }
+                resetUsername = { resetUsername }
+                resetEmail = { resetEmail }
+              />}></Route>
+              </Routes>
+            </main>
+            </>
+        ):(
+          <div>
+            <nav>
+              <Link to='/account'>Account</Link>
+              <Link to='/products'>Products</Link>
+            </nav>
             <Routes>
-              <Route
-                path="/products"
-                element={
-                  <Products
-                    auth={auth}
-                    products={products}
-                    cartItems={cartItems}
-                    createLineItem={createLineItem}
-                    updateLineItem={updateLineItem}
-                  />
-                }
-              ></Route>
-              {
-                <Route
-                  path="/details"
-                  element={
-                    <ProductDeets
-                      ProductDeets={ProductDeets}
-                      products={products}
-                    />
-                  }
-                ></Route>
-              }
-              <Route
-                path="/cart"
-                element={
-                  <Cart
-                    cart={cart}
-                    lineItems={lineItems}
-                    products={products}
-                    updateOrder={updateOrder}
-                    removeFromCart={removeFromCart}
-                    plusOne={plusOne}
-                    minusOne={minusOne}
-                  />
-                }
-              ></Route>
-              <Route
-                path="/orders"
-                element={
-                  <Orders
-                    orders={orders}
-                    products={products}
-                    lineItems={lineItems}
-                  />
-                }
-              ></Route>
-              <Route
-                path="/account"
-                element={
-                  <Account
-                    authId={auth.id}
-                    user={fetchUser()}
-                    resetPassword={resetPassword}
-                    resetUsername={resetUsername}
-                    resetEmail={resetEmail}
-                  />
-                }
-              ></Route>
+              <Route path='/account/*' element={<Account login = {login} signUp = {signUp} users = {users} setUsers = {setUsers}/>}></Route>
+              <Route path='/products' element={<Products
+              products={ products }
+              cartItems = { cartItems }
+              createLineItem = { createLineItem }
+              updateLineItem = { updateLineItem }
+              auth = { auth }
+            />}></Route>
+            <Route path='/register' element={<Register
+                users = { users }
+                signUp = { signUp }
+                setUsers = { setUsers }
+              />}></Route>    
+            <Route path='/passreset' element={<PassReset
+                users = { users }
+                signUp = { signUp }
+                setUsers = { setUsers }
+                resetPassword = { resetPassword }
+              />}></Route>    
             </Routes>
-          </main>
-        </>
-      ) : (
-        <div>
-          <nav>
-            <Link to="/account">Account</Link>
-            <Link to="/products">Products</Link>
-          </nav>
-          <Routes>
-            <Route
-              path="/account/*"
-              element={
-                <Account
-                  login={login}
-                  signUp={signUp}
-                  users={users}
-                  setUsers={setUsers}
-                />
-              }
-            ></Route>
-            <Route
-              path="/products"
-              element={
-                <Products
-                  products={products}
-                  cartItems={cartItems}
-                  createLineItem={createLineItem}
-                  updateLineItem={updateLineItem}
-                  auth={auth}
-                />
-              }
-            ></Route>
-            <Route
-              path="/register"
-              element={
-                <Register users={users} signUp={signUp} setUsers={setUsers} />
-              }
-            ></Route>
-            <Route
-              path="/passreset"
-              element={
-                <PassReset
-                  users={users}
-                  signUp={signUp}
-                  setUsers={setUsers}
-                  resetPassword={resetPassword}
-                />
-              }
-            ></Route>
-          </Routes>
-        </div>
-      )}
+          </div>
+        )
+      }
     </div>
   );
 };

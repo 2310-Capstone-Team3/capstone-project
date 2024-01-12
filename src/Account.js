@@ -6,7 +6,7 @@ import LoggedInDetails from './accountComponents/LoggedInDetails';
 const Account = ({ login, users, authId, user, resetPassword, resetUsername, resetEmail })=> {
 
   return (
-    <div>
+    <div className='login'>
       {
         authId ? (
           <div>
