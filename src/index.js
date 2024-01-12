@@ -144,9 +144,11 @@ const App = () => {
       {
         auth.id ? (
           <>
+            <div className="Navi">
             <nav>
+            <Link to='/home'>Home</Link>
               <Link to='/products'>Products ({ products.length })</Link>
-              <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
+              <Link to='/orders'>Courses ({ orders.filter(order => !order.is_cart).length })</Link>
               <Link to='/cart'>Cart ({ cartCount })</Link>
               <Link to='/account'>Account</Link>
               <span>
@@ -154,8 +156,10 @@ const App = () => {
                 <button onClick={ logout }>Logout</button>
               </span>
             </nav>
+            </div>
             <main>
               <Routes>
+                <Route path='/home' element={<Home/>}</Route>
                 <Route path='/products' element={<Products
                 auth = { auth }
                 products={ products }
@@ -189,11 +193,15 @@ const App = () => {
             </>
         ):(
           <div>
+            <div className='navi'>
             <nav>
+              <Link to='/home'>Home</Link>
               <Link to='/account'>Account</Link>
-              <Link to='/products'>Products</Link>
+              <Link to='/products'>Courses</Link>
             </nav>
+            </div>
             <Routes>
+              <Route path='/home' element={<Home/>}</Route>
               <Route path='/account/*' element={<Account login = {login} signUp = {signUp} users = {users} setUsers = {setUsers}/>}></Route>
               <Route path='/products' element={<Products
               products={ products }
