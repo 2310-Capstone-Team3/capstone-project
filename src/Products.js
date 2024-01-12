@@ -1,7 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Products = ({ products, cartItems, createLineItem, updateLineItem, auth})=> {
+const Products = ({
+  products,
+  cartItems,
+  createLineItem,
+  updateLineItem,
+  auth}) => {
   return (
     <div>
       <h2>Courses</h2>
@@ -36,4 +41,3 @@ const Products = ({ products, cartItems, createLineItem, updateLineItem, auth})=
 };
 
 export default Products;
-

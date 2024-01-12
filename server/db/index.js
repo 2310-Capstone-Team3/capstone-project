@@ -5,6 +5,7 @@ const {
   createProduct
 } = require('./products');
 
+
 const {
   fetchUsers,
   resetUserPassword,
@@ -36,6 +37,7 @@ const seed = async()=> {
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
 
+
     CREATE TABLE users(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
@@ -52,7 +54,8 @@ const seed = async()=> {
       name VARCHAR(100) UNIQUE NOT NULL,
       price INTEGER NOT NULL,
       description TEXT
-    );
+    ); 
+
 
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
@@ -85,6 +88,7 @@ const seed = async()=> {
     createProduct({ name: '12 Week Course', price: 2800, description: "Our mid range section that helps those with little to no experience get started as a web developer!" }),
     createProduct({ name: '24 Week Course', price: 5000, description: "Our longest section that is meant for those that either want a longer section or learn at a slower pace, goes the most in-depth!" }),
   ]);
+  
   let orders = await fetchOrders(dylan.id);
   let cart = orders.find(order => order.is_cart);
   let lineItem = await createLineItem({ order_id: cart.id, product_id: fourWeekCourse.id});
@@ -112,5 +116,5 @@ module.exports = {
   fetchUserById,
   resetUserPassword,
   resetUserUsername,
-  resetUserEmail
+  resetUserEmail,
 };

@@ -13,6 +13,7 @@ const fetchProducts = async(setProducts)=> {
   setProducts(response.data);
 };
 
+
 const fetchUsers = async(setUsers) => {
   const response = await axios.get('/api/users')
   setUsers(response)
@@ -139,6 +140,14 @@ const logout = (setAuth)=> {
   window.localStorage.removeItem('token');
   setAuth({});
 }
+const createDetails = async({ product, details, setDetails })=> {
+  const response = await axios.post('/api/products/details', {
+  product_id: product.id,
+  product_name: product.name,
+  product_description: product.description
+  }, getHeaders());
+  setDetails([...details, response.data]);
+}
 
 const api = {
   login,
@@ -157,7 +166,9 @@ const api = {
   fetchUsers,
   resetPassword,
   resetUsername,
-  resetEmail
+  resetEmail,
+  createDetails
+
 };
 
 export default api;
