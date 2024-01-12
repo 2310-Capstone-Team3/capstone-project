@@ -4,16 +4,17 @@ import { Link } from 'react-router-dom';
 const Products = ({ products, cartItems, createLineItem, updateLineItem, auth})=> {
   return (
     <div>
-      <h2>Products</h2>
+      <h2>Courses</h2>
       <ul>
         {
           products.map( product => {
             const cartItem = cartItems.find(lineItem => lineItem.product_id === product.id);
             return (
-              <li key={ product.id }>
+              <li key={ product.id }><div className='course'>
                 { product.name } (${product.price})
+                </div>
                 <br />
-                -- {product.description}
+                {product.description}
                 <br />
                 {
                   auth.id ? (

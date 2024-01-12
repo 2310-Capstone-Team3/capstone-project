@@ -6,8 +6,9 @@ import Orders from './Orders';
 import Cart from './Cart';
 import Account from './Account';
 import api from './api';
-import Register from './accountComponents/Register'
-import PassReset from './accountComponents/PassReset'
+import Register from './accountComponents/Register';
+import PassReset from './accountComponents/PassReset';
+import Home from './Home';
 
 const App = ()=> {
   const [products, setProducts] = useState([]);
@@ -133,8 +134,11 @@ const App = ()=> {
       {
         auth.id ? (
           <>
+            <div className='navi'>
             <nav>
-              <Link to='/products'>Products ({ products.length })</Link>
+            <Link to='/home'>Home</Link>
+
+              <Link to='/products'>Courses ({ products.length })</Link>
               <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
               <Link to='/cart'>Cart ({ cartCount })</Link>
               <Link to='/account'>Account</Link>
@@ -143,8 +147,10 @@ const App = ()=> {
                 <button onClick={ logout }>Logout</button>
               </span>
             </nav>
+            </div>
             <main>
               <Routes>
+              <Route path='/home' element= {<Home/>}></Route>
                 <Route path='/products' element={<Products
                 auth = { auth }
                 products={ products }
@@ -178,11 +184,16 @@ const App = ()=> {
             </>
         ):(
           <div>
-            <nav>
+              <div className='navi'>
+            <nav>   
+              <Link to='/home'>Home</Link>
+              <Link to='/products'>Courses</Link>
               <Link to='/account'>Account</Link>
-              <Link to='/products'>Products</Link>
+              
             </nav>
+            </div>
             <Routes>
+              <Route path='/home' element={<Home />}></Route>
               <Route path='/account/*' element={<Account login = {login} signUp = {signUp} users = {users} setUsers = {setUsers}/>}></Route>
               <Route path='/products' element={<Products
               products={ products }
