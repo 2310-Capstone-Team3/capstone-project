@@ -10,7 +10,9 @@ const {
   fetchUsers,
   resetUserPassword,
   resetUserUsername,
-  resetUserEmail
+  resetUserEmail,
+  changeVipStatus,
+  changeAdminStatus
 } = require('./users')
 
 const {
@@ -117,4 +119,5 @@ module.exports = {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  changeVipStatus,
 };

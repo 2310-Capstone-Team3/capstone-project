@@ -136,6 +136,24 @@ const resetEmail = async({ user, email }) => {
   }
 }
 
+const changeVipStatus = async({ user, status }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/change-vip-status`, { id: user.id, status: status })
+  } catch (error) {
+    console.error('Error during vip status change:', error)
+    throw error
+  }
+}
+
+const changeAdminStatus = async({ user, status }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/change-admin-status`, { id: user.id, status: status })
+  } catch (error) {
+    console.error('Error during admin status change:', error)
+    throw error
+  }
+}
+
 const logout = (setAuth)=> {
   window.localStorage.removeItem('token');
   setAuth({});
@@ -167,8 +185,9 @@ const api = {
   resetPassword,
   resetUsername,
   resetEmail,
+  changeVipStatus,
+  changeAdminStatus,
   createDetails
-
 };
 
 export default api;
