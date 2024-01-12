@@ -144,7 +144,7 @@ const App = () => {
       {
         auth.id ? (
           <>
-            <div className="Navi">
+            <div className="navi">
             <nav>
             <Link to='/home'>Home</Link>
               <Link to='/products'>Products ({ products.length })</Link>
