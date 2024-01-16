@@ -154,6 +154,46 @@ const changeAdminStatus = async({ user, status }) => {
   }
 }
 
+const changeProductName = async({ productId, name }) => {
+  try {
+    return await axios.patch(`/api/products/${productId}/change-product-name`, { id: productId, name: name })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const changeProductDescription = async({ productId, description }) => {
+  try {
+    return await axios.patch(`/api/products/${productId}/change-product-description`, { id: productId, description: description })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const changeProductPrice = async({ productId, price }) => {
+  try {
+    return await axios.patch(`/api/products/${productId}/change-product-price`, { id: productId, price: price })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const changeItemVipStatus = async({ productId, status }) => {
+  try {
+    return await axios.patch(`/api/products/${productId}/change-vip-status`, { id: productId, status: status })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const createProduct = async({ name, description, price }) => {
+  try {
+    return await axios.post('/api/products', { name: name, description: description, price: price })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const logout = (setAuth)=> {
   window.localStorage.removeItem('token');
   setAuth({});
@@ -187,7 +227,12 @@ const api = {
   resetEmail,
   changeVipStatus,
   changeAdminStatus,
-  createDetails
+  createDetails,
+  changeProductName,
+  changeProductDescription,
+  changeProductPrice,
+  createProduct,
+  changeItemVipStatus
 };
 
 export default api;

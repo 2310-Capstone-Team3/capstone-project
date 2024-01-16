@@ -6,7 +6,8 @@ const DisplaySingleUser = ({users, changeVipStatus, changeAdminStatus}) => {
     const [userDetails, setUserDetails] = useState(null)
     const [vipStatus, setVipStatus] = useState('')
     const [adminStatus, setAdminStatus] = useState('')
-
+    
+    
     useEffect(() => {
         const user = users.data.find(user => user.id === userId)
         console.log(user)
@@ -24,6 +25,8 @@ const DisplaySingleUser = ({users, changeVipStatus, changeAdminStatus}) => {
         try {
             const response = await changeVipStatus(userDetails, status)
             setVipStatus(response.is_vip)
+            setUserDetails(response)
+            window.location.reload()
         } catch (error) {
             console.log(error)
         }
@@ -33,6 +36,7 @@ const DisplaySingleUser = ({users, changeVipStatus, changeAdminStatus}) => {
         try {
             const response = await changeAdminStatus(userDetails, status)
             setAdminStatus(response.is_admin)
+            window.location.reload()
         } catch (error) {
             console.log(error)
         }

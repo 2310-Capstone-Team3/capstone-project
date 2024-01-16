@@ -25,10 +25,10 @@
 - [ done ] as a vip user I should be able to see that I am a vip user
 - [  ] as a vip user I should be able to see vip_only products
 - [  ] as a non-vip user, I should not be able to see vip_only products
-- [  ] as an administrator I should be able to add and edit products
+- [ done ] as an administrator I should be able to add and edit products
 - [ done ] as an administrator I should be able to see all users
 - [ done ] as an administrator I should be able to make a user a vip
-- [  ] as an administrator I should be able to mark a product as vip_only, which can only be purchased by vip users.
+- [ done ] as an administrator I should be able to mark a product as vip_only, which can only be purchased by vip users.
 - [  ] as an administrator I should be able to see all orders
 
 
