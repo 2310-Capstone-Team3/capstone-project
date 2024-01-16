@@ -2,7 +2,11 @@ const client = require('./client')
 
 const {
   fetchProducts,
-  createProduct
+  createProduct,
+  changeProductName,
+  changeProductDescription,
+  changeProductPrice,
+  changeItemVipStatus
 } = require('./products');
 
 
@@ -55,7 +59,8 @@ const seed = async()=> {
       created_at TIMESTAMP DEFAULT now(),
       name VARCHAR(100) UNIQUE NOT NULL,
       price INTEGER NOT NULL,
-      description TEXT
+      description TEXT,
+      vip_status BOOLEAN DEFAULT false NOT NULL
     ); 
 
 
@@ -120,4 +125,10 @@ module.exports = {
   resetUserUsername,
   resetUserEmail,
   changeVipStatus,
+  changeAdminStatus,
+  changeProductName,
+  changeProductDescription,
+  changeProductPrice,
+  createProduct,
+  changeItemVipStatus
 };

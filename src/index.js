@@ -12,6 +12,7 @@ import Security from './accountComponents/Security';
 import SecurityUsers from './accountComponents/SecurityUsers';
 import SecurityProducts from './accountComponents/SecurityProducts';
 import DisplaySingleUser from './accountComponents/DisplaySingleUser';
+import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import Home from './Home';
 
 const App = () => {
@@ -138,6 +139,31 @@ const App = () => {
     const response = await api.changeAdminStatus({ user, status })
     return response.data
   }
+
+  const changeProductName = async(productId, name) => {
+    const response = await api.changeProductName({ productId, name })
+    return response
+  }
+
+  const changeProductDescription = async(productId, description) => {
+    const response = await api.changeProductDescription({ productId, description })
+    return response
+  }
+
+  const changeProductPrice = async(productId, price) => {
+    const response = await api.changeProductPrice({ productId, price })
+    return response
+  }
+
+  const createProduct = async(name, description, price) => {
+    const response = await api.createProduct({ name, description, price })
+    return response
+  }
+
+  const changeItemVipStatus = async(productId, status) => {
+    const response = await api.changeItemVipStatus({ productId, status })
+    return response
+  }
   
   const logout = () => {
     api.logout(setAuth);
@@ -148,6 +174,8 @@ const App = () => {
     const user = users.data.find((user) => user.username === auth.username);
     return user;
   };
+
+
   const fetchDetails = () => {
     const details = products.data.find((product) => product.id === product_id);
     return details;
@@ -214,11 +242,20 @@ const App = () => {
                 users = { users }
               />}></Route>
               <Route path='/security/products/*' element={<SecurityProducts
+                products = { products }
+                createProduct = { createProduct }
               />}></Route>
               <Route path='/security/users/:userId' element={<DisplaySingleUser
-                users = {users}
-                changeVipStatus = {changeVipStatus}
-                changeAdminStatus = {changeAdminStatus}
+                users = { users }
+                changeVipStatus = { changeVipStatus }
+                changeAdminStatus = { changeAdminStatus }
+              />}></Route>
+              <Route path='/security/products/:productId' element={<DisplaySingleProduct
+                products = { products }
+                changeProductName= { changeProductName }
+                changeProductDescription= { changeProductDescription }
+                changeProductPrice = { changeProductPrice }
+                changeItemVipStatus = { changeItemVipStatus }
               />}></Route>
               </Routes>
             </main>
