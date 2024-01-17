@@ -29,7 +29,7 @@
 - [ done ] as an administrator I should be able to see all users
 - [ done ] as an administrator I should be able to make a user a vip
 - [ done ] as an administrator I should be able to mark a product as vip_only, which can only be purchased by vip users.
-- [  ] as an administrator I should be able to see all orders
+- [ done ] as an administrator I should be able to see all orders
 
 
 
