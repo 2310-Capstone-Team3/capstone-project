@@ -1,30 +1,31 @@
-import React from "react";
+// import React from "react";
+// const ProductDeets = ({
+//     products
+//     }) =>{
 
-const ProductDeets = ({
-    products,
-    }) =>{
-        return (
-            <div>
-                <ul>
-                {products.map((product) => {
-                          return (
-                            <li key={product.id}>
-                                <button>
-                                {product.name} (${product.price})
+       
+//             <div>
+//                 <ul>
+//                 {products.map((product) => {
+//                           return (
+//                             <li key={product.id}>
+//                                 <button>
+//                                 {product.name} (${product.price})
 
-                                </button>
+//                                 </button>
                              
-                              <br />
+//                               <br />
                               
-                              <br />
-                    </li>
-        );
-    })}
-  </ul>
-</div>
-);
-};
-<hr />
+//                               <br />
+//                     </li>
+//         );
+//     })}
+//   </ul>
+// </div>
+// };
+
+
+//<hr />
 // return(
 
 //     <div>
@@ -34,4 +35,4 @@ const ProductDeets = ({
 
 // </div>
 // )
-export default ProductDeets;
+//export default ProductDeets;

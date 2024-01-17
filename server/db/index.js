@@ -5,6 +5,10 @@ const {
   createProduct
 } = require('./products');
 
+// const {
+//    createProductDetails
+// } = require('./products/details');
+
 
 const {
   fetchUsers,
@@ -30,12 +34,14 @@ const {
 } = require('./cart');
 
 
+
 const seed = async()=> {
   const SQL = `
     DROP TABLE IF EXISTS line_items;
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
+  
 
 
     CREATE TABLE users(
@@ -53,10 +59,11 @@ const seed = async()=> {
       created_at TIMESTAMP DEFAULT now(),
       name VARCHAR(100) UNIQUE NOT NULL,
       price INTEGER NOT NULL,
-      description TEXT
+      description TEXT, 
+      materials TEXT,
+      subjects TEXT
     ); 
-
-
+    
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
@@ -83,10 +90,10 @@ const seed = async()=> {
     createUser({ username: 'Elly', password: 'ellypass', email: 'elly@team3.com', is_admin: true, is_vip: true})
   ]);
   const [fourWeekCourse, eightWeekCourse, twelveWeekCourse, twentyFourWeekCourse] = await Promise.all([
-    createProduct({ name: '4 Week Course', price: 1000, description: "Our shortest section, meant to help guide those with previous experience!" }),
-    createProduct({ name: '8 Week Course', price: 2000, description: "Our shortest section for those that have minimal experience!" }),
-    createProduct({ name: '12 Week Course', price: 2800, description: "Our mid range section that helps those with little to no experience get started as a web developer!" }),
-    createProduct({ name: '24 Week Course', price: 5000, description: "Our longest section that is meant for those that either want a longer section or learn at a slower pace, goes the most in-depth!" }),
+    createProduct({ name: '4 Week Course', price: 1000, description: "Our shortest section, meant to help guide those with previous experience!", materials: "During this course you will receive valuable materials. This material includes, a journal, a course assigned book, several study guides, and an academy designed calendar to stay up-to-date with your work. The class is offered online, as well as a few days on campus. You can also opt in to be added on our email list, in which you will receive free and vital information for your course. As a bonus, you will also receive a free link to a learning portal. This portal provides all the information learned during the course." , subjects: " Many subjects are taught during this course. Starting your first day, you will be introduced to the fundamentals of HTML. The fundamentals of HTML will teach you how to build structure for a webpage. You then will moved forward to the fundamentals of CSS to learn how to apply styling. Once HTML & CSS is established, we will move on to learning how to store with GITHUB. You will leave this course knowing the basic languages to develop a webpage." }),
+    createProduct({ name: '8 Week Course', price: 2000, description: "Our shortest section for those that have minimal experience!",  materials: "During this course you will receive valuable materials. This material includes, two journals, two course assigned books, several study guides, and an academy designed calendar to stay up-to-date with your work. The class is offered online, as well as a few days on campus. You can also opt in to be added on our email list, in which you will receive free and vital information for your course. As a bonus, you will also receive a free link to a learning portal. This portal provides all the information learned during the course." , subjects: " Many subjects are taught during this course. Starting your first day, you will be introduced to the fundamentals of HTML. The fundamentals of HTML will teach you how to build structure for a webpage. You then will moved forward to the fundamentals of CSS to learn how to apply styling. We then will move forward to learning Javascript. You will leave this course knowing how to create a functional webpage." }),
+    createProduct({ name: '12 Week Course', price: 2800, description: "Our mid range section that helps those with little to no experience get started as a web developer!",  materials: "During this course you will receive valuable materials. This material includes, a journal, a course assigned book, several study guides, and an academy designed calendar to stay up-to-date with your work. The class is offered online, as well as a few days on campus. You can also opt in to be added on our email list, in which you will receive free and vital information for your course. As a bonus, you will also receive a free link to a learning portal. This portal provides all the information learned during the course." , subjects: " Many subjects are taught during this course. Starting your first day, you will be introduced to the fundamentals of HTML. The fundamentals of HTML will teach you how to build structure for a webpage. You then will moved forward to the fundamentals of CSS to learn how to apply styling. Once HTML & CSS is established, we will move on to learning how to store with GITHUB. You will leave this course knowing the basic languages to develop a webpage." }),
+    createProduct({ name: '24 Week Course', price: 5000, description: "Our longest section that is meant for those that either want a longer section or learn at a slower pace, goes the most in-depth!",  materials: "During this course you will receive valuable materials. This material includes, a journal, a course assigned book, several study guides, and an academy designed calendar to stay up-to-date with your work. The class is offered online, as well as a few days on campus. You can also opt in to be added on our email list, in which you will receive free and vital information for your course. As a bonus, you will also receive a free link to a learning portal. This portal provides all the information learned during the course." , subjects: " Many subjects are taught during this course. Starting your first day, you will be introduced to the fundamentals of HTML. The fundamentals of HTML will teach you how to build structure for a webpage. You then will moved forward to the fundamentals of CSS to learn how to apply styling. Once HTML & CSS is established, we will move on to learning how to store with GITHUB. You will leave this course knowing the basic languages to develop a webpage." }),
   ]);
   
   let orders = await fetchOrders(dylan.id);
@@ -97,6 +104,8 @@ const seed = async()=> {
   lineItem = await createLineItem({ order_id: cart.id, product_id: eightWeekCourse.id});
   cart.is_cart = false;
   await updateOrder(cart);
+  // let details = await createProductDetails ({ product_id: fourWeekCourse.id})
+  
 };
 
 module.exports = {
@@ -117,4 +126,5 @@ module.exports = {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  //createProductDetails
 };

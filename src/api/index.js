@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const getHeaders = ()=> {
   return {
     headers: {
@@ -141,13 +142,25 @@ const logout = (setAuth)=> {
   setAuth({});
 }
 const createDetails = async({ product, details, setDetails })=> {
-  const response = await axios.post('/api/products/details', {
+  const response = await axios.post('/api/details', {
   product_id: product.id,
   product_name: product.name,
-  product_description: product.description
+  product_description: product.description,
+  product_materials: product.materials,
+  product_subjects: product.subjects
   }, getHeaders());
   setDetails([...details, response.data]);
 }
+// const createDeets = async({ product, deets, setDeets}) => {
+//   const response = await axios.post('/api/details/deets', {
+//     product_id: product.id,
+//     product_name: product.name,
+//     product_price: product.price,
+//     product_description: product.description,
+//   }, getHeaders());
+//   setDeets([...deets, response.data]);
+
+  
 
 const api = {
   login,
@@ -167,7 +180,8 @@ const api = {
   resetPassword,
   resetUsername,
   resetEmail,
-  createDetails
+  createDetails,
+  //createDeets
 
 };
 

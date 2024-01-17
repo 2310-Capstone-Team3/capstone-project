@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom/client';
-import { Link, HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import Products from './Products';
-import Orders from './Orders';
-import Cart from './Cart';
-import Account from './Account';
-import api from './api';
-import Register from './accountComponents/Register';
-import PassReset from './accountComponents/PassReset';
-import Home from './Home';
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import { Link, HashRouter, Routes, Route, useNavigate } from "react-router-dom";
+import Products from "./Products";
+import Orders from "./Orders";
+import Cart from "./Cart";
+import Account from "./Account";
+import api from "./api";
+import Register from "./accountComponents/Register";
+import PassReset from "./accountComponents/PassReset";
+import Home from "./Home";
+import ProductDeets from "./ProductDeets";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -62,6 +63,9 @@ const App = () => {
   const createDetails = async (product) => {
     await api.createDetails({ product, details, setDetails });
   };
+  // const createDeets = async (product) => {
+  //   await api.createDeets({ product, deets, setDeets });
+  // };
 
   const createLineItem = async (product) => {
     await api.createLineItem({ product, cart, lineItems, setLineItems });
@@ -138,93 +142,149 @@ const App = () => {
     const details = products.data.find((product) => product.id === product_id);
     return details;
   };
+  // const fetchDeets = () => {
+  //   const deets = products.data.find((product) => product.id === product_id);
+  //   return deets;
+  // };
 
   return (
     <div>
-      {
-        auth.id ? (
-          <>
-            <div className="navi">
+      {auth.id ? (
+        <>
+          <div className="navi">
             <nav>
-            <Link to='/home'>Home</Link>
-              <Link to='/products'>Courses ({ products.length })</Link>
-              <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
-              <Link to='/cart'>Cart ({ cartCount })</Link>
-              <Link to='/account'>Account</Link>
+              <Link to="/home">Home</Link>
+              <Link to="/products">Courses ({products.length})</Link>
+              <Link to="/orders">
+                Orders ({orders.filter((order) => !order.is_cart).length})
+              </Link>
+              <Link to="/cart">Cart ({cartCount})</Link>
+              <Link to="/account">Account</Link>
               <span>
-                Welcome { auth.username }!
-                <button onClick={ logout }>Logout</button>
+                Welcome {auth.username}!<button onClick={logout}>Logout</button>
               </span>
             </nav>
-            </div>
-            <main>
-              <Routes>
-                <Route path='/home' element={<Home/>}</Route>
-                <Route path='/products' element={<Products
-                auth = { auth }
-                products={ products }
-                cartItems = { cartItems }
-                createLineItem = { createLineItem }
-                updateLineItem = { updateLineItem }
-              />}></Route>
-                <Route path='/cart' element={<Cart
-                cart = { cart }
-                lineItems = { lineItems }
-                products = { products }
-                updateOrder = { updateOrder }
-                removeFromCart = { removeFromCart }
-                plusOne = { plusOne }
-                minusOne = { minusOne }
-              />}></Route>
-                <Route path='/orders' element={<Orders
-                orders = { orders }
-                products = { products }
-                lineItems = { lineItems }
-              />}></Route>
-                <Route path='/account' element={<Account
-                authId = { auth.id }
-                user = { fetchUser() }
-                resetPassword = { resetPassword }
-                resetUsername = { resetUsername }
-                resetEmail = { resetEmail }
-              />}></Route>
-              </Routes>
-            </main>
-            </>
-        ):(
-          <div>
-            <div className='navi'>
-            <nav>
-              <Link to='/home'>Home</Link>
-              <Link to='/account'>Account</Link>
-              <Link to='/products'>Courses</Link>
-            </nav>
-            </div>
-            <Routes>
-              <Route path='/home' element={<Home/>}</Route>
-              <Route path='/account/*' element={<Account login = {login} signUp = {signUp} users = {users} setUsers = {setUsers}/>}></Route>
-              <Route path='/products' element={<Products
-              products={ products }
-              cartItems = { cartItems }
-              createLineItem = { createLineItem }
-              updateLineItem = { updateLineItem }
-              auth = { auth }
-            />}></Route>
-            <Route path='/register' element={<Register
-                users = { users }
-                signUp = { signUp }
-                setUsers = { setUsers }
-              />}></Route>    
-            <Route path='/passreset' element={<PassReset
-                users = { users }
-                signUp = { signUp }
-                setUsers = { setUsers }
-                resetPassword = { resetPassword }
-              />}></Route>    
-            </Routes>
           </div>
-        )
-      }
+          <main>
+            <Routes>
+              <Route path="/home" element={<Home />}></Route>
+              <Route
+                path="/products"
+                element={
+                  <Products
+                    auth={auth}
+                    products={products}
+                    cartItems={cartItems}
+                    createLineItem={createLineItem}
+                    updateLineItem={updateLineItem}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/details"
+                element={
+                  <Products  
+                  products={products}
+                  //ProductDeets = {ProductDeets}
+                  details = {details}
+                  
+
+                  />
+                }
+              ></Route>
+              <Route
+                path="/cart"
+                element={
+                  <Cart
+                    cart={cart}
+                    lineItems={lineItems}
+                    products={products}
+                    updateOrder={updateOrder}
+                    removeFromCart={removeFromCart}
+                    plusOne={plusOne}
+                    minusOne={minusOne}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/orders"
+                element={
+                  <Orders
+                    orders={orders}
+                    products={products}
+                    lineItems={lineItems}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/account"
+                element={
+                  <Account
+                    authId={auth.id}
+                    user={fetchUser()}
+                    resetPassword={resetPassword}
+                    resetUsername={resetUsername}
+                    resetEmail={resetEmail}
+                  />
+                }
+              ></Route>
+            </Routes>
+          </main>
+        </>
+      ) : (
+        <div>
+          <div className="navi">
+            <nav>
+              <Link to="/home">Home</Link>
+              <Link to="/account">Account</Link>
+              <Link to="/products">Courses</Link>
+            </nav>
+          </div>
+          <Routes>
+            <Route path="/home" element={<Home />}></Route>
+            <Route
+              path="/account/*"
+              element={
+                <Account
+                  login={login}
+                  signUp={signUp}
+                  users={users}
+                  setUsers={setUsers}
+                />
+              }
+            ></Route>
+            <Route
+              path="/products"
+              element={
+                <Products
+                  products={products}
+                  cartItems={cartItems}
+                  createLineItem={createLineItem}
+                  updateLineItem={updateLineItem}
+                  auth={auth}
+                />
+              }
+            ></Route>
+            <Route
+              path="/register"
+              element={
+                <Register users={users} signUp={signUp} setUsers={setUsers} />
+              }
+            ></Route>
+            <Route
+              path="/passreset"
+              element={
+                <PassReset
+                  users={users}
+                  signUp={signUp}
+                  setUsers={setUsers}
+                  resetPassword={resetPassword}
+                />
+              }
+            ></Route>
+          </Routes>
+        </div>
+      )}
     </div>
   );
 };

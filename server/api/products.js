@@ -14,8 +14,8 @@ app.get('/', async(req, res, next)=> {
     next(ex);
   }
 });
-
-app.put('/products/:id', isLoggedIn, isAdmin, (req, res, next)=> {
+//'/products/:id'
+app.put('/:id', isLoggedIn, isAdmin, async (req, res, next)=> {
   res.send('hello world');
 });
 
