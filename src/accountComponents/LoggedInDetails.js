@@ -13,6 +13,7 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => 
             const response = await resetUsername(user, username)
             console.log("Success changing username")
             setDisplayName(response.username)
+            window.location.reload()
         } catch (error) {
             console.error("An error occurr ed:", error);
         }
@@ -24,6 +25,7 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => 
         try {
             const response = await resetPassword(user, password)
             console.log("Success changing password")
+            window.location.reload()
         } catch (error) {
             console.error("An error occurred:", error);
         }
@@ -36,6 +38,7 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => 
             const response = await resetEmail(user, email)
             console.log("Success changing email")
             setDisplayEmail(response.email)
+            window.location.reload()
         } catch (error) {
             console.error("An error occurred:", error);
         }
