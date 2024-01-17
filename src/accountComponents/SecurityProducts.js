@@ -41,8 +41,7 @@ const SecurityProducts = ({ products, createProduct }) => {
     return (
         <div>
         <nav>
-            <Link to='/security/users'>Users</Link>
-            <Link to='/security/products'>Products</Link>
+            <Link to='/security'>Back to security</Link>
         </nav>
         <main>
             <h1>Security Products</h1>

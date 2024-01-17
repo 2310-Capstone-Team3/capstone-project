@@ -9,7 +9,6 @@ const {
 
 const express = require('express');
 const app = express.Router();
-const { isLoggedIn, isAdmin } = require('./middleware');
 
 app.get('/', async(req, res, next)=> {
   try {
@@ -28,7 +27,7 @@ app.post('/', async(req, res, next) => {
   }
 })
 
-app.put('/products/:id', isLoggedIn, isAdmin, (req, res, next)=> {
+app.put('/products/:id', (req, res, next)=> {
   res.send('hello world');
 });
 

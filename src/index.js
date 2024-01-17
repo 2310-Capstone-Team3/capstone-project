@@ -13,6 +13,7 @@ import SecurityUsers from './accountComponents/SecurityUsers';
 import SecurityProducts from './accountComponents/SecurityProducts';
 import DisplaySingleUser from './accountComponents/DisplaySingleUser';
 import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
+import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
 
 const App = () => {
@@ -244,6 +245,9 @@ const App = () => {
               <Route path='/security/products/*' element={<SecurityProducts
                 products = { products }
                 createProduct = { createProduct }
+              />}></Route>
+              <Route path='/security/orders' element={<SecurityOrders
+                orders = { orders }
               />}></Route>
               <Route path='/security/users/:userId' element={<DisplaySingleUser
                 users = { users }
