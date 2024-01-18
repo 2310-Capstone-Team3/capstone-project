@@ -2,19 +2,28 @@ const client = require('./client')
 
 const {
   fetchProducts,
-  createProduct
+  createProduct,
+  changeProductName,
+  changeProductDescription,
+  changeProductPrice,
+  changeItemVipStatus
 } = require('./products');
 
+
 const {
-  fetchUsers
+  fetchUsers,
+  resetUserPassword,
+  resetUserUsername,
+  resetUserEmail,
+  changeVipStatus,
+  changeAdminStatus
 } = require('./users')
 
 const {
   createUser,
   authenticate,
   findUserByToken,
-  fetchUserById,
-  resetUserPassword
+  fetchUserById
 } = require('./auth');
 
 const {
@@ -34,6 +43,7 @@ const seed = async()=> {
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
 
+
     CREATE TABLE users(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
@@ -49,8 +59,10 @@ const seed = async()=> {
       created_at TIMESTAMP DEFAULT now(),
       name VARCHAR(100) UNIQUE NOT NULL,
       price INTEGER NOT NULL,
-      description TEXT
-    );
+      description TEXT,
+      vip_status BOOLEAN DEFAULT false NOT NULL
+    ); 
+
 
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
@@ -83,6 +95,7 @@ const seed = async()=> {
     createProduct({ name: '12 Week Course', price: 2800, description: "Our mid range section that helps those with little to no experience get started as a web developer!" }),
     createProduct({ name: '24 Week Course', price: 5000, description: "Our longest section that is meant for those that either want a longer section or learn at a slower pace, goes the most in-depth!" }),
   ]);
+  
   let orders = await fetchOrders(dylan.id);
   let cart = orders.find(order => order.is_cart);
   let lineItem = await createLineItem({ order_id: cart.id, product_id: fourWeekCourse.id});
@@ -108,5 +121,14 @@ module.exports = {
   createUser,
   fetchUsers,
   fetchUserById,
-  resetUserPassword
+  resetUserPassword,
+  resetUserUsername,
+  resetUserEmail,
+  changeVipStatus,
+  changeAdminStatus,
+  changeProductName,
+  changeProductDescription,
+  changeProductPrice,
+  createProduct,
+  changeItemVipStatus
 };

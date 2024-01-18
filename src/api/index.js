@@ -13,6 +13,7 @@ const fetchProducts = async(setProducts)=> {
   setProducts(response.data);
 };
 
+
 const fetchUsers = async(setUsers) => {
   const response = await axios.get('/api/users')
   setUsers(response)
@@ -117,9 +118,93 @@ const resetPassword = async({ user, password }) => {
   }
 }
 
+const resetUsername = async({ user, username }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/reset-username`, { id: user.id, username: username });
+  } catch (error) {
+    console.error('Error during username reset:', error)
+    throw error
+  }
+}
+
+const resetEmail = async({ user, email }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/reset-email`, { id: user.id, email: email });
+  } catch (error) {
+    console.error('Error during email reset:', error)
+    throw error
+  }
+}
+
+const changeVipStatus = async({ user, status }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/change-vip-status`, { id: user.id, status: status })
+  } catch (error) {
+    console.error('Error during vip status change:', error)
+    throw error
+  }
+}
+
+const changeAdminStatus = async({ user, status }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/change-admin-status`, { id: user.id, status: status })
+  } catch (error) {
+    console.error('Error during admin status change:', error)
+    throw error
+  }
+}
+
+const changeProductName = async({ productId, name }) => {
+  try {
+    return await axios.patch(`/api/products/${productId}/change-product-name`, { id: productId, name: name })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const changeProductDescription = async({ productId, description }) => {
+  try {
+    return await axios.patch(`/api/products/${productId}/change-product-description`, { id: productId, description: description })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const changeProductPrice = async({ productId, price }) => {
+  try {
+    return await axios.patch(`/api/products/${productId}/change-product-price`, { id: productId, price: price })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const changeItemVipStatus = async({ productId, status }) => {
+  try {
+    return await axios.patch(`/api/products/${productId}/change-vip-status`, { id: productId, status: status })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const createProduct = async({ name, description, price }) => {
+  try {
+    return await axios.post('/api/products', { name: name, description: description, price: price })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const logout = (setAuth)=> {
   window.localStorage.removeItem('token');
   setAuth({});
+}
+const createDetails = async({ product, details, setDetails })=> {
+  const response = await axios.post('/api/products/details', {
+  product_id: product.id,
+  product_name: product.name,
+  product_description: product.description
+  }, getHeaders());
+  setDetails([...details, response.data]);
 }
 
 const api = {
@@ -133,9 +218,21 @@ const api = {
   updateOrder,
   removeFromCart,
   attemptLoginWithToken,
+  plusOne,
+  minusOne,
   signUp,
   fetchUsers,
-  resetPassword
+  resetPassword,
+  resetUsername,
+  resetEmail,
+  changeVipStatus,
+  changeAdminStatus,
+  createDetails,
+  changeProductName,
+  changeProductDescription,
+  changeProductPrice,
+  createProduct,
+  changeItemVipStatus
 };
 
 export default api;
