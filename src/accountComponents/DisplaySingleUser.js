@@ -3,9 +3,9 @@ import { Link, useParams } from 'react-router-dom'
 
 const DisplaySingleUser = ({users, changeVipStatus, changeAdminStatus}) => {
     const { userId } = useParams();
-    const [userDetails, setUserDetails] = useState(null)
-    const [vipStatus, setVipStatus] = useState('')
-    const [adminStatus, setAdminStatus] = useState('')
+    const [userDetails, setUserDetails] = useState([])
+    const [vipStatus, setVipStatus] = useState(null)
+    const [adminStatus, setAdminStatus] = useState(null)
     
     
     useEffect(() => {

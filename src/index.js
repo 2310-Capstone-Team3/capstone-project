@@ -199,7 +199,7 @@ const App = () => {
               <Link to='/cart'>Cart ({ cartCount })</Link>
               <Link to='/account'>Account</Link>
               {
-              fetchUser().is_admin === true ? (
+              auth.is_admin ? (
               <Link to='/security'>Security</Link>
               ) : (
                 null
