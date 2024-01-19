@@ -44,7 +44,8 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await api.fetchProductDeets(setProductDeets);
+     response = await api.fetchProductDeets
+     setProductDeets(response.data);
     };
     fetchData();
   }, []);
@@ -142,7 +143,7 @@ const App = () => {
     return user;
   };
   const fetchProductDeets = () => {
-    const ProductDeets = ProductDeets.data.find((productdeet) => productdeet.id === oneMonthCourse.id);
+    const ProductDeets = ProductDeets.find((productdeet) => productdeet.id === productdeet.id);
     return productDeets;
   };
   
