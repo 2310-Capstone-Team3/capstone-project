@@ -24,7 +24,6 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
   const [users, setUsers] = useState({ data: [] });
-  const [details, setDetails] = useState([]);
   const [productDeets, setProductDeets] = useState([]);
 
   const attemptLoginWithToken = async () => {
