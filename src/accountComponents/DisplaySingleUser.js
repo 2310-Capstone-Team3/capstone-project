@@ -4,16 +4,20 @@ import { Link, useParams } from 'react-router-dom'
 const DisplaySingleUser = ({users, changeVipStatus, changeAdminStatus}) => {
     const { userId } = useParams();
     const [userDetails, setUserDetails] = useState([])
-    const [vipStatus, setVipStatus] = useState(null)
-    const [adminStatus, setAdminStatus] = useState(null)
+    const [vipStatus, setVipStatus] = useState('')
+    const [adminStatus, setAdminStatus] = useState('')
     
     
     useEffect(() => {
         const user = users.data.find(user => user.id === userId)
         console.log(user)
-        setUserDetails(user)
-        setVipStatus(user.is_vip)
-        setAdminStatus(user.is_admin)
+        if (user != undefined){
+            setUserDetails(user)
+            setVipStatus(user.is_vip)
+            setAdminStatus(user.is_admin)
+        } else {
+            console.log("User not found")
+        }
     }, [userId, users.data])
 
     if (!userDetails) {
