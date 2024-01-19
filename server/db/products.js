@@ -20,6 +20,7 @@ const createProduct = async (product) => {
     product.name,
     product.price,
     product.description,
+
   ]);
   return response.rows[0];
 };
