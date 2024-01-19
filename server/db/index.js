@@ -203,7 +203,7 @@ const seed = async () => {
   });
   cart.is_cart = false;
   await updateOrder(cart);
-  let productDeets = await fetchProductDeets(oneMonthCourse.id);
+  let productDeets = await fetchProductDeets(productDeets.id);
 };
 
 module.exports = {
