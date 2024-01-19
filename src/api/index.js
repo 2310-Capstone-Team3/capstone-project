@@ -177,8 +177,6 @@ const api = {
   resetUsername,
   resetEmail,
   fetchProductDeets
-  
-
 };
 
 export default api;
