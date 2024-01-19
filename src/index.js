@@ -1,15 +1,21 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom/client";
-import { Link, HashRouter, Routes, Route, useNavigate } from "react-router-dom";
-import Products from "./Products";
-import Orders from "./Orders";
-import Cart from "./Cart";
-import Account from "./Account";
-import api from "./api";
-import Register from "./accountComponents/Register";
-import PassReset from "./accountComponents/PassReset";
-import Home from "./Home";
-import ProductDeets from "./ProductDeets";
+import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom/client';
+import { Link, HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import Products from './Products';
+import Orders from './Orders';
+import Cart from './Cart';
+import Account from './Account';
+import api from './api';
+import Register from './accountComponents/Register'
+import PassReset from './accountComponents/PassReset'
+import Security from './accountComponents/Security';
+import SecurityUsers from './accountComponents/SecurityUsers';
+import SecurityProducts from './accountComponents/SecurityProducts';
+import DisplaySingleUser from './accountComponents/DisplaySingleUser';
+import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
+import SecurityOrders from './accountComponents/SecurityOrders'
+import Home from './Home';
+import ProductDeets from "./ProductDeets"
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -17,7 +23,8 @@ const App = () => {
   const [lineItems, setLineItems] = useState([]);
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState({ data: [] });
+  const [details, setDetails] = useState([]);
   const [productDeets, setProductDeets] = useState([]);
 
   const attemptLoginWithToken = async () => {
@@ -133,14 +140,53 @@ const App = () => {
     return response.data;
   };
 
+  const changeVipStatus = async(user, status) => {
+    const response = await api.changeVipStatus({ user, status })
+    return response.data
+  }
+
+  const changeAdminStatus = async(user, status) => {
+    const response = await api.changeAdminStatus({ user, status })
+    return response.data
+  }
+
+  const changeProductName = async(productId, name) => {
+    const response = await api.changeProductName({ productId, name })
+    return response
+  }
+
+  const changeProductDescription = async(productId, description) => {
+    const response = await api.changeProductDescription({ productId, description })
+    return response
+  }
+
+  const changeProductPrice = async(productId, price) => {
+    const response = await api.changeProductPrice({ productId, price })
+    return response
+  }
+
+  const createProduct = async(name, description, price) => {
+    const response = await api.createProduct({ name, description, price })
+    return response
+  }
+
+  const changeItemVipStatus = async(productId, status) => {
+    const response = await api.changeItemVipStatus({ productId, status })
+    return response
+  }
+  
   const logout = () => {
     api.logout(setAuth);
     navigate("/account");
   };
 
   const fetchUser = () => {
-    const user = users.data.find((user) => user.username === auth.username);
-    return user;
+    if (users) {
+      const user = users.data.find((user) => user.username === auth.username);
+      return user;
+    } else {
+      console.log("Users is empty?", users)
+    }
   };
   const fetchProductDeets = () => {
     const ProductDeets = ProductDeets.find((productdeet) => productdeet.id === productdeet.id);
@@ -154,13 +200,17 @@ const App = () => {
         <>
           <div className="navi">
             <nav>
-              <Link to="/home">Home</Link>
-              <Link to="/products">Courses ({products.length})</Link>
-              <Link to="/orders">
-                Orders ({orders.filter((order) => !order.is_cart).length})
-              </Link>
-              <Link to="/cart">Cart ({cartCount})</Link>
-              <Link to="/account">Account</Link>
+            <Link to='/home'>Home</Link>
+              <Link to='/products'>Courses ({ products.length })</Link>
+              <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
+              <Link to='/cart'>Cart ({ cartCount })</Link>
+              <Link to='/account'>Account</Link>
+              {
+              auth.is_admin ? (
+              <Link to='/security'>Security</Link>
+              ) : (
+                null
+              )}
               <span>
                 Welcome {auth.username}!<button onClick={logout}>Logout</button>
               </span>
@@ -238,32 +288,22 @@ const App = () => {
               <Link to="/account">Account</Link>
               <Link to="/products">Courses</Link>
             </nav>
-          </div>
-          <Routes>
-            <Route path="/home" element={<Home />}></Route>
-            <Route
-              path="/account/*"
-              element={
-                <Account
-                  login={login}
-                  signUp={signUp}
-                  users={users}
-                  setUsers={setUsers}
-                />
-              }
-            ></Route>
-            <Route
-              path="/products"
-              element={
-                <Products
-                  products={products}
-                  cartItems={cartItems}
-                  createLineItem={createLineItem}
-                  updateLineItem={updateLineItem}
-                  auth={auth}
-                />
-              }
-            ></Route>
+            </div>
+            <Routes>
+              <Route path='/account/*' element={<Account 
+              login = {login} 
+              signUp = {signUp} 
+              users = {users} 
+              setUsers = {setUsers}
+              />}></Route>
+              <Route path='/home' element={<Home/>}></Route>
+              <Route path='/products' element={<Products
+              products={ products }
+              cartItems = { cartItems }
+              createLineItem = { createLineItem }
+              updateLineItem = { updateLineItem }
+              auth = { auth }
+            />}></Route>
              <Route
                 path="/productdeets"
                 element={
@@ -272,28 +312,23 @@ const App = () => {
                 ProductDeets={ProductDeets}
               
                   />
-                }
-              ></Route>
-            <Route
-              path="/register"
-              element={
-                <Register users={users} signUp={signUp} setUsers={setUsers} />
-              }
-            ></Route>
-            <Route
-              path="/passreset"
-              element={
-                <PassReset
-                  users={users}
-                  signUp={signUp}
-                  setUsers={setUsers}
-                  resetPassword={resetPassword}
-                />
-              }
-            ></Route>
-          </Routes>
-        </div>
-      )}
+                }></Route>
+            
+            <Route path='/register' element={<Register
+                users = { users }
+                signUp = { signUp }
+                setUsers = { setUsers }
+              />}></Route>    
+            <Route path='/passreset' element={<PassReset
+                users = { users }
+                signUp = { signUp }
+                setUsers = { setUsers }
+                resetPassword = { resetPassword }
+              />}></Route>    
+            </Routes>
+          </div>
+        )
+      }
     </div>
   );
 };

@@ -1,14 +1,23 @@
 const client = require("./client");
 
-const { fetchProducts, createProduct } = require("./products");
-const { fetchProductDeets, createProductDeets } = require("./productdeets");
+const {
+  fetchProducts,
+  createProduct,
+  changeProductName,
+  changeProductDescription,
+  changeProductPrice,
+  changeItemVipStatus
+} = require('./products');
 
+const { fetchProductDeets, createProductDeets } = require("./productdeets");
 const {
   fetchUsers,
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
-} = require("./users");
+  changeVipStatus,
+  changeAdminStatus
+} = require('./users')
 
 const {
   createUser,
@@ -51,9 +60,9 @@ const seed = async () => {
       created_at TIMESTAMP DEFAULT now(),
       name VARCHAR(100) UNIQUE NOT NULL,
       price INTEGER NOT NULL,
-      description TEXT
+      description TEXT,
+      vip_status BOOLEAN DEFAULT false NOT NULL
     ); 
-
     CREATE TABLE productdeets(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
@@ -62,7 +71,8 @@ const seed = async () => {
       materials TEXT,
       subjects TEXT
     );
-    
+
+
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
@@ -214,6 +224,13 @@ module.exports = {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  changeVipStatus,
+  changeAdminStatus,
+  changeProductName,
+  changeProductDescription,
+  changeProductPrice,
+  createProduct,
+  changeItemVipStatus,
   fetchProductDeets,
-  createProductDeets,
+  createProductDeets
 };
