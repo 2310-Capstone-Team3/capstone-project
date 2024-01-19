@@ -276,6 +276,56 @@ const App = () => {
                   />
                 }
               ></Route>
+              <Route 
+                path='/security/*'
+                  element={
+                    <Security
+                  />
+                }
+              ></Route>
+              <Route
+                path='/security/users/*'
+                  element={
+                    <SecurityUsers
+                      users = { users }
+                  />
+                }
+              ></Route>
+              <Route
+                path='/security/products/*' 
+                  element={<SecurityProducts
+                    products = { products }
+                    createProduct = { createProduct }
+                  />
+                }
+              ></Route>
+              <Route
+                path='/security/orders'
+                  element={<SecurityOrders
+                    orders = { orders }
+                  />
+                }
+              ></Route>
+              <Route
+                path='/security/users/:userId' 
+                  element={<DisplaySingleUser
+                    users = { users }
+                    changeVipStatus = { changeVipStatus }
+                    changeAdminStatus = { changeAdminStatus }
+                  />
+                }
+              ></Route>
+              <Route
+                path='/security/products/:productId'
+                  element={<DisplaySingleProduct
+                    products = { products }
+                    changeProductName= { changeProductName }
+                    changeProductDescription= { changeProductDescription }
+                    changeProductPrice = { changeProductPrice }
+                    changeItemVipStatus = { changeItemVipStatus }
+                  />
+                }
+              ></Route>
             </Routes>
           </main>
         </>
