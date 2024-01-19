@@ -1,38 +1,29 @@
-// import React from "react";
-// const ProductDeets = ({
-//     products
-//     }) =>{
+import React from "react";
+
+const ProductDeets = ({
+    ProductDeets,
+    }) =>{
 
        
-//             <div>
-//                 <ul>
-//                 {products.map((product) => {
-//                           return (
-//                             <li key={product.id}>
-//                                 <button>
-//                                 {product.name} (${product.price})
+            <div>
+                <ul>
+                {ProductDeets.map((productdeet) => {
+                          return (
 
-//                                 </button>
-                             
-//                               <br />
+                            
+                            <li key={productdeet.id}>
+                              <h2>{productdeet.name}</h2>
+                              <h3>{productdeet.price}</h3>
+                              <h4>{productdeet.materials}</h4>
+                              <h5>{productdeet.subjects}</h5>
                               
-//                               <br />
-//                     </li>
-//         );
-//     })}
-//   </ul>
-// </div>
-// };
+                              
+                              <br />
+                    </li>
+        )
+    })}
+  </ul>
+</div>
+};
 
-
-//<hr />
-// return(
-
-//     <div>
-//         <ul>
-            
-//         </ul>
-
-// </div>
-// )
-//export default ProductDeets;
+export default ProductDeets;

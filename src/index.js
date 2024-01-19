@@ -18,7 +18,7 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
-  const [details, setDetails] = useState([]);
+  const [productDeets, setProductDeets] = useState([]);
 
   const attemptLoginWithToken = async () => {
     await api.attemptLoginWithToken(setAuth);
@@ -43,6 +43,15 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchProductDeets(setProductDeets);
+    };
+    fetchData();
+  }, []);
+
+  
+
+  useEffect(() => {
     if (auth.id) {
       const fetchData = async () => {
         await api.fetchOrders(setOrders);
@@ -60,12 +69,6 @@ const App = () => {
     }
   }, [auth]);
 
-  const createDetails = async (product) => {
-    await api.createDetails({ product, details, setDetails });
-  };
-  // const createDeets = async (product) => {
-  //   await api.createDeets({ product, deets, setDeets });
-  // };
 
   const createLineItem = async (product) => {
     await api.createLineItem({ product, cart, lineItems, setLineItems });
@@ -138,14 +141,11 @@ const App = () => {
     const user = users.data.find((user) => user.username === auth.username);
     return user;
   };
-  const fetchDetails = () => {
-    const details = products.data.find((product) => product.id === product_id);
-    return details;
+  const fetchProductDeets = () => {
+    const ProductDeets = ProductDeets.data.find((productdeet) => productdeet.id === oneMonthCourse.id);
+    return productDeets;
   };
-  // const fetchDeets = () => {
-  //   const deets = products.data.find((product) => product.id === product_id);
-  //   return deets;
-  // };
+  
 
   return (
     <div>
@@ -177,17 +177,16 @@ const App = () => {
                     cartItems={cartItems}
                     createLineItem={createLineItem}
                     updateLineItem={updateLineItem}
+                   
                   />
                 }
               ></Route>
               <Route
-                path="/details"
+                path="/productdeets"
                 element={
-                  <Products  
-                  products={products}
-                  //ProductDeets = {ProductDeets}
-                  details = {details}
+                  <ProductDeets
                   
+                //ProductDeets={ProductDeets}
 
                   />
                 }
@@ -265,6 +264,16 @@ const App = () => {
                 />
               }
             ></Route>
+             <Route
+                path="/productdeets"
+                element={
+                  <ProductDeets
+                 
+                //ProductDeets={ProductDeets}
+              
+                  />
+                }
+              ></Route>
             <Route
               path="/register"
               element={

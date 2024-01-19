@@ -25,8 +25,9 @@ const Products = ({
               {product.description}
               <br />
               <button className="details">
-                <Link to={'/details'}>Click For Details!</Link>
+                <Link to={'/productdeets'}>Click For Details!</Link>
               </button>
+              
 
               {auth.id ? (
                 cartItem ? (

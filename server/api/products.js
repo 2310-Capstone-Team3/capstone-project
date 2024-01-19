@@ -14,10 +14,11 @@ app.get('/', async(req, res, next)=> {
     next(ex);
   }
 });
-//'/products/:id'
-app.put('/:id', isLoggedIn, isAdmin, async (req, res, next)=> {
+
+app.put('/products/:id', isLoggedIn, isAdmin, (req, res, next)=> {
   res.send('hello world');
 });
+
 
 
 module.exports = app;
