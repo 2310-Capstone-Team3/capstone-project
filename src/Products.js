@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ProductDeets from "./ProductDeets";
 
 const Products = ({
   products,
@@ -25,7 +26,7 @@ const Products = ({
               {product.description}
               <br />
               <button className="details">
-                <Link to={'/productdeets'}>Click For Details!</Link>
+                <Link to={`/productdeets`}>Click For Details!</Link>
               </button>
               
 

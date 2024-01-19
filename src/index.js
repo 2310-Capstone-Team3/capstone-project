@@ -185,8 +185,7 @@ const App = () => {
                 path="/productdeets"
                 element={
                   <ProductDeets
-                  
-                //ProductDeets={ProductDeets}
+                  ProductDeets={ProductDeets}
 
                   />
                 }
@@ -269,7 +268,7 @@ const App = () => {
                 element={
                   <ProductDeets
                  
-                //ProductDeets={ProductDeets}
+                ProductDeets={ProductDeets}
               
                   />
                 }

@@ -6,6 +6,7 @@ const ProductDeets = ({
 
        
             <div>
+              <h1>Details!</h1>
                 <ul>
                 {ProductDeets.map((productdeet) => {
                           return (
