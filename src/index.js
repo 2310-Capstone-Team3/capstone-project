@@ -22,7 +22,7 @@ const App = () => {
   const [lineItems, setLineItems] = useState([]);
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState({ data: [] });
   const [details, setDetails] = useState([]);
 
   const attemptLoginWithToken = async () => {
@@ -172,8 +172,12 @@ const App = () => {
   };
 
   const fetchUser = () => {
-    const user = users.data.find((user) => user.username === auth.username);
-    return user;
+    if (users) {
+      const user = users.data.find((user) => user.username === auth.username);
+      return user;
+    } else {
+      console.log("Users is empty?", users)
+    }
   };
 
 
