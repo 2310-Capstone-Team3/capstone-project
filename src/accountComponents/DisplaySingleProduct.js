@@ -60,6 +60,7 @@ const DisplaySingleProduct = ({ products, changeProductName, changeProductDescri
         }
     }
 
+    if (product != undefined) {
     return (
         <div>
             <nav>
@@ -102,7 +103,10 @@ const DisplaySingleProduct = ({ products, changeProductName, changeProductDescri
             {product.vip_status ? <button onClick={() => {_changeItemVipStatus(false)}}>Make Item Public</button> : <button onClick={() => {_changeItemVipStatus(true)}}>Make Vip Only</button>}
             </div>
         </div>
-    )
+        )
+    } else {
+        console.log("Product not found")
+    }
 }
 
 export default DisplaySingleProduct
