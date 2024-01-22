@@ -263,18 +263,7 @@ const createProduct = async ({ name, description, price }) => {
     console.log(error);
   }
 };
-// const createProductDeets = async ({ name, price, materials, subjects }) => {
-//   try {
-//     return await axios.post("/api/productdeets", {
-//       name: name,
-//       price: price,
-//       materials: materials,
-//       subjects: subjects
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+
 
 const logout = (setAuth) => {
   window.localStorage.removeItem("token");
