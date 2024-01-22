@@ -77,6 +77,10 @@ const App = () => {
     await api.updateLineItem({ lineItem, cart, lineItems, setLineItems });
   };
 
+  const submitShip = async (formData, order) => {
+    await api.submitShip({ formData, order, setOrders, cart, orders })
+  }
+
   const updateOrder = async (order) => {
     await api.updateOrder({ order, setOrders });
   };
@@ -91,10 +95,6 @@ const App = () => {
 
   const minusOne = async (lineItem) => {
     await api.minusOne({ lineItem, lineItems, setLineItems, cart });
-  };
-
-  const decrement = async (lineItem) => {
-    await api.decrement({ lineItem, lineItems, setLineItems, cart });
   };
 
   const cart = orders.find((order) => order.is_cart) || {};
@@ -224,6 +224,7 @@ const App = () => {
                 removeFromCart = { removeFromCart }
                 plusOne = { plusOne }
                 minusOne = { minusOne }
+                submitShip = { submitShip }
               />}></Route>
                 <Route path='/orders' element={<Orders
                 orders = { orders }
