@@ -70,7 +70,8 @@ const seed = async()=> {
       created_at TIMESTAMP DEFAULT now(),
       is_cart BOOLEAN NOT NULL DEFAULT true,
       user_id UUID REFERENCES users(id) NOT NULL,
-      shipping TEXT
+      shipping TEXT,
+      priceTotal INTEGER
     );
 
     CREATE TABLE line_items(

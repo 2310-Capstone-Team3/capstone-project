@@ -85,10 +85,10 @@ const submitShip = async(order) => {
 const updateOrder = async(order)=> {
   const SQL = `
     UPDATE orders
-    SET is_cart = $1, shipping = $3 
+    SET is_cart = $1, shipping = $3, priceTotal = $4 
     WHERE id = $2 RETURNING *
   `;
-  const response = await client.query(SQL, [order.is_cart, order.id, order.shipping]);
+  const response = await client.query(SQL, [order.is_cart, order.id, order.shipping, order.priceTotal]);
   return response.rows[0];
 };
 
