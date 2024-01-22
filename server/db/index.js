@@ -6,8 +6,8 @@ const {
   changeProductName,
   changeProductDescription,
   changeProductPrice,
-  changeItemVipStatus
-} = require('./products');
+  changeItemVipStatus,
+} = require("./products");
 
 const { fetchProductDeets, createProductDeets } = require("./productdeets");
 const {
@@ -16,8 +16,8 @@ const {
   resetUserUsername,
   resetUserEmail,
   changeVipStatus,
-  changeAdminStatus
-} = require('./users')
+  changeAdminStatus,
+} = require("./users");
 
 const {
   createUser,
@@ -156,7 +156,7 @@ const seed = async () => {
   const [oneMonthCourse, twoMonthCourse, threeMonthCourse, sixMonthCourse] =
     await Promise.all([
       createProductDeets({
-        name: "1 Month Course",
+        name: "One Month Course",
         price: 1000,
         materials:
           "During this course each student will receive valuable materials. This material includes, a journal, a course assigned book, several study guides, and an academy designed calendar to stay up-to-date with your work. The course is offered online, as well as a few days on campus. Each student will receive free and vital information for their course. As a bonus, a recording off all lectures and demos will be provided to students. These videos provide all the information learned during the course. Each student will receive a Certificate of Completion at the end of the course!",
@@ -164,7 +164,7 @@ const seed = async () => {
           " Many subjects are taught during this course. Starting your first day, each student will be introduced to the fundamentals of HTML. The fundamentals of HTML will teach you how to build structure for a webpage. You then will moved forward to the fundamentals of CSS to learn how to apply styling. Once HTML & CSS is established, we will move on to learning how to store our code with GITHUB. Students will also have three webpages, developed with HTML && CSS to show off what they've learned! Each student will leave this course feeling confident enough to build a basic webpage on their own!",
       }),
       createProductDeets({
-        name: "2 Month Course",
+        name: "Two Month Course",
         price: 2000,
         materials:
           "For the two month program, each student receives, two course assigned books, two journals, multiple study guides & not to mention, a two-month calendar with new reminder features. Each student also will have access to a portal with all of the course materials learned. Students will receive a book of notes to go through as lectures are being taught. A breakdown book for HTML,CSS and Javascript is available to the students as well. The course is offered online, as well as a few days on campus. Each student will receive free and vital information for their course. As a bonus, a recording off all lectures and demos will be provided to students. These videos provide all the information learned during the course.Each student is also able to sign-up for a 30-day mentorship after the course ends. Each student will receive a Certificate of Completion at the end of the course!",
@@ -203,7 +203,6 @@ const seed = async () => {
   });
   cart.is_cart = false;
   await updateOrder(cart);
-  let productDeets = await fetchProductDeets(productDeets.id);
 };
 
 module.exports = {

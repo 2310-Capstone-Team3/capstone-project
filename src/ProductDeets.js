@@ -1,10 +1,18 @@
-import React from "react";
+import React from "react"
 
-const ProductDeets = ({ ProductDeets }) => {
+const ProductDeets = ({
+  ProductDeets,
+  
+}) => {
+  return (
+
   <div>
     <h1>Details!</h1>
-    <ul>
-      {console.log(ProductDeets.data)}
+    
+  
+    
+    {/* {<ul>
+      
       {ProductDeets.map((productdeet) => {
         return (
           <li key={productdeet.id}>
@@ -17,8 +25,9 @@ const ProductDeets = ({ ProductDeets }) => {
           </li>
         );
       })}
-    </ul>
-  </div>;
+    </ul> } */}
+  </div>
+  );
 };
 
 export default ProductDeets;

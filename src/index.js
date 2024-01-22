@@ -186,12 +186,11 @@ const App = () => {
       console.log("Users is empty?", users);
     }
   };
-  const fetchProductDeets = () => {
-    const ProductDeets = ProductDeets.find(
-      (productdeet) => productdeet.id === productdeet.id
-    );
-    return productDeets;
+  const createProductDeets = async (name,price, materials, subjects) => {
+    const response = await api.createProductDeets({ name, price, materials, subjects });
+    return response;
   };
+
 
   return (
     <div>
@@ -267,53 +266,43 @@ const App = () => {
                   />
                 }
               ></Route>
-              <Route 
-                path='/security/*'
-                  element={
-                    <Security
+              <Route path="/security/*" element={<Security />}></Route>
+              <Route
+                path="/security/users/*"
+                element={<SecurityUsers users={users} />}
+              ></Route>
+              <Route
+                path="/security/products/*"
+                element={
+                  <SecurityProducts
+                    products={products}
+                    createProduct={createProduct}
                   />
                 }
               ></Route>
               <Route
-                path='/security/users/*'
-                  element={
-                    <SecurityUsers
-                      users = { users }
+                path="/security/orders"
+                element={<SecurityOrders orders={orders} />}
+              ></Route>
+              <Route
+                path="/security/users/:userId"
+                element={
+                  <DisplaySingleUser
+                    users={users}
+                    changeVipStatus={changeVipStatus}
+                    changeAdminStatus={changeAdminStatus}
                   />
                 }
               ></Route>
               <Route
-                path='/security/products/*' 
-                  element={<SecurityProducts
-                    products = { products }
-                    createProduct = { createProduct }
-                  />
-                }
-              ></Route>
-              <Route
-                path='/security/orders'
-                  element={<SecurityOrders
-                    orders = { orders }
-                  />
-                }
-              ></Route>
-              <Route
-                path='/security/users/:userId' 
-                  element={<DisplaySingleUser
-                    users = { users }
-                    changeVipStatus = { changeVipStatus }
-                    changeAdminStatus = { changeAdminStatus }
-                  />
-                }
-              ></Route>
-              <Route
-                path='/security/products/:productId'
-                  element={<DisplaySingleProduct
-                    products = { products }
-                    changeProductName= { changeProductName }
-                    changeProductDescription= { changeProductDescription }
-                    changeProductPrice = { changeProductPrice }
-                    changeItemVipStatus = { changeItemVipStatus }
+                path="/security/products/:productId"
+                element={
+                  <DisplaySingleProduct
+                    products={products}
+                    changeProductName={changeProductName}
+                    changeProductDescription={changeProductDescription}
+                    changeProductPrice={changeProductPrice}
+                    changeItemVipStatus={changeItemVipStatus}
                   />
                 }
               ></Route>

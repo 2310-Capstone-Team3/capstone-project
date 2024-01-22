@@ -263,20 +263,38 @@ const createProduct = async ({ name, description, price }) => {
     console.log(error);
   }
 };
+// const createProductDeets = async ({ name, price, materials, subjects }) => {
+//   try {
+//     return await axios.post("/api/productdeets", {
+//       name: name,
+//       price: price,
+//       materials: materials,
+//       subjects: subjects
+//     });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 const logout = (setAuth) => {
   window.localStorage.removeItem("token");
   setAuth({});
 };
 
-// const createDeets = async({ product, deets, setDeets}) => {
-//   const response = await axios.post('/api/details/deets', {
-//     product_id: product.id,
-//     product_name: product.name,
-//     product_price: product.price,
-//     product_description: product.description,
-//   }, getHeaders());
-//   setDeets([...deets, response.data]);
+const createProductDeets = async({name, price, materials, subjects}) => {
+  try {
+    return await axios.post('/api/productdeets', {
+    name: name,
+    price: price,
+    materials: materials,
+    subjects: subjects
+  });
+    
+  } catch (error) {
+    console.log(error)  
+  }
+}
+  
 
 const api = {
   login,
@@ -304,6 +322,7 @@ const api = {
   createProduct,
   changeItemVipStatus,
   fetchProductDeets,
+  createProductDeets
 };
 
 export default api;
