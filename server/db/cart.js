@@ -72,11 +72,23 @@ const deleteLineItem = async(lineItem)=> {
   await client.query(SQL, [lineItem.id]);
 };
 
+const submitShip = async(order) => {
+  const SQL = `
+    UPDATE orders
+    SET shipping = $1
+    WHERE id = $2 RETURNING *
+  `;
+  const response = await client.query(SQL, [order.shipping, order.id]);
+  return response.rows[0];
+}
+
 const updateOrder = async(order)=> {
   const SQL = `
-    UPDATE orders SET is_cart = $1 WHERE id = $2 RETURNING *
+    UPDATE orders
+    SET is_cart = $1, shipping = $3 
+    WHERE id = $2 RETURNING *
   `;
-  const response = await client.query(SQL, [order.is_cart, order.id]);
+  const response = await client.query(SQL, [order.is_cart, order.id, order.shipping]);
   return response.rows[0];
 };
 
@@ -106,5 +118,6 @@ module.exports = {
   updateLineItem,
   deleteLineItem,
   updateOrder,
+  submitShip,
   fetchOrders
 };
