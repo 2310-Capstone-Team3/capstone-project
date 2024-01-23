@@ -1,7 +1,8 @@
 import React from 'react';
 
+// Total Price: ${totalItems.reduce((arr, curr) => arr += curr, 0)}
+
 const Orders = ({ orders, products, lineItems })=> {
-  let totalItems = []
   return (
     <div>
       <h2>Orders</h2>
@@ -9,35 +10,34 @@ const Orders = ({ orders, products, lineItems })=> {
         {
           orders.filter(order => !order.is_cart).map( order => {
             const orderLineItems = lineItems.filter(lineItem => lineItem.order_id === order.id);
+            let orderStr = order.shipping.replace(/[{}"]/g, "")
             return (
-              <div>
               <li key={ order.id }>
                 ({ new Date(order.created_at).toLocaleString() })
+                <br />
+                <br />
+                <section>
+                  {orderStr.split(',').map(line => <span key={Math.random()}>{line},<br/></span>)}
+                  <br />
+                  ${order.pricetotal}
+                </section>
                 <ul>
                   {
                     orderLineItems.map( lineItem => {
                       const product = products.find(product => product.id === lineItem.product_id);
-                      {totalItems.push(product.price * lineItem.quantity)}
                       return (
                         <li key={ lineItem.id }>
-                          { product ? product.name: '' }
+                          { product ? product.name: '' } ({lineItem.quantity})
                         </li>
                       );
                     })
                   }
                 </ul>
               </li>
-              <section>
-                {order.shipping}
-              </section>
-              </div>
             );
           })
         }
       </ul>
-      <section className="totalOrderPrice">
-      Total Price: ${totalItems.reduce((arr, curr) => arr += curr, 0)}
-      </section>
     </div>
   );
 };

@@ -75,7 +75,6 @@ const submitShip = async({formData, order, setOrders, cart, orders}) => {
 }
 
 const updateOrder = async ({ order, setOrders }) => {
-  console.log(order)
   if (!order.shipping) {
     console.error("order.shipping doesn't exist!")
   } else {

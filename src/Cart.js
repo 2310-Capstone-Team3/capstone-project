@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 
 const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne, minusOne, submitShip })=> {
   let totalItems = []
-  const [street, setStreet] = useState("");
-  const [zip, setZip] = useState("");
-  const [state, setState] = useState("");
+  let totalPrice = 0
+  let [street, setStreet] = useState("");
+  let [zip, setZip] = useState("");
+  let [state, setState] = useState("");
   const [formData, setFormData] = useState({
     street: "",
     zip: "",
@@ -71,6 +72,7 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne,
           lineItems.filter(lineItem=> lineItem.order_id === cart.id).map( lineItem => {
             const product = products.find(product => product.id === lineItem.product_id) || {};
             {totalItems.push(product.price * lineItem.quantity)}
+            {totalPrice = totalItems.reduce((arr, curr) => arr += curr, 0)}
             return (
               <li key={ lineItem.id }>
                 { product.name }
@@ -84,7 +86,7 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne,
           })
         }
       </ul>
-      Total Price: ${totalItems.reduce((arr, curr) => arr += curr, 0)}
+      Total Price: ${totalPrice}
       <br />
       <form onClick={() => setFormData({street, zip, state})} onSubmit={() => submitShip(formData)}>
         <input placeholder="Street" type="text" value={street} onChange={street => setStreet(street.target.value)} required></input>
@@ -93,12 +95,11 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne,
           <option value={!state}>-- State --</option>
           {stateArray.map((state) => <option key={state.stateName}>{state.stateName}</option>)}
         </select>
-        <button type="submit" disabled={!street || !zip || !state || state === "false"}>Submit</button>
       </form>
       {
         lineItems.filter(lineItem => lineItem.order_id === cart.id ).length ? <button onClick={()=> {
-          updateOrder({...cart, is_cart: false, shipping: formData });
-        }}>Create Order</button>: null
+          updateOrder({...cart, is_cart: false, shipping: formData, priceTotal: totalPrice });
+        }} disabled={street==='' || zip==='' || state==='' || state === "false"}>Create Order</button>: null
       }
     </div>
   );
