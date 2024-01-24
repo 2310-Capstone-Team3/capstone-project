@@ -287,7 +287,7 @@ const logout = (setAuth) => {
   setAuth({});
 };
 
-const createProductDeets = async({name, price, materials, subjects}) => {
+const createProductDeets = async ({name, price, materials, subjects}) => {
   try {
     return await axios.post('/api/productdeets', {
     name: name,
