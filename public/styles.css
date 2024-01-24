@@ -36,13 +36,12 @@ form > * {
 
   .homeContainer .homeBody > img {
     height: 250px;
-    width: 100%;
     object-fit: cover;
   }
 
   .homeContainer .homeMainSection {
     background-color: white;
-    height: 806px;
+    height: 100%;
     border: 3px solid #ebeae5;
     font-family: 'Roboto Mono', monospace;
     font-weight: 200;
