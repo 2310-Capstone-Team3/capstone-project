@@ -42,7 +42,7 @@ form > * {
 
   .homeContainer .homeMainSection {
     background-color: white;
-    height: auto;
+    height: 806px;
     border: 3px solid #ebeae5;
     font-family: 'Roboto Mono', monospace;
     font-weight: 200;
@@ -82,7 +82,7 @@ form > * {
     top: 50%; 
     left: 50%;
     /* transform: translate(-50%, 350%); */
-    margin-top: 125px;
+    /* margin-top: 125px; */
     transform: translateX(-100px);
     background: rgba(255, 255, 255, 0.7);
     padding: 10px;
