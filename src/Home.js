@@ -37,6 +37,7 @@ const Home = () => {
                             </NavLink>     
                         </span>         
                     </section>
+                    <br></br>
                 </div>
                     <div className="HOMEemptySpace"></div>
                     <div className="ReviewTitleBox">
