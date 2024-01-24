@@ -36,6 +36,7 @@ form > * {
 
   .homeContainer .homeBody > img {
     height: 250px;
+    width: 100%;
     object-fit: cover;
   }
 
@@ -78,11 +79,10 @@ form > * {
 
   .homeContainer .productLink {
     position: absolute;
-    top: 50%; 
-    left: 50%;
+    top: 75%; 
+    left: 25%;
     /* transform: translate(-50%, 350%); */
     /* margin-top: 125px; */
-    transform: translateX(-100px);
     background: rgba(255, 255, 255, 0.7);
     padding: 10px;
     text-decoration: none;
@@ -91,6 +91,7 @@ form > * {
 
   .homeContainer .productContainer {
     position: relative;
+    width: 100%;
   }
 
   .homeContainer .CollectionLink {
