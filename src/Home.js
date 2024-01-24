@@ -10,7 +10,7 @@ const Home = () => {
             </div>
             <section className="homeMainSection">
                 <br></br>
-                <h1>View Our Collection</h1>
+                <h1>Some of our favorites</h1>
                 <br></br>
                 <div className="catalogPreview">
                     <section className="catalogProduct">
@@ -37,6 +37,7 @@ const Home = () => {
                             </NavLink>     
                         </span>         
                     </section>
+                    <br></br>
                     <br></br>
                 </div>
                     <div className="HOMEemptySpace"></div>
