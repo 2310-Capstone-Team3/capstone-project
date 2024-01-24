@@ -275,200 +275,199 @@ form > * {
 
 /* Nav Bar Items Start */
 
-.navFooter {
-  height: 65px;
-  background-color: #4F9D69;
-  display: flex;
-}
+  .navFooter {
+    height: 65px;
+    background-color: #4F9D69;
+    display: flex;
+  }
 
-.flowerBar {
-  transform: translateY(-55px);
-  width: 75%;
-  height: 300%;
-}
+  .flowerBar {
+    transform: translateY(-55px);
+    width: 75%;
+    height: 300%;
+  }
 
-.preNavBar {
-  height: 15px;
-  background-color: 	#93B48B;
-}
+  .preNavBar {
+    height: 15px;
+    background-color: 	#93B48B;
+  }
 
-.navVisualBar {
-  background: linear-gradient(to right, #BCEBCB 75%, #F7FFF6 25%);
-  display: flex;
-  height: 65px;
-}
+  .navVisualBar {
+    background: linear-gradient(to right, #BCEBCB 75%, #F7FFF6 25%);
+    display: flex;
+    height: 65px;
+  }
 
-nav{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #3E5641;
-  height: 75px;
-  color: #3E5641;
-  padding-bottom: 5px;
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 400;
-}
+  nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3E5641;
+    height: 75px;
+    color: #3E5641;
+    padding-bottom: 5px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
 
-.navComponent {
-  margin: 40px;
-}
+  .navComponent {
+    margin: 40px;
+  }
 
 /* Nav Bar Items End */
 
 /* Login Form Items Start */
 
-.login {
-  align-items: center;
-}
+  .login {
+    align-items: center;
+  }
 
-.loginMain {
-  width: 100%;
-  margin: 0;
-  background-color: yellow;
-  height: 700px;
-}
+  .loginMain {
+    width: 100%;
+    margin: 0;
+    background-color: yellow;
+    height: 700px;
+  }
 
-.loginFormContainer {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
+  .loginFormContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 
-.loginContainer {
-  background-color: white;
-  border: 3px solid #ebeae5;
-}
+  .loginContainer {
+    background-color: white;
+    border: 3px solid #ebeae5;
+  }
 
-.loginContainer .loginForm {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  max-width: 680px;
-}
+  .loginContainer .loginForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 680px;
+  }
 
-.loginContainer .loginInputBox {
-  width: 650px;
-  height: 65px;
-  border: 1px solid #ebeae5;
-}
+  .loginContainer .loginInputBox {
+    width: 650px;
+    height: 65px;
+    border: 1px solid #ebeae5;
+  }
 
-.loginContainer .loginFormDiv {
-  display: flex;
-  flex-direction: row;
-}
+  .loginContainer .loginFormDiv {
+    display: flex;
+    flex-direction: row;
+  }
 
-.loginContainer .loginTitle {
-  color: rgb(46, 44, 44);
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 400;
-  padding: 10px;
-  margin: 0;
-}
+  .loginContainer .loginTitle {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    padding: 10px;
+    margin: 0;
+  }
 
-.loginContainer .loginText {
-  color: rgb(46, 44, 44);
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 400;
-  width: 100%;
-  padding-left: 15px;
-}
+  .loginContainer .loginText {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    width: 100%;
+    padding-left: 15px;
+  }
 
-.loginButton {
-  background-color: rgb(46, 44, 44);
-  width: 100%;
-  margin-left: 7.5;
-  max-width: 650px;
-}
+  .loginButton {
+    background-color: rgb(46, 44, 44);
+    width: 100%;
+    margin-left: 7.5;
+    max-width: 650px;
+  }
 
 /* Login Form Items End */
 
 /* Frequent Questions Items Start */
 
-.frequentQuestionsContainer {
-  background-color: white;
-  border: 3px solid #ebeae5;
-  border-bottom: 0;
-  /* height: 100%; */
-  min-height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+  .frequentQuestionsContainer {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    border-bottom: 0;
+    /* height: 100%; */
+    min-height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-.frequentQuestionsContainer .frequentQuestionsTextContainer {
-  align-items: center;
-  width: 60%;
-}
+  .frequentQuestionsContainer .frequentQuestionsTextContainer {
+    align-items: center;
+    width: 60%;
+  }
 
-.frequentQuestionsContainer .frequentQuestionsTitle {
-  color: rgb(46, 44, 44);
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 400;
-}
+  .frequentQuestionsContainer .frequentQuestionsTitle {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
 
+  .frequentQuestionsContainer .frequentQuestionsContentContainer {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
 
-.frequentQuestionsContainer .frequentQuestionsContentContainer {
-  color: rgb(46, 44, 44);
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 400;
-  align-items: center;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
+  .frequentQuestionsContainer .frequentQuestion {
+    background-color: #fbfbfb;
+    border: 3px solid #f0ecec;
+    padding: 15px;
+    width: 75%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
 
-.frequentQuestionsContainer .frequentQuestion {
-  background-color: #fbfbfb;
-  border: 3px solid #f0ecec;
-  padding: 15px;
-  width: 75%;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-}
+  .frequentQuestionsContainer .frequentQuestionTitle {
+    font-size: large;
+  }
 
-.frequentQuestionsContainer .frequentQuestionTitle {
-  font-size: large;
-}
+  .frequentQuestionsContainer .frequentQuestionContent {
+    font-size: medium;
+  }
 
-.frequentQuestionsContainer .frequentQuestionContent {
-  font-size: medium;
-}
+  .frequentQuestionsContainer .frequentQuestionsFormContainer {
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    max-height: 675px;
+  }
 
-.frequentQuestionsContainer .frequentQuestionsFormContainer {
-  width: 40%;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  max-height: 675px;
-}
+  .frequentQuestionsContainer .frequentQuestionsForm {
+    background-color: #3E5641;
+    border: 3px solid #354b38;
+    width: 90%;
+    height: 90%;
+    align-items: center;
+  }
 
-.frequentQuestionsContainer .frequentQuestionsForm {
-  background-color: #3E5641;
-  border: 3px solid #354b38;
-  width: 90%;
-  height: 90%;
-  align-items: center;
-}
+  .frequentQuestionsContainer .frequentQuestionsForm form h3 {
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    padding-top: 15px;
+  }
 
-.frequentQuestionsContainer .frequentQuestionsForm form h3 {
-  color: white;
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 400;
-  padding-top: 15px;
-}
-
-.frequentQuestionsContainer .frequentQuestionsForm form {
-  text-align: center;
-  align-items: center;
-  height: 100%;
-  margin: 5;
-  display: flex;
-  flex-direction: column;
-}
+  .frequentQuestionsContainer .frequentQuestionsForm form {
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    margin: 5;
+    display: flex;
+    flex-direction: column;
+  }
 
   .frequentQuestionsContainer .frequentQuestionsForm form hr {
     width: 75%;
@@ -509,6 +508,96 @@ nav{
 
 /* Frequent Questions Items End */
 
+/* Contact Items Start */
+
+  .contactContainerMain {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    min-height: 100%;
+  }
+  
+  .contactContainerMain .contactAboutContainer {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .contactContainerMain .contactAboutHeading h2 {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+
+  .contactContainerMain hr {
+    width: 75%;
+    color: rgb(46, 44, 44);
+  }
+
+  .contactContainerMain .contactAboutContentAbout h4 {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+
+  .contactContainerMain .contactAboutContentAbout {
+    width: 50%;
+    margin: auto;
+  }
+
+  .contactContainerMain .contactAboutContentMission h4 {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+
+  .contactContainerMain .contactAboutContentMission .imageContainer {
+    width: 35%;
+  }
+
+  .contactContainerMain .contactAboutContentMission .textContainer {
+    width: 65%;
+  }
+
+  .contactContainerMain .contactAboutContentMission img {
+    width: 100%;
+  }
+
+  .contactContainerMain .contactAboutContentMission {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contactContainerMain .contactFormContainer form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contactContainerMain .contactFormContainer form input {
+    width: 500px;
+    height: 50px;
+    border: 1px solid #ebeae5;
+  }
+
+  .contactContainerMain form h3 {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+
+  .CONTACTemptySpace {
+    height: 125px;
+    background-color: white;
+  }
+
+  .contactButton {
+    background-color: rgb(46, 44, 44);
+    width: 500px;
+  }
+
+/* Contact Items End */
 
 /* .break{
   background-color: white;
