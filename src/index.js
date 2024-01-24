@@ -16,6 +16,7 @@ import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
 import ProductDeets from "./ProductDeets"
+import FrequentQuestions from './accountComponents/FrequentQuestions';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -176,7 +177,7 @@ const App = () => {
   
   const logout = () => {
     api.logout(setAuth);
-    navigate("/account");
+    navigate("/");
   };
 
   const fetchUser = () => {
@@ -198,13 +199,15 @@ const App = () => {
       <div>
         {auth.id ? (
           <>
+            <div className='preNavBar'>
+            </div>
             <div className="navi">
               <nav>
-              <Link to='/home'>Home</Link>
-                <Link to='/products'>Courses ({ products.length })</Link>
-                <Link to='/orders'>Orders ({ orders.filter(order => !order.is_cart).length })</Link>
-                <Link to='/cart'>Cart ({ cartCount })</Link>
-                <Link to='/account'>Account</Link>
+                <Link to="/products" className='navComponent'>Products</Link>
+                <Link to="/services" className='navComponent'>Services</Link>
+                <Link to='/' className='navComponent, navTitle'><h1>Company Title</h1></Link>
+                <Link to='/contact' className='navComponent'>Contact Us</Link>
+                <Link to="/login" className='navComponent'>Sign in</Link>
                 {
                 auth.is_admin ? (
                 <Link to='/security'>Security</Link>
@@ -218,7 +221,6 @@ const App = () => {
             </div>
             <main>
               <Routes>
-                <Route path="/home" element={<Home />}></Route>
                 <Route
                   path="/products"
                   element={
@@ -349,7 +351,6 @@ const App = () => {
                 users = {users} 
                 setUsers = {setUsers}
                 />}></Route>
-                <Route path='/' element={<Home/>}></Route>
                 <Route path='/products' element={<Products
                 products={ products }
                 cartItems = { cartItems }
@@ -380,6 +381,22 @@ const App = () => {
           )
           
         }
+        <Routes>
+          <Route
+            path="/frequent-questions"
+            element={
+              <FrequentQuestions     
+              />
+            }
+          ></Route>
+          <Route
+            path='/' 
+            element={
+              <Home
+              />
+            }
+          ></Route>
+        </Routes>
         <section className="FooterNavContainer">
                     <div className="FooterNavContent">
                         <div className="FooterNavCompany">
