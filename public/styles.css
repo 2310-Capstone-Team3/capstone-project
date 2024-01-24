@@ -92,15 +92,9 @@ form > * {
     position: relative;
     width: 100%;
   }
-
-  .homeContainer .CollectionLink {
-    color: black;
-    background: #fbfbfb;
-    font-weight: 200;
-    width: 125px;
-    height: 1%;
-    margin: auto;
-    border-radius: 15px;
+  
+  .homeContainer .reviewTitleBox {
+    transform: translateY(47.5px);
   }
 
   .homeContainer .homeMainSection > h1 {
