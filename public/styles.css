@@ -77,6 +77,10 @@ form > * {
     height: 100%;
   }
 
+  .homeContainer .reviewTitleBox {
+    height: 0;
+  }
+
   .homeContainer .productLink {
     position: absolute;
     top: 75%; 
