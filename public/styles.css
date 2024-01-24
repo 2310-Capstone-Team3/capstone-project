@@ -94,10 +94,6 @@ form > * {
   }
 
   .homeContainer .CollectionLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
     color: black;
     background: #fbfbfb;
     font-weight: 200;
