@@ -208,7 +208,7 @@ const App = () => {
                 <Link to="/services" className='navComponent'>Services</Link>
                 <Link to='/' className='navComponent, navTitle'><h1>Company Title</h1></Link>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
-                <Link to="/login" className='navComponent'>Sign in</Link>
+                <Link to="/account" className='navComponent'>Account</Link>
                 {
                 auth.is_admin ? (
                 <Link to='/security'>Security</Link>
