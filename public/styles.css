@@ -81,7 +81,9 @@ form > * {
     position: absolute;
     top: 50%; 
     left: 50%;
-    transform: translate(-50%, 350%);
+    /* transform: translate(-50%, 350%); */
+    margin-top: 125px;
+    transform: translateX(-100px);
     background: rgba(255, 255, 255, 0.7);
     padding: 10px;
     text-decoration: none;

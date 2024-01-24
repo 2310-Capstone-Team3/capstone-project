@@ -85,7 +85,6 @@ const Home = () => {
                         <h4 className="AboutContent">But our journey doesn't stop with plastic reduction. At [Company Name], we've embraced pesticide-free growing practices, ensuring that our blooms not only captivate with their beauty but also promote a healthier ecosystem. By avoiding harmful chemicals, we're fostering a floral experience that aligns with nature's harmony. As leaders in ethical floral commerce, we've set our sights on a future where conscious choices and the joy of flowers seamlessly coalesce, creating a bloom-filled world we can all be proud of.</h4>
                         <NavLink to='/contact' className="AboutLink">Learn More</NavLink>
                         </span>
-                        <img className="AboutImage" src="/public/FlowerArrStock.jpeg" alt="AboutImage"></img>
                     </div>
                 </section>
                 {/* <section className="FooterNavContainer">
