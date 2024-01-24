@@ -16,7 +16,7 @@ const Home = () => {
                     <section className="catalogProduct">
                         <span className="productContainer">
                                 <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink className='ProductLink' to='/products/:productId'> 
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'> 
                                 Explore This Product
                             </NavLink>     
                         </span>  
@@ -24,7 +24,7 @@ const Home = () => {
                     <section className="catalogProduct">
                         <span className="productContainer">
                             <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink className='ProductLink' to='/products/:productId'>
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'>
                                 Explore This Product
                             </NavLink>
                         </span>
@@ -32,7 +32,7 @@ const Home = () => {
                     <section className="catalogProduct">
                         <span className="productContainer">
                             <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink className='ProductLink' to='/products/:productId'>
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'>
                                 Explore This Product
                             </NavLink>     
                         </span>         
