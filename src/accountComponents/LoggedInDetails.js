@@ -47,8 +47,12 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => 
 
     useEffect(() => {
         const updateDisplayDetails = async () => {
-            await setDisplayName(user.username)
-            await setDisplayEmail(user.email)
+            if (user != undefined){
+                setDisplayName(user.username)
+                setDisplayEmail(user.email)
+            } else {
+                console.log("User doesnt exist")
+            }
         };
         updateDisplayDetails();
     }, []);

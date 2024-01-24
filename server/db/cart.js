@@ -59,7 +59,7 @@ const createLineItem = async(lineItem)=> {
   const SQL = `
   INSERT INTO line_items (product_id, order_id, id) VALUES($1, $2, $3) RETURNING *
 `;
- response = await client.query(SQL, [ lineItem.product_id, lineItem.order_id, uuidv4()]);
+  response = await client.query(SQL, [ lineItem.product_id, lineItem.order_id, uuidv4()]);
   return response.rows[0];
 };
 
@@ -72,11 +72,23 @@ const deleteLineItem = async(lineItem)=> {
   await client.query(SQL, [lineItem.id]);
 };
 
+const submitShip = async(order) => {
+  const SQL = `
+    UPDATE orders
+    SET shipping = $1
+    WHERE id = $2 RETURNING *
+  `;
+  const response = await client.query(SQL, [order.shipping, order.id]);
+  return response.rows[0];
+}
+
 const updateOrder = async(order)=> {
   const SQL = `
-    UPDATE orders SET is_cart = $1 WHERE id = $2 RETURNING *
+    UPDATE orders
+    SET is_cart = $1, shipping = $3, priceTotal = $4 
+    WHERE id = $2 RETURNING *
   `;
-  const response = await client.query(SQL, [order.is_cart, order.id]);
+  const response = await client.query(SQL, [order.is_cart, order.id, order.shipping, order.priceTotal]);
   return response.rows[0];
 };
 
@@ -106,5 +118,6 @@ module.exports = {
   updateLineItem,
   deleteLineItem,
   updateOrder,
+  submitShip,
   fetchOrders
 };

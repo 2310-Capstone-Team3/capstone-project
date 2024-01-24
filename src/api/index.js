@@ -61,10 +61,27 @@ const updateLineItem = async ({ lineItem, cart, lineItems, setLineItems }) => {
   );
 };
 
+const submitShip = async({formData, order, setOrders, cart, orders}) => {
+  try {
+    await axios.get('/api/orders', getHeaders());
+    cart.shipping = formData
+    order = cart
+    console.log(order.shipping)
+  } catch (error) {
+    console.log("random")
+    console.error(error)
+    console.log(formData)
+  }
+}
+
 const updateOrder = async ({ order, setOrders }) => {
-  await axios.put(`/api/orders/${order.id}`, order, getHeaders());
-  const response = await axios.get("/api/orders", getHeaders());
-  setOrders(response.data);
+  if (!order.shipping) {
+    console.error("order.shipping doesn't exist!")
+  } else {
+    await axios.put(`/api/orders/${order.id}`, order, getHeaders());
+    const response = await axios.get("/api/orders", getHeaders());
+    setOrders(response.data);
+  }
 };
 
 const removeFromCart = async ({ lineItem, lineItems, setLineItems }) => {
@@ -298,6 +315,7 @@ const api = {
   attemptLoginWithToken,
   plusOne,
   minusOne,
+  submitShip,
   signUp,
   fetchUsers,
   resetPassword,

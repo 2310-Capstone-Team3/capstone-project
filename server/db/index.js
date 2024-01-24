@@ -31,9 +31,10 @@ const {
   createLineItem,
   updateLineItem,
   deleteLineItem,
+  submitShip,
   updateOrder,
   fetchOrders,
-} = require("./cart");
+} = require('./cart');
 
 const seed = async () => {
   const SQL = `
@@ -77,7 +78,9 @@ const seed = async () => {
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
       is_cart BOOLEAN NOT NULL DEFAULT true,
-      user_id UUID REFERENCES users(id) NOT NULL
+      user_id UUID REFERENCES users(id) NOT NULL,
+      shipping TEXT,
+      priceTotal INTEGER
     );
 
     CREATE TABLE line_items(
@@ -203,6 +206,13 @@ const seed = async () => {
   });
   cart.is_cart = false;
   await updateOrder(cart);
+  let formData = {
+    street: "",
+    zip: "",
+    state: ""
+  }
+  await submitShip(formData);
+  let productDeets = await fetchProductDeets(oneMonthCourse.id);
 };
 
 module.exports = {
@@ -213,6 +223,7 @@ module.exports = {
   updateLineItem,
   deleteLineItem,
   updateOrder,
+  submitShip,
   authenticate,
   findUserByToken,
   seed,
