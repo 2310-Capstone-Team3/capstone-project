@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Login = ({ login, users })=> {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState('')
+    const navigate = useNavigate()
 
     const _login = async(ev) => {
         ev.preventDefault();
@@ -13,6 +14,7 @@ const Login = ({ login, users })=> {
             await login({ username, password });
             console.log(users)
             setLoginStatus("true")
+            navigate('/')
         }
         catch(ex){
             console.log(ex.response.data);
