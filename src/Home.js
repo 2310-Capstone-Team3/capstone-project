@@ -38,9 +38,6 @@ const Home = () => {
                         </span>         
                     </section>
                 </div>
-                <NavLink className='CollectionLink' to='/products'>
-                    Dive Deeper
-                </NavLink>
                     <div className="HOMEemptySpace"></div>
                     <div className="ReviewTitleBox">
                         <h1 className="ReviewTitle">Read Our Reviews</h1>
