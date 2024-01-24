@@ -186,11 +186,15 @@ const App = () => {
       console.log("Users is empty?", users);
     }
   };
-  const createProductDeets = async (name,price, materials, subjects) => {
-    const response = await api.createProductDeets({ name, price, materials, subjects });
+  const createProductDeets = async (name, price, materials, subjects) => {
+    const response = await api.createProductDeets({
+      name,
+      price,
+      materials,
+      subjects,
+    });
     return response;
   };
-
 
   return (
     <div>
@@ -230,6 +234,9 @@ const App = () => {
                 path="/productdeets"
                 element={<ProductDeets ProductDeets={ProductDeets} />}
               ></Route>
+
+            
+
               <Route
                 path="/cart"
                 element={
@@ -316,6 +323,7 @@ const App = () => {
               <Link to="/home">Home</Link>
               <Link to="/account">Account</Link>
               <Link to="/products">Courses</Link>
+              
             </nav>
           </div>
           <Routes>
@@ -347,6 +355,7 @@ const App = () => {
               path="/productdeets"
               element={<ProductDeets ProductDeets={ProductDeets} />}
             ></Route>
+            
 
             <Route
               path="/register"
