@@ -16,6 +16,7 @@ import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
 import ProductDeets from "./ProductDeets"
+import FrequentQuestions from './accountComponents/FrequentQuestions';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -343,6 +344,13 @@ const App = () => {
               </nav>
               </div>
               <Routes>
+                <Route
+                  path="/frequent-questions"
+                  element={
+                    <FrequentQuestions     
+                    />
+                  }
+                ></Route>
                 <Route path='/login/*' element={<Account 
                 login = {login} 
                 signUp = {signUp} 
