@@ -23,7 +23,7 @@ const createProduct = async (product) => {
     product.product_type,
     product.plant_type,
     product.workshop_duration,
-    product.image_path
+    product.product_image_path
   ]);
   return response.rows[0];
 };
