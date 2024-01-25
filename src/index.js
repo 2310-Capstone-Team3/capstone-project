@@ -15,8 +15,6 @@ import DisplaySingleUser from './accountComponents/DisplaySingleUser';
 import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
-import Reviews from './Reviews';
-import ProductDeets from "./ProductDeets";
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
 import Workshops from './Workshops';
@@ -31,11 +29,6 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
   const [users, setUsers] = useState({ data: [] });
-  const [productDeets, setProductDeets] = useState([]);
-  const [reviews, setReviews] = useState ([]);
-  const [workshops, setWorkshops] = useState([]);
-  const [flowers, setFlowers] = useState ([]);
-
 
   const attemptLoginWithToken = async () => {
     await api.attemptLoginWithToken(setAuth);
@@ -83,16 +76,6 @@ const App = () => {
     };
     fetchData();
   }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      response = await api.fetchProductDeets
-      setProductDeets(response.data);
-    };
-    fetchData();
-  }, []);
-
-  
 
   useEffect(() => {
     if (auth.id) {
@@ -238,26 +221,6 @@ const App = () => {
       console.log("Users is empty?", users)
     }
   };
-  const fetchProductDeets = () => {
-    const ProductDeets = ProductDeets.find((productdeet) => productdeet.id === productdeet.id);
-    return productDeets;
-  };
-
-  const fetchWorkshops = () => {
-    const Workshops = Workshops.find((workshop) => workshop.id === workshop.id);
-    return workshop;
-  };
-
-  const fetchReviews = () => {
-    const Reviews = Reviews.find((review) => review.id === review.id);
-    return review;
-  };
-
-  const fetchFlowers = () => {
-    const Flowers = Flowers.find((flower) => flower.id === flower.id);
-    return flower;
-  };
-  
 
   return (
     <div className='mainBorder'>
@@ -272,16 +235,10 @@ const App = () => {
                 <Link to="/services" className='navComponent'>Services</Link>
                 <Link to='/' className='navComponent, navTitle'><h1>Company Title</h1></Link>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
-                <Link to="/account" className='navComponent'>Account</Link>
-                {
-                auth.is_admin ? (
-                <Link to='/security'>Security</Link>
-                ) : (
-                  null
-                )}
-                <span>
-                  Welcome {auth.username}!<button onClick={logout}>Logout</button>
-                </span>
+                <div className='navComponent navPictures'>
+                  <Link to="/cart"><img src='/public/cart-30-32.png'></img></Link>
+                  <Link to="/account"><img src='/public/contacts-32.png'></img></Link>
+                </div>
               </nav>
             </div>
             <main>
@@ -309,33 +266,6 @@ const App = () => {
                       cartItems={cartItems}
                       createLineItem={createLineItem}
                       updateLineItem={updateLineItem}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/productdeets"
-                  element={
-                    <ProductDeets
-                    ProductDeets={ProductDeets}/>} />
-                <Route path='/' element={<Home/>}></Route>
-                <Route path='/reviews' element={<Reviews
-                reviews = { reviews }
-                createReviews = { createReviews}
-                fetchReviews = { fetchReviews }
-                />}></Route>
-                <Route path='/products' element={<Products
-                auth = { auth }
-                products={ products }
-                cartItems = { cartItems }
-                createLineItem = { createLineItem }
-                updateLineItem = { updateLineItem }
-              />}></Route>
-              <Route
-                path="/productdeets"
-                element={
-                  <ProductDeets
-                  ProductDeets={ProductDeets}
-
                     />
                   }
                 ></Route>
@@ -372,6 +302,7 @@ const App = () => {
                       resetPassword={resetPassword}
                       resetUsername={resetUsername}
                       resetEmail={resetEmail}
+                      logout = {logout}
                     />
                   }
                 ></Route>
@@ -520,13 +451,6 @@ const App = () => {
                 updateLineItem = { updateLineItem }
                 auth = { auth }
               />}></Route>
-              <Route
-                  path="/productdeets"
-                  element={
-                    <ProductDeets
-                  ProductDeets={ProductDeets}
-                    />
-                  }></Route>
               <Route path='/register' element={<Register
                   users = { users }
                   signUp = { signUp }
