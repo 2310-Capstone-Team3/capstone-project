@@ -50,7 +50,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-     response = await api.fetchProductDeets
+     const response = await api.fetchProductDeets()
      setProductDeets(response.data);
     };
     fetchData();
@@ -136,6 +136,11 @@ const App = () => {
 
   const resetEmail = async (user, email) => {
     const response = await api.resetEmail({ user, email });
+    return response.data;
+  };
+
+  const resetAddress = async (user, address) => {
+    const response = await api.resetAddress({ user, address });
     return response.data;
   };
 
@@ -243,6 +248,7 @@ const App = () => {
                 plusOne = { plusOne }
                 minusOne = { minusOne }
                 submitShip = { submitShip }
+                user = { fetchUser() }
               />}></Route>
                 <Route path='/orders' element={<Orders
                 orders = { orders }
@@ -255,6 +261,7 @@ const App = () => {
                 resetPassword = { resetPassword }
                 resetUsername = { resetUsername }
                 resetEmail = { resetEmail }
+                resetAddress = { resetAddress }
               />}></Route>
               <Route path='/security/*' element={<Security
               />}></Route>

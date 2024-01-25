@@ -1,11 +1,72 @@
 import React, { useState, useEffect } from 'react';
 
-const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => {
+const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail, resetAddress} ) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
     const [displayName, setDisplayName] = useState('')
     const [displayEmail, setDisplayEmail] = useState('')
+    const [displayAddress, setDisplayAddress] = useState('')
+    const [addressStreet, setAddressStreet] = useState("")
+    const [addressZip, setAddressZip] = useState("")
+    const [addressState, setAddressState] = useState("")
+    const [address, setAddress] = useState({
+        street: "",
+        zip: "",
+        state: ""
+    })
+    let stateArray = [
+        {stateName: 'AL'},
+        {stateName: 'AK'},
+        {stateName: 'AZ'},
+        {stateName: 'AR'},
+        {stateName: 'CA'},
+        {stateName: 'CO'},
+        {stateName: 'CT'},
+        {stateName: 'DE'},
+        {stateName: 'FL'},
+        {stateName: 'GA'},
+        {stateName: 'HI'},
+        {stateName: 'ID'},
+        {stateName: 'IL'},
+        {stateName: 'IN'},
+        {stateName: 'IA'},
+        {stateName: 'KS'},
+        {stateName: 'KY'},
+        {stateName: 'LA'},
+        {stateName: 'ME'},
+        {stateName: 'MD'},
+        {stateName: 'MA'},
+        {stateName: 'MI'},
+        {stateName: 'MN'},
+        {stateName: 'MS'},
+        {stateName: 'MO'},
+        {stateName: 'MT'},
+        {stateName: 'NE'},
+        {stateName: 'NV'},
+        {stateName: 'NH'},
+        {stateName: 'NJ'},
+        {stateName: 'NM'},
+        {stateName: 'NY'},
+        {stateName: 'NC'},
+        {stateName: 'ND'},
+        {stateName: 'OH'},
+        {stateName: 'OK'},
+        {stateName: 'OR'},
+        {stateName: 'PA'},
+        {stateName: 'RI'},
+        {stateName: 'SC'},
+        {stateName: 'SD'},
+        {stateName: 'TN'},
+        {stateName: 'TX'},
+        {stateName: 'UT'},
+        {stateName: 'VT'},
+        {stateName: 'VA'},
+        {stateName: 'WA'},
+        {stateName: 'WV'},
+        {stateName: 'WI'},
+        {stateName: 'WY'}
+      ]
 
     const _changeUsername = async (ev) => {
         ev.preventDefault();
@@ -45,10 +106,25 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => 
         setEmail('')
     }
 
+    const _changeAddress = async (ev) => {
+        ev.preventDefault();
+        try {
+            console.log(address)
+            const response = await resetAddress(user, address)
+            console.log("Success changing home address")
+            setDisplayAddress(response.address)
+            window.location.reload()
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
+        setAddress('')
+    }
+    
     useEffect(() => {
         const updateDisplayDetails = async () => {
             await setDisplayName(user.username)
             await setDisplayEmail(user.email)
+            await setDisplayAddress(user.address.replace(/[{}"]/g, ""))
         };
         updateDisplayDetails();
     }, []);
@@ -87,6 +163,24 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => 
                         onChange={ ev => setEmail(ev.target.value)}
                     />
                     <button disabled={!email}>Change Email</button>
+                </form>
+                <h4>Your home address is set to: {displayAddress}</h4>
+                <form name='changeAddress' onSubmit = {_changeAddress}>
+                    <input
+                        placeholder='Street'
+                        value={ addressStreet }
+                        onChange={ ev => setAddressStreet(ev.target.value)}
+                    />
+                    <input
+                        placeholder='Zip'
+                        value={ addressZip }
+                        onChange={ ev => setAddressZip(ev.target.value)}
+                    />
+                    <select onChange={addressState => setAddressState(addressState.target.value)}>
+                        <option value={!addressState}>-- State --</option>
+                        {stateArray.map((state) => <option key={state.stateName}>{state.stateName}</option>)}
+                    </select>
+                    <button disabled={!addressStreet || !addressZip || !addressState} onClick={() => setAddress(["street: " + addressStreet, " zip: " + addressZip, " " + addressState])}>Change Home Address</button>
                 </form>
                 {user.is_vip === true && (
                 <div>

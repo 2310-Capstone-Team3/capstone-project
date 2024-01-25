@@ -9,12 +9,17 @@ const {
   changeItemVipStatus
 } = require('./products');
 
-const { fetchProductDeets, createProductDeets } = require("./productdeets");
+const { 
+  fetchProductDeets, 
+  createProductDeets 
+} = require("./productdeets");
+
 const {
   fetchUsers,
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  resetUserAddress,
   changeVipStatus,
   changeAdminStatus
 } = require('./users')
@@ -43,7 +48,6 @@ const seed = async () => {
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS productdeets;
-  
 
 
     CREATE TABLE users(
@@ -53,7 +57,8 @@ const seed = async () => {
       password VARCHAR(100) NOT NULL,
       email VARCHAR(256) UNIQUE NOT NULL,
       is_admin BOOLEAN DEFAULT false NOT NULL,
-      is_vip BOOLEAN DEFAULT false NOT NULL
+      is_vip BOOLEAN DEFAULT false NOT NULL,
+      address VARCHAR(256)
     );
 
     CREATE TABLE products(
@@ -64,6 +69,7 @@ const seed = async () => {
       description TEXT,
       vip_status BOOLEAN DEFAULT false NOT NULL
     ); 
+    
     CREATE TABLE productdeets(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
@@ -234,6 +240,7 @@ module.exports = {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  resetUserAddress,
   changeVipStatus,
   changeAdminStatus,
   changeProductName,
@@ -242,5 +249,5 @@ module.exports = {
   createProduct,
   changeItemVipStatus,
   fetchProductDeets,
-  createProductDeets
+  createProductDeets,
 };
