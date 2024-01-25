@@ -272,16 +272,10 @@ const App = () => {
                 <Link to="/services" className='navComponent'>Services</Link>
                 <Link to='/' className='navComponent, navTitle'><h1>Company Title</h1></Link>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
-                <Link to="/account" className='navComponent'>Account</Link>
-                {
-                auth.is_admin ? (
-                <Link to='/security'>Security</Link>
-                ) : (
-                  null
-                )}
-                <span>
-                  Welcome {auth.username}!<button onClick={logout}>Logout</button>
-                </span>
+                <div className='navComponent navPictures'>
+                  <Link to="/cart"><img src='/public/cart-30-32.png'></img></Link>
+                  <Link to="/account"><img src='/public/contacts-32.png'></img></Link>
+                </div>
               </nav>
             </div>
             <main>
@@ -312,30 +306,11 @@ const App = () => {
                     />
                   }
                 ></Route>
-                <Route
-                  path="/productdeets"
-                  element={
-                    <ProductDeets
-                    ProductDeets={ProductDeets}/>} />
-                <Route path='/' element={<Home/>}></Route>
                 <Route path='/reviews' element={<Reviews
                 reviews = { reviews }
                 createReviews = { createReviews}
                 fetchReviews = { fetchReviews }
                 />}></Route>
-                <Route path='/products' element={<Products
-                auth = { auth }
-                products={ products }
-                cartItems = { cartItems }
-                createLineItem = { createLineItem }
-                updateLineItem = { updateLineItem }
-              />}></Route>
-              <Route
-                path="/productdeets"
-                element={
-                  <ProductDeets
-                  ProductDeets={ProductDeets}
-
                     />
                   }
                 ></Route>
@@ -372,6 +347,7 @@ const App = () => {
                       resetPassword={resetPassword}
                       resetUsername={resetUsername}
                       resetEmail={resetEmail}
+                      logout = {logout}
                     />
                   }
                 ></Route>

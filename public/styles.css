@@ -305,6 +305,13 @@ form > * {
     margin: 40px;
   }
 
+  .navPictures {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    margin-left: 5px;
+  }
+
 /* Nav Bar Items End */
 
 /* Login Form Items Start */
@@ -589,6 +596,12 @@ form > * {
   }
 
 /* Contact Items End */
+
+/* Product Items Start */
+
+
+
+/* Product Items End */
 
 /* .break{
   background-color: white;
