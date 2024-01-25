@@ -13,10 +13,6 @@ const fetchProducts = async (setProducts) => {
   setProducts(response.data);
 };
 
-const fetchProductDeets = async (setProductDeets) => {
-  const response = await axios.get("/api/productdeets");
-  setProductDeets(response.data);
-};
 
 const fetchUsers = async (setUsers) => {
   const response = await axios.get("/api/users");
@@ -287,18 +283,6 @@ const logout = (setAuth) => {
   setAuth({});
 };
 
-const createProductDeet = async ({ name, price, materials, subjects }) => {
-  try {
-    return await axios.post("/api/productdeets", {
-    name: name,
-    price: price,
-    materials: materials,
-    subjects: subjects,
-  }); 
-  } catch (error) {
-    console.log(error)  
-  }
-}
   
 
 const api = {
@@ -326,9 +310,7 @@ const api = {
   changeProductDescription,
   changeProductPrice,
   createProduct,
-  changeItemVipStatus,
-  fetchProductDeets,
-  createProductDeet
-};
+  changeItemVipStatus
+  };
 
 export default api;
