@@ -633,15 +633,22 @@ form > * {
   border: 3px solid #f0ecec;
   display: flex;
   width: 90%;
-  margin: 10;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  margin: 10px;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .productContainerMain .productDisplay .product {
-  width: 24%;
+  width: 22%; 
+  padding: 10px;
   text-align: center;
+  border: 3px solid #f0ecec;
+  margin: 15px;
+  box-sizing: border-box; 
+}
+
+.productContainerMain .product img {
+  max-width: 90%;
 }
 
 /* Product Items End */
