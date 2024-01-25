@@ -3,7 +3,9 @@ purple: #a723b5	(167,35,181)
 pink: #e72aa3	(231,42,163)
 white: #f7f2f6	(247,242,246)
 teal: #44BBA4	
-blue: #031572	(3,21,114) */
+blue: #031572	(3,21,114)
+text/button black: rgb(46, 44, 44)
+ */
   
 @import url('https://fonts.googleapis.com/css2?family=Overpass&family=Roboto+Mono:wght@200;400;700&family=Roboto:wght@100;400&display=swap');
 
@@ -36,6 +38,7 @@ form > * {
 
   .homeContainer .homeBody > img {
     height: 250px;
+    width: 100%;
     object-fit: cover;
   }
 
@@ -52,7 +55,7 @@ form > * {
     width: 300px;
     margin: auto;
     height: 40px;
-    transform: translateY(7px);
+    transform: translateY(55px);
     border: 3px solid #a3c59b;
     border-bottom: 0;
     text-align: center;
@@ -76,13 +79,15 @@ form > * {
     height: 100%;
   }
 
+  .homeContainer .reviewTitleBox {
+    height: 0;
+  }
+
   .homeContainer .productLink {
     position: absolute;
-    top: 50%; 
-    left: 50%;
+    top: 75%; 
     /* transform: translate(-50%, 350%); */
     /* margin-top: 125px; */
-    transform: translateX(-100px);
     background: rgba(255, 255, 255, 0.7);
     padding: 10px;
     text-decoration: none;
@@ -91,20 +96,7 @@ form > * {
 
   .homeContainer .productContainer {
     position: relative;
-  }
-
-  .homeContainer .CollectionLink {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: black;
-    background: #fbfbfb;
-    font-weight: 200;
-    width: 125px;
-    height: 1%;
-    margin: auto;
-    border-radius: 15px;
+    width: 100%;
   }
 
   .homeContainer .homeMainSection > h1 {
@@ -304,6 +296,7 @@ form > * {
     align-items: center;
     justify-content: center;
     background-color: #3E5641;
+    border: 3px solid #354b38;
     height: 75px;
     color: #3E5641;
     padding-bottom: 5px;
@@ -313,6 +306,13 @@ form > * {
 
   .navComponent {
     margin: 40px;
+  }
+
+  .navPictures {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    margin-left: 5px;
   }
 
 /* Nav Bar Items End */
@@ -599,6 +599,52 @@ form > * {
   }
 
 /* Contact Items End */
+
+/* Product Items Start */
+
+.productContainerMain {
+  background-color: white;
+  border: 3px solid #ebeae5;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.productContainerMain h1,
+.productContainerMain h2,
+.productContainerMain h4,
+.productContainerMain h5,
+.productContainerMain h3 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.productContainerMain .filterNavBar {
+  background-color: #3E5641;
+  border: 3px solid #354b38;
+  height: 50px;
+  width: 50%;
+}
+
+.productContainerMain .productDisplay {
+  background-color: #fbfbfb;
+  border: 3px solid #f0ecec;
+  display: flex;
+  width: 90%;
+  margin: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.productContainerMain .productDisplay .product {
+  width: 24%;
+  text-align: center;
+}
+
+/* Product Items End */
 
 /* .break{
   background-color: white;

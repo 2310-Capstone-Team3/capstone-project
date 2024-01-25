@@ -10,13 +10,13 @@ const Home = () => {
             </div>
             <section className="homeMainSection">
                 <br></br>
-                <h1>View Our Collection</h1>
+                <h1>Some of our favorites</h1>
                 <br></br>
                 <div className="catalogPreview">
                     <section className="catalogProduct">
                         <span className="productContainer">
                                 <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink className='ProductLink' to='/products/:productId'> 
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'> 
                                 Explore This Product
                             </NavLink>     
                         </span>  
@@ -24,7 +24,7 @@ const Home = () => {
                     <section className="catalogProduct">
                         <span className="productContainer">
                             <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink className='ProductLink' to='/products/:productId'>
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'>
                                 Explore This Product
                             </NavLink>
                         </span>
@@ -32,15 +32,14 @@ const Home = () => {
                     <section className="catalogProduct">
                         <span className="productContainer">
                             <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink className='ProductLink' to='/products/:productId'>
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'>
                                 Explore This Product
                             </NavLink>     
                         </span>         
                     </section>
+                    <br></br>
+                    <br></br>
                 </div>
-                <NavLink className='CollectionLink' to='/products'>
-                    Dive Deeper
-                </NavLink>
                     <div className="HOMEemptySpace"></div>
                     <div className="ReviewTitleBox">
                         <h1 className="ReviewTitle">Read Our Reviews</h1>

@@ -15,7 +15,6 @@ import DisplaySingleUser from './accountComponents/DisplaySingleUser';
 import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
-import ProductDeets from "./ProductDeets"
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
 
@@ -26,7 +25,6 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
   const [users, setUsers] = useState({ data: [] });
-  const [productDeets, setProductDeets] = useState([]);
 
   const attemptLoginWithToken = async () => {
     await api.attemptLoginWithToken(setAuth);
@@ -46,13 +44,6 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       await api.fetchProducts(setProducts);
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await api.fetchProductDeets(setProductDeets);
     };
     fetchData();
   }, []);
@@ -188,10 +179,6 @@ const App = () => {
       console.log("Users is empty?", users);
     }
   };
-  const createProductDeet = async (name, price, materials, subjects) => {
-    const response = await api.createProductDeet({ name, price, materials, subjects });
-    return response;
-  };
 
   return (
     <div className='mainBorder'>
@@ -206,16 +193,10 @@ const App = () => {
                 <Link to="/services" className='navComponent'>Services</Link>
                 <Link to='/' className='navComponent, navTitle'><h1>Company Title</h1></Link>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
-                <Link to="/account" className='navComponent'>Account</Link>
-                {
-                auth.is_admin ? (
-                <Link to='/security'>Security</Link>
-                ) : (
-                  null
-                )}
-                <span>
-                  Welcome {auth.username}!<button onClick={logout}>Logout</button>
-                </span>
+                <div className='navComponent navPictures'>
+                  <Link to="/cart"><img src='/public/cart-30-32.png'></img></Link>
+                  <Link to="/account"><img src='/public/contacts-32.png'></img></Link>
+                </div>
               </nav>
             </div>
             <main>
@@ -229,15 +210,6 @@ const App = () => {
                       cartItems={cartItems}
                       createLineItem={createLineItem}
                       updateLineItem={updateLineItem}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/productdeets"
-                  element={
-                    <ProductDeets
-                    ProductDeets={ProductDeets}
-
                     />
                   }
                 ></Route>
@@ -274,6 +246,7 @@ const App = () => {
                       resetPassword={resetPassword}
                       resetUsername={resetUsername}
                       resetEmail={resetEmail}
+                      logout = {logout}
                     />
                   }
                 ></Route>
@@ -357,13 +330,6 @@ const App = () => {
                 updateLineItem = { updateLineItem }
                 auth = { auth }
               />}></Route>
-              <Route
-                  path="/productdeets"
-                  element={
-                    <ProductDeets
-                  ProductDeets={ProductDeets}
-                    />
-                  }></Route>
               <Route path='/register' element={<Register
                   users = { users }
                   signUp = { signUp }
