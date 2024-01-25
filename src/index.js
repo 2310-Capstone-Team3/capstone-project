@@ -52,8 +52,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      response = await api.fetchProductDeets
-      setProductDeets(response.data);
+      await api.fetchProductDeets(setProductDeets);
     };
     fetchData();
   }, []);
@@ -189,13 +188,8 @@ const App = () => {
       console.log("Users is empty?", users);
     }
   };
-  const createProductDeets = async (name, price, materials, subjects) => {
-    const response = await api.createProductDeets({
-      name,
-      price,
-      materials,
-      subjects,
-    });
+  const createProductDeet = async (name, price, materials, subjects) => {
+    const response = await api.createProductDeet({ name, price, materials, subjects });
     return response;
   };
 

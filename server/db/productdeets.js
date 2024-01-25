@@ -11,7 +11,7 @@ const fetchProductDeets = async () => {
   return response.rows;
 };
 
-const createProductDeets = async (productdeets) => {
+const createProductDeet = async (productdeet) => {
   const SQL = `
       INSERT  INTO productdeets (id, name, price, materials, subjects ) 
       VALUES ( $1, $2, $3, $4, $5)
@@ -19,14 +19,14 @@ const createProductDeets = async (productdeets) => {
         `;
   const response = await client.query(SQL, [
     uuidv4(),
-    productdeets.name,
-    productdeets.price,
-    productdeets.materials,
-    productdeets.subjects,
+    productdeet.name,
+    productdeet.price,
+    productdeet.materials,
+    productdeet.subjects,
   ]);
   return response.rows[0];
 };
 module.exports = {
   fetchProductDeets,
-  createProductDeets
+  createProductDeet
 };

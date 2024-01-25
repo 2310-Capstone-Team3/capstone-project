@@ -1,4 +1,7 @@
-const { fetchProductDeets, createProductDeets } = require("../db");
+const {
+   fetchProductDeets, createProductDeet 
+  } = require("../db");
+
 const express = require("express");
 const app = express.Router();
 
@@ -12,7 +15,7 @@ app.get("/", async (req, res, next) => {
 
 app.post("/", async (req, res, next) => {
   try {
-    res.send(await createProductDeets(req.body));
+    res.send(await createProductDeet(req.body));
   } catch (error) {
     next(error);
   }

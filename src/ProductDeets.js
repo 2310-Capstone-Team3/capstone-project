@@ -1,7 +1,7 @@
 import React from "react"
 
 const ProductDeets = ({
-  ProductDeets,
+  productDeets,
   
 }) => {
   return (
@@ -9,11 +9,11 @@ const ProductDeets = ({
   <div>
     <h1>Details!</h1>
     
-  
+    <ul> 
     
-    {/* {<ul>
       
-      {ProductDeets.map((productdeet) => {
+      {/* {productDeets.map((productdeet) => {
+        const productDeets = productDeets.find((productdeet) => productdeet.id === productdeet.id)
         return (
           <li key={productdeet.id}>
             <h2>{productdeet.name}</h2>
@@ -24,8 +24,8 @@ const ProductDeets = ({
             <br />
           </li>
         );
-      })}
-    </ul> } */}
+      })} */}
+    </ul> 
   </div>
   );
 };

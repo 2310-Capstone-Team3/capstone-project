@@ -17,6 +17,8 @@ const FrequentQuestions = () => {
                         <div className="frequentQuestion">
                             <span className="frequentQuestionTitle">Question</span>
                             <br></br>
+                            <span>What is the proper maintenance routine?</span>
+                            <br />
                             <span className="frequentQuestionContent">Answer</span>
                         </div>
                         <br></br>

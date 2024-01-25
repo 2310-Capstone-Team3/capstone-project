@@ -9,7 +9,9 @@ const {
   changeItemVipStatus,
 } = require("./products");
 
-const { fetchProductDeets, createProductDeets } = require("./productdeets");
+const {
+   fetchProductDeets, createProductDeet 
+  } = require("./productdeets");
 const {
   fetchUsers,
   resetUserPassword,
@@ -158,7 +160,7 @@ const seed = async () => {
   ]);
   const [oneMonthCourse, twoMonthCourse, threeMonthCourse, sixMonthCourse] =
     await Promise.all([
-      createProductDeets({
+      createProductDeet({
         name: "One Month Course",
         price: 1000,
         materials:
@@ -166,7 +168,7 @@ const seed = async () => {
         subjects:
           " Many subjects are taught during this course. Starting your first day, each student will be introduced to the fundamentals of HTML. The fundamentals of HTML will teach you how to build structure for a webpage. You then will moved forward to the fundamentals of CSS to learn how to apply styling. Once HTML & CSS is established, we will move on to learning how to store our code with GITHUB. Students will also have three webpages, developed with HTML && CSS to show off what they've learned! Each student will leave this course feeling confident enough to build a basic webpage on their own!",
       }),
-      createProductDeets({
+      createProductDeet({
         name: "Two Month Course",
         price: 2000,
         materials:
@@ -174,7 +176,7 @@ const seed = async () => {
         subjects:
           " Many subjects are taught during this course. Starting your first day, each student will be introduced to the fundamentals of HTML, CSS and Javascript. The fundamentals of HTML and CSS will teach you how to build structure for a webpage. While, Javascript helps with the functioning. Each student will have established their GITHUB accounts. Several projects using HTML,CSS & JS will help create the perfect portfolio for students. Students will also have a six webpages, developed with HTML,CSS & JS, to show off what they've learned. Students will leave the course confident enough to create basic webpages for friends and family!",
       }),
-      createProductDeets({
+      createProductDeet({
         name: "Three Month Course",
         price: 2800,
         materials:
@@ -182,7 +184,7 @@ const seed = async () => {
         subjects:
           " Many subjects are taught during this course. Starting your first day, each student will be introduced to the fundamentals of HTML, CSS and Javascript. The fundamentals of HTML and CSS will teach you how to build structure for a webpage. While, Javascript helps with the functioning. Each student will have established their GITHUB accounts. Several projects using HTML,CSS & JS will help create the perfect portfolio for students. Students will learn how to create and deploy live web pages. Students will also have, twelve webpages developed with HTML,CSS & JS to show off what they've learned. This course will leave each student feeling confident enough to start a web-developing business, LOL!",
       }),
-      createProductDeets({
+      createProductDeet({
         name: "Six Month Course",
         price: 5000,
         materials:
@@ -212,7 +214,8 @@ const seed = async () => {
     state: ""
   }
   await submitShip(formData);
-  let productDeets = await fetchProductDeets(oneMonthCourse.id);
+  
+ 
 };
 
 module.exports = {
@@ -242,5 +245,5 @@ module.exports = {
   createProduct,
   changeItemVipStatus,
   fetchProductDeets,
-  createProductDeets
+  createProductDeet
 };

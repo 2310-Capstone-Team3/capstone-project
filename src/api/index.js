@@ -287,15 +287,14 @@ const logout = (setAuth) => {
   setAuth({});
 };
 
-const createProductDeets = async ({name, price, materials, subjects}) => {
+const createProductDeet = async ({ name, price, materials, subjects }) => {
   try {
-    return await axios.post('/api/productdeets', {
+    return await axios.post("/api/productdeets", {
     name: name,
     price: price,
     materials: materials,
-    subjects: subjects
-  });
-    
+    subjects: subjects,
+  }); 
   } catch (error) {
     console.log(error)  
   }
@@ -329,7 +328,7 @@ const api = {
   createProduct,
   changeItemVipStatus,
   fetchProductDeets,
-  createProductDeets
+  createProductDeet
 };
 
 export default api;
