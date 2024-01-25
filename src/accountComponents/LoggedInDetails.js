@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail, resetAddress} ) => {
+const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail, logout, resetAddress} ) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
@@ -122,9 +122,13 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail, reset
     
     useEffect(() => {
         const updateDisplayDetails = async () => {
-            await setDisplayName(user.username)
-            await setDisplayEmail(user.email)
-            await setDisplayAddress(user.address.replace(/[{}"]/g, ""))
+            if (user != undefined){
+                setDisplayName(user.username)
+                setDisplayEmail(user.email)
+                setDisplayAddress(user.address.replace(/[{}"]/g, ""))
+            } else {
+                console.log("User doesnt exist")
+            }
         };
         updateDisplayDetails();
     }, []);
@@ -191,6 +195,7 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail, reset
                     style={{ width: '20px', height: '20px', paddingRight: '5px' }}
                 />
                 <h4>You are a vip member!</h4> 
+                <button onClick={logout}></button>
                 </span>
                 </div>
             )}

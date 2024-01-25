@@ -3,15 +3,26 @@ purple: #a723b5	(167,35,181)
 pink: #e72aa3	(231,42,163)
 white: #f7f2f6	(247,242,246)
 teal: #44BBA4	
-blue: #031572	(3,21,114) */
+blue: #031572	(3,21,114)
+text/button black: rgb(46, 44, 44)
+ */
+  
+@import url('https://fonts.googleapis.com/css2?family=Overpass&family=Roboto+Mono:wght@200;400;700&family=Roboto:wght@100;400&display=swap');
+
+body {
+  margin: 0;
+}
 
 :root {
-  background-color: black;
-  margin-bottom: 100px;
+  background: linear-gradient(to bottom, #3E5641, #3E5641);
+  background-color: #93B48B;
 }
+
 body {
   /* font-family: Poppins, serif; */
   font-family: Manrope, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 form {
@@ -23,58 +34,617 @@ form > * {
   margin: 0.5rem;
 }
 
-.header {
+/* Home Page Items Start */
+
+  .homeContainer .homeBody > img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .homeContainer .homeMainSection {
+    background-color: white;
+    height: 806px;
+    border: 3px solid #ebeae5;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .homeContainer .homeMainSection .ReviewTitle {
+    background-color: #93B48B;
+    width: 300px;
+    margin: auto;
+    height: 40px;
+    transform: translateY(55px);
+    border: 3px solid #a3c59b;
+    border-bottom: 0;
+    text-align: center;
+  }
+
+  .homeContainer .catalogPreview {
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 25px 0 25px;
+  }
+
+  .homeContainer .catalogProduct {
+    width: 32%;
+    height: 450px;
+    text-align: center;
+  }
+
+  .homeContainer .catalogProduct > span {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .homeContainer .reviewTitleBox {
+    height: 0;
+  }
+
+  .homeContainer .productLink {
+    position: absolute;
+    top: 75%; 
+    /* transform: translate(-50%, 350%); */
+    /* margin-top: 125px; */
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+  }
+
+  .homeContainer .productContainer {
+    position: relative;
+    width: 100%;
+  }
+
+  .homeContainer .homeMainSection > h1 {
+    color: black;
+    align-items: center;
+    text-align: center;
+    font-weight: 200;
+  }
+
+  .homeContainer .HOMEemptySpace {
+    height: 125px;
+  }
+
+  .homeContainer .homeReviewsContainer {
+    background-color: #93B48B;
+    border: 3px solid #a3c59b;
+    height: 250px;
+    display: flex;
+  }
+
+  .homeContainer .homeReviews {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .homeContainer .reviewPreview {
+    background-color: white;
+    height: 75%;
+    width: 100%;
+    margin: 2%;
+  }
+
+  .homeContainer .reviewPreview > img {
+    width: 40%;
+    margin: 10 10 0 10;
+    padding: 0;
+  }
+
+  .homeContainer .customerDetails {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .homeContainer .reviewPreview > h3 {
+    color: black;
+    padding-left: 15px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+
+  .homeContainer .reviewPreview h5 {
+    color: black;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    transform: translateY(-10px);
+  }
+
+  .homeContainer .homeAbout {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    height: 500px;
+    display: flex;
+  }
+
+  .homeContainer .homeAbout .AboutContentContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .homeContainer .homeAbout .AboutContentContainer .AboutText {
+    width: 65%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .homeContainer .homeAbout .AboutContentContainer .AboutImage {
+    display: flex;
+    margin-left: 70%;
+    transform: translateY(-435px);
+    align-self: center;
+    width: 350px;
+  }
+
+  .homeContainer .homeAbout .AboutContent {
+    font-family: 'Roboto Mono', monospace;
+    color: black;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .homeContainer .homeAbout .AboutLink {
+    background: #ebeae5;
+    padding: 10px;
+    padding-left: 10px;
+    text-decoration: none;
+    color: black;
+    width: 85px;
+  }
+
+  .FooterNavContainer {
+    background-color: #3E5641;
+    border: 3px solid #354b38;
+    height: 20%;
+  }
+
+  .FooterNavContent {
+    display: flex;
+    flex-direction: row;
+    margin: 0 15 0 15;
+    justify-content: space-evenly;
+  }
+
+  .footerNavCompany {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footerNavServices {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footerNavUser {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .FooterNavLink {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 0;
+    margin: 0;
+    width: fit-content;
+  }
+
+  .FooterNavText {
+    color: #8aa38d;
+    font-weight: 400;
+    text-decoration: solid;
+  }
+
+  .FooterNavTextLink{
+    color: #8aa38d;
+    font-weight: 400;
+    border: 0;
+    padding: 0;
+    padding-left: 15px;
+    padding-bottom: 2px;
+  }
+
+  .FooterNavImage {
+    width: 250px;
+    height: auto;
+  }
+
+  /* .homeContainer .FillerDiv {
+    width: 100%;
+    height: 150px;
+    background-color: #93B48B;
+  } */
+
+/* Home Page Items End */
+
+/* Nav Bar Items Start */
+
+  .navFooter {
+    height: 65px;
+    background-color: #4F9D69;
+    display: flex;
+  }
+
+  .flowerBar {
+    transform: translateY(-55px);
+    width: 75%;
+    height: 300%;
+  }
+
+  .preNavBar {
+    height: 15px;
+    background-color: 	#93B48B;
+  }
+
+  .navVisualBar {
+    background: linear-gradient(to right, #BCEBCB 75%, #F7FFF6 25%);
+    display: flex;
+    height: 65px;
+  }
+
+  nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3E5641;
+    border: 3px solid #354b38;
+    height: 75px;
+    color: #3E5641;
+    padding-bottom: 5px;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+
+  .navComponent {
+    margin: 40px;
+  }
+
+  .navPictures {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+    margin-left: 5px;
+  }
+
+/* Nav Bar Items End */
+
+/* Login Form Items Start */
+
+  .login {
+    align-items: center;
+  }
+
+  .loginMain {
+    width: 100%;
+    margin: 0;
+    background-color: yellow;
+    height: 700px;
+  }
+
+  .loginFormContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .loginContainer {
+    background-color: white;
+    border: 3px solid #ebeae5;
+  }
+
+  .loginContainer .loginForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .loginContainer .loginInputBox {
+    width: 650px;
+    height: 65px;
+    border: 1px solid #ebeae5;
+  }
+
+  .loginContainer .loginFormDiv {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .loginContainer .loginTitle {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .loginContainer .loginText {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  .loginButton {
+    background-color: rgb(46, 44, 44);
+    width: 100%;
+    margin-left: 7.5;
+    max-width: 650px;
+  }
+
+/* Login Form Items End */
+
+/* Frequent Questions Items Start */
+
+  .frequentQuestionsContainer {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    border-bottom: 0;
+    /* height: 100%; */
+    min-height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsTextContainer {
+    align-items: center;
+    width: 60%;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsTitle {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsContentContainer {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .frequentQuestionsContainer .frequentQuestion {
+    background-color: #fbfbfb;
+    border: 3px solid #f0ecec;
+    padding: 15px;
+    width: 75%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionTitle {
+    font-size: large;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionContent {
+    font-size: medium;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsFormContainer {
+    width: 40%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    max-height: 675px;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsForm {
+    background-color: #3E5641;
+    border: 3px solid #354b38;
+    width: 90%;
+    height: 90%;
+    align-items: center;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsForm form h3 {
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    padding-top: 15px;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsForm form {
+    text-align: center;
+    align-items: center;
+    height: 100%;
+    margin: 5;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsForm form hr {
+    width: 75%;
+  }
+
+  .FAQemptySpace {
+    height: 125px;
+    background-color: white;
+    border: 3px solid #ebeae5;
+    border-top: 0;
+  }
+
+  .frequentQuestionsContainer .frequentQuestionsForm .inputInfo {
+    width: 350px;
+    height: 65px;
+    border: 3px solid #ebeae5;
+    background-color: #fbfbfb;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .frequentQuestionsContainer .inputContent {
+    width: 350px;
+    height: 165px;
+    border: 3px solid #ebeae5;
+    padding: 5;
+    background-color: #fbfbfb;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .frequentQuestionsContainer .formButton {
+    border: 3px solid #ebeae5;
+    background-color: #fbfbfb;
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    width: 50%;
+    font-weight: 200;
+  }
+
+/* Frequent Questions Items End */
+
+/* Contact Items Start */
+
+  .contactContainerMain {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    min-height: 100%;
+  }
   
- 
-  
-  /* ff 3.6+ */
-  background: -moz-radial-gradient(circle at 0% 0%, rgba(168, 230, 255, 1) 0%, rgba(27, 116, 150, 1) 39%, rgba(0, 0, 0, 1) 80%);
+  .contactContainerMain .contactAboutContainer {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  .contactContainerMain .contactAboutHeading h2 {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
 
-  /* safari 5.1+,chrome 10+ */
-  background: -webkit-radial-gradient(circle at 0% 0%, rgba(168, 230, 255, 1) 0%, rgba(27, 116, 150, 1) 39%, rgba(0, 0, 0, 1) 80%);
+  .contactContainerMain hr {
+    width: 75%;
+    color: rgb(46, 44, 44);
+  }
 
-  /* opera 11.10+ */
-  background: -o-radial-gradient(circle at 0% 0%, rgba(168, 230, 255, 1) 0%, rgba(27, 116, 150, 1) 39%, rgba(0, 0, 0, 1) 80%);
+  .contactContainerMain .contactAboutContentAbout h4 {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
 
-  /* ie 10+ */
-  background: -ms-radial-gradient(circle at 0% 0%, rgba(168, 230, 255, 1) 0%, rgba(27, 116, 150, 1) 39%, rgba(0, 0, 0, 1) 80%);
+  .contactContainerMain .contactAboutContentAbout {
+    width: 50%;
+    margin: auto;
+  }
 
-  /* global 92%+ browsers support */
-  background: radial-gradient(circle at 0% 0%, rgba(168, 230, 255, 1) 0%, rgba(27, 116, 150, 1) 39%, rgba(0, 0, 0, 1) 80%);
- 
- 
-  height: 550px;
-  display: flex;
+  .contactContainerMain .contactAboutContentMission h4 {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
 
-  margin-bottom: 150px;
-}
+  .contactContainerMain .contactAboutContentMission .imageContainer {
+    width: 35%;
+  }
 
-nav{
+  .contactContainerMain .contactAboutContentMission .textContainer {
+    width: 65%;
+  }
+
+  .contactContainerMain .contactAboutContentMission img {
+    width: 100%;
+  }
+
+  .contactContainerMain .contactAboutContentMission {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .contactContainerMain .contactFormContainer form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contactContainerMain .contactFormContainer form input {
+    width: 500px;
+    height: 50px;
+    border: 1px solid #ebeae5;
+  }
+
+  .contactContainerMain form h3 {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+  }
+
+  .CONTACTemptySpace {
+    height: 125px;
+    background-color: white;
+  }
+
+  .contactButton {
+    background-color: rgb(46, 44, 44);
+    width: 500px;
+  }
+
+/* Contact Items End */
+
+/* Product Items Start */
+
+.productContainerMain {
+  background-color: white;
+  border: 3px solid #ebeae5;
+  min-height: 100%;
   display: flex;
   align-items: center;
-  justify-content:right;
-  background-color: transparent;
+  flex-direction: column;
+}
+
+.productContainerMain h1,
+.productContainerMain h2,
+.productContainerMain h4,
+.productContainerMain h5,
+.productContainerMain h3 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.productContainerMain .filterNavBar {
+  background-color: #3E5641;
+  border: 3px solid #354b38;
   height: 50px;
-  color: #f7f2f6;
-  padding-bottom: 10px;
+  width: 50%;
 }
 
-.header h1 {
-  font-size: 200px;
-  font-family: 'Varela Round';
-  padding: 30px 50px 30px 100px;
-  position: absolute;
-  top: -30px;
-  
+.productContainerMain .productDisplay {
+  background-color: #fbfbfb;
+  border: 3px solid #f0ecec;
+  display: flex;
+  width: 90%;
+  margin: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-.header h2{
-  font-size: 50px;
-  font-style: italic;
-  padding: 275px 0px 0px 250px;
-  position: absolute;
-
+.productContainerMain .productDisplay .product {
+  width: 24%;
+  text-align: center;
 }
+
+/* Product Items End */
 
 /* .break{
   background-color: white;
@@ -82,19 +652,18 @@ nav{
   width: 300px;
 } */
 
-.homebody{
+/* .homeBody{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10%;
 }
 
 .homebody button {
     width: 300px;
     height: 100px;
     font-size: 20px;
-}
+} */
 
 
 
@@ -141,19 +710,6 @@ nav{
   width: 300px;
   height: 100px;
   font-size: 30px;
-
-}
-
-
-
-.login {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.login button {
 
 }
 
@@ -254,7 +810,7 @@ a {
     .section__padding{
       padding: 4rem;
     }
-   .section__margin{
+  .section__margin{
   padding: 4rem;
 }}
 
