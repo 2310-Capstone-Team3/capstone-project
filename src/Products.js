@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const Products = ({
   products,
@@ -52,7 +53,10 @@ const Products = ({
     <div className="productDisplay">
       {productsToDisplay.map((product) => (
         <div className="product" key={product.id}>
+          <NavLink to={`/products/${product.id}`}>
+          <img src=""></img>
           <h5>{product.name}</h5>
+          </NavLink>
         </div>
       ))}
     </div>
@@ -64,8 +68,6 @@ const Products = ({
         <br></br>
         <h2>Our Collection</h2>
         <br></br>
-        <div className="filterNavBar">
-        </div>
         <br></br>
         <br></br>
         {displayProducts("flowers")}
