@@ -15,9 +15,14 @@ import DisplaySingleUser from './accountComponents/DisplaySingleUser';
 import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
-import ProductDeets from "./ProductDeets"
+import Reviews from './Reviews';
+import ProductDeets from "./ProductDeets";
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
+import Workshops from './Workshops';
+import Flowers from './Flowers';
+import SingleFlower from './SingleFlower';
+import SingleWorkshop from './SingleWorkshop';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -27,10 +32,39 @@ const App = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState({ data: [] });
   const [productDeets, setProductDeets] = useState([]);
+  const [reviews, setReviews] = useState ([]);
+  const [workshops, setWorkshops] = useState([]);
+  const [flowers, setFlowers] = useState ([]);
+
 
   const attemptLoginWithToken = async () => {
     await api.attemptLoginWithToken(setAuth);
   };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchFlowers(setFlowers);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchWorkshops(setWorkshops);
+    };
+    fetchData();
+  }, []);
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchReviews(setReviews);
+    };
+    fetchData();
+  }, []);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -171,6 +205,21 @@ const App = () => {
     return response
   }
 
+  const createReviews = async(name, body) => {
+    const response = await api.createReviews({ name, body })
+    return response
+  }
+
+  const createWorkshops = async(name, body) => {
+    const response = await api.createWorkshops({ name, body })
+    return response
+  }
+
+  const createFlowers = async(name, body) => {
+    const response = await api.createFlowers({ name, body })
+    return response
+  }
+
   const changeItemVipStatus = async(productId, status) => {
     const response = await api.changeItemVipStatus({ productId, status })
     return response
@@ -192,6 +241,21 @@ const App = () => {
   const fetchProductDeets = () => {
     const ProductDeets = ProductDeets.find((productdeet) => productdeet.id === productdeet.id);
     return productDeets;
+  };
+
+  const fetchWorkshops = () => {
+    const Workshops = Workshops.find((workshop) => workshop.id === workshop.id);
+    return workshop;
+  };
+
+  const fetchReviews = () => {
+    const Reviews = Reviews.find((review) => review.id === review.id);
+    return review;
+  };
+
+  const fetchFlowers = () => {
+    const Flowers = Flowers.find((flower) => flower.id === flower.id);
+    return flower;
   };
   
 
@@ -222,6 +286,20 @@ const App = () => {
             </div>
             <main>
               <Routes>
+              <Route path ='/flowers/:id' element={<SingleFlower flowers={flowers}/> }  />
+              <Route path ='/workshops/:id' element={<SingleWorkshop workshops={workshops}/> }  />
+
+
+              <Route path='/flowers' element={<Flowers
+                flowers = { flowers }
+                createFlowers = { createFlowers}
+                fetchFlowers = {fetchFlowers}
+                />}></Route>
+              <Route path='/workshops' element={<Workshops
+                workshops = { workshops }
+                createWorkshops = { createWorkshops}
+                fetchWorkshops = {fetchWorkshops}
+                />}></Route>
                 <Route
                   path="/products"
                   element={
@@ -238,7 +316,25 @@ const App = () => {
                   path="/productdeets"
                   element={
                     <ProductDeets
-                    ProductDeets={ProductDeets}
+                    ProductDeets={ProductDeets}/>} />
+                <Route path='/' element={<Home/>}></Route>
+                <Route path='/reviews' element={<Reviews
+                reviews = { reviews }
+                createReviews = { createReviews}
+                fetchReviews = { fetchReviews }
+                />}></Route>
+                <Route path='/products' element={<Products
+                auth = { auth }
+                products={ products }
+                cartItems = { cartItems }
+                createLineItem = { createLineItem }
+                updateLineItem = { updateLineItem }
+              />}></Route>
+              <Route
+                path="/productdeets"
+                element={
+                  <ProductDeets
+                  ProductDeets={ProductDeets}
 
                     />
                   }
@@ -334,6 +430,71 @@ const App = () => {
           </>
         ) : (
           <div>
+            <div className='navi'>
+          
+            <nav>
+              <Link to='/'>Home</Link>
+              <Link to='/account'>Account</Link>
+              <Link to='/products'>Courses</Link>
+            </nav>
+            </div>
+            <Routes>
+            <Route path ='/flowers/:id' element={<SingleFlower flowers={flowers}/> }  />
+              <Route path ='/workshops/:id' element={<SingleWorkshop workshops={workshops}/> }  />
+            <Route path='/flowers' element={<Flowers
+                flowers = { flowers }
+                createFlowers = { createFlowers}
+                fetchFlowers = {fetchFlowers}
+                />}></Route>
+            <Route path='/workshops' element={<Workshops
+                workshops = { workshops }
+                createWorkshops = { createWorkshops}
+                fetchWorkshops = {fetchWorkshops}
+                />}></Route>
+            <Route path='/reviews' element={<Reviews
+                  reviews = { reviews }
+                  createReviews = { createReviews}
+                  fetchReviews = { fetchReviews }
+                  />}></Route>
+              <Route path='/account/*' element={<Account 
+              login = {login} 
+              signUp = {signUp} 
+              users = {users} 
+              setUsers = {setUsers}
+              />}></Route>
+              <Route path='/' element={<Home/>}></Route>
+              <Route path='/products' element={<Products
+              products={ products }
+              cartItems = { cartItems }
+              createLineItem = { createLineItem }
+              updateLineItem = { updateLineItem }
+              auth = { auth }
+            />}></Route>
+             <Route
+                path="/productdeets"
+                element={
+                  <ProductDeets
+                 
+                ProductDeets={ProductDeets}
+              
+                  />
+                }></Route>
+            
+            <Route path='/register' element={<Register
+                users = { users }
+                signUp = { signUp }
+                setUsers = { setUsers }
+              />}></Route>    
+            <Route path='/passreset' element={<PassReset
+                users = { users }
+                signUp = { signUp }
+                setUsers = { setUsers }
+                resetPassword = { resetPassword }
+              />}></Route>    
+            </Routes>
+          </div>
+        )
+      }
             <div className='preNavBar'>
             </div>
             <div className="navi">
@@ -379,9 +540,7 @@ const App = () => {
                 />}></Route>    
               </Routes>
             </div>
-          )
-          
-        }
+
         <Routes>
           <Route
             path="/frequent-questions"
@@ -431,7 +590,7 @@ const App = () => {
                     </div>
                 </section>
       </div>
-    </div>
+    
   );
 };
 

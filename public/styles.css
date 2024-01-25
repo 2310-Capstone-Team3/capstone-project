@@ -688,8 +688,16 @@ p {
 
 
 
+.review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-
+.review form {
+  flex-direction: column;
+}
 
 
 
@@ -756,6 +764,7 @@ a {
     }
   .section__margin{
   padding: 4rem;
-}}
+}
+}
 
 
