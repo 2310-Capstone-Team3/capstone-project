@@ -9,7 +9,6 @@ const {
   changeItemVipStatus
 } = require('./products');
 
-const { fetchProductDeets, createProductDeets } = require("./productdeets");
 const {
   fetchUsers,
   resetUserPassword,
@@ -42,10 +41,10 @@ const seed = async () => {
     DROP TABLE IF EXISTS products;
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
-    DROP TABLE IF EXISTS productdeets;
+    DROP TABLE IF EXISTS reviews;
+    DROP TABLE IF EXISTS flowers;
+    DROP TABLE IF EXISTS workshops;
   
-
-
     CREATE TABLE users(
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
@@ -60,19 +59,21 @@ const seed = async () => {
       id UUID PRIMARY KEY,
       created_at TIMESTAMP DEFAULT now(),
       name VARCHAR(100) UNIQUE NOT NULL,
-      price INTEGER NOT NULL,
+      price VARCHAR(15) NOT NULL,
       description TEXT,
+      product_type VARCHAR(50),
+      plant_type VARCHAR(50),
+      workshop_duration VARCHAR(50),
+      product_image_path VARCHAR(150),
       vip_status BOOLEAN DEFAULT false NOT NULL
     ); 
-    CREATE TABLE productdeets(
-      id UUID PRIMARY KEY,
-      created_at TIMESTAMP DEFAULT now(),
-      name VARCHAR(100) UNIQUE NOT NULL,
-      price INTEGER NOT NULL,
-      materials TEXT,
-      subjects TEXT
-    );
 
+    CREATE TABLE reviews (
+      id UUID PRIMARY KEY,
+      name VARCHAR(50),
+      review_title VARCHAR(50),
+      body TEXT
+    );
 
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
@@ -91,7 +92,6 @@ const seed = async () => {
       quantity INTEGER DEFAULT 1,
       CONSTRAINT product_and_order_key UNIQUE(product_id, order_id)
     );
-
   `;
   await client.query(SQL);
 
@@ -126,77 +126,146 @@ const seed = async () => {
     }),
   ]);
   const [
-    fourWeekCourse,
+    sixWeekCourse,
     eightWeekCourse,
-    twelveWeekCourse,
-    twentyFourWeekCourse,
+    fiveWeekCourse,
+    tenWeekCourse,
+    birdsOfParadise,
+    anthuriums,
+    orchids,
+    lotus
   ] = await Promise.all([
     createProduct({
-      name: "4 Week Course",
-      price: 1000,
+      product_type: "workshop",
+      product_image_path: "",
+      workshop_duration: "6 weeks",
+      name: "Mastering Flowering Plants",
+      price: "$359.99",
       description:
-        "Our shortest section, meant to help guide those with previous experience!",
+        "Unlock the secrets of blooming beauty! This course covers the cultivation, care, and propagation of a variety of flowering plants, from annuals to perennials, providing you with the skills to create vibrant and colorful gardens.",
     }),
     createProduct({
-      name: "8 Week Course",
-      price: 2000,
+      product_type: "workshop",
+      workshop_duration: "8 weeks",
+      product_image_path: "",
+      name: "Floral Landscape Design",
+      price: "$379.99",
       description:
-        "Our shortest section for those that have minimal experience!",
+        "Immerse yourself in the art of floral landscape design. Explore the interplay of colors, textures, and heights to create stunning flower arrangements that transform your outdoor space into a botanical masterpiece.",
     }),
     createProduct({
-      name: "12 Week Course",
-      price: 2800,
+      product_type: "workshop",
+      product_image_path: "",
+      workshop_duration: "5 weeks",
+      name: "Urban Flower Gardening Mastery",
+      price: "$369.99",
       description:
-        "Our mid range section that helps those with little to no experience get started as a web developer!",
+        "Discover the joys of cultivating a flourishing urban flower garden. Learn space-efficient techniques, creative container gardening, and selecting the perfect blooms to bring bursts of color to city living.",
     }),
     createProduct({
-      name: "24 Week Course",
-      price: 5000,
+      product_type: "workshop",
+      product_image_path: "",
+      workshop_duration: "10 weeks",
+      name: "Sustainable Flower Farming Practices",
+      price: "$389.99",
       description:
-        "Our longest section that is meant for those that either want a longer section or learn at a slower pace, goes the most in-depth!",
+        "Delve into sustainable flower farming methods. From seed to bloom, explore eco-friendly approaches to cultivating and harvesting flowers, emphasizing organic practices that benefit both the environment and your floral creations.",
+    }),
+    createProduct({
+      product_type: "flower",
+      product_image_path: "",
+      plant_type: "hybrid",
+      name: "Birds of Paradise",
+      price: "$149.99",
+      description: "The only flower considered to be both bird and flower. This flower screams “EXOTIC”! The flower itself is a group of bright blue petals with fluorescent, upright orange sepals. The blue petals are filled with alot of sugar water. They are set atop long stalks that can reach five feet in height, the flowers have a complex structure with bright colors and copious nectar to entice their bird pollinators. This flower is also a symbol of love, which is why they are the official flower given for a ninth wedding anniversary.",
+    }),
+    createProduct({
+      product_type: "flower",
+      product_image_path: "",
+      plant_type: "hybrid",
+      name: "Anthuriums",
+      price: "$189.99",
+      description: "The favorite flower to a painter. Known for its beautiful “palette”,  which are bright red waxy, heart shaped flowers of the Anthurium plant. In fact they are not actually flowers at all but rather modified leaves called spathes. The flowers of the Anthurium are considered small and located on the spike or spadix in the center of the spathe. The spathe serves to attract pollinators, such as hummingbirds, to the plant. They typically grow about two to three feet tall. This flower is considered to be a symbol of strength and perseverance.",
+    }),
+    createProduct({
+      product_type: "flower",
+      product_image_path: "",
+      plant_type: "hybrid",
+      name: "Orchids",
+      price: "$239.99",
+      description: "The orchid is one of the most alluring and captivating flowers to exist. These beautiful flowers have physical characteristics with tall, gently curving stems aka (flower spikes) and not to mention, large, waxy leaves to prevent water loss. Known for their colorful, spectacular blooms. Orchids are said to be wise because of their age. This Flower is a symbol of luxury, love, fertility, refinement, thoughtfulness, charm, and beauty. However, each colored orchid also carries additional symbolism based on its brilliant hue.",
+    }),
+    createProduct({
+      product_type: "flower",
+      product_image_path: "",
+      plant_type: "outdoor",
+      name: "Lotuses",
+      price: "$299.99",
+      description: "The Lotus is the most known aquatic plant there is! It has broad floating leaves, with stems that contain air spaces. The flowers are usually found on thick stems rising several centimeters above the leaves, overlapping in a symmetrical pattern. Often the stems, leaves, and seeds of the plant have been valued in culture, cooking, and medicine since ancient times. Considering the Lotus to be one of the most sacred and ancient plants in the world. The lotus has a life cycle unlike any other plant in the world. While its roots are latched in mud, the flower submerges every night into river water and miraculously re-blooms the next morning. No other flower is that magical. In fact, once the Lotus rises from the mud, they are said to be STAIN-FREE. This flower is a symbol of purity, strength, resilience, rebirth and transcendence. Some may even label it as the “lucky flower”.",
+    }),
+    createProduct({
+      product_type: "tool",
+      product_image_path: "",
+      name: "Pruning Shears",
+      price: "$24.99",
+      description: "High-quality pruning shears designed for precision trimming of flowers and plants. These ergonomic shears feature sharp blades, a comfortable grip, and are perfect for maintaining the health and shape of your garden blooms.",
+    }),
+    createProduct({
+      product_type: "tool",
+      product_image_path: "",
+      name: "Garden Trowel and Transplanter Set",
+      price: "$29.99",
+      description: "A versatile set including a durable garden trowel and transplanter. Ideal for planting and transplanting flowers with ease. The ergonomic handles ensure a comfortable grip, and the rust-resistant construction guarantees longevity.",
+    }),
+    createProduct({
+      product_type: "tool",
+      product_image_path: "",
+      name: "Flower Watering Can",
+      price: "$19.99",
+      description: "A stylish and functional watering can designed specifically for delicate flowers. The long spout provides a gentle and precise water flow, preventing soil erosion and ensuring your flowers receive the right amount of hydration.",
+    }),
+    createProduct({
+      product_type: "tool",
+      product_image_path: "",
+      name: "Soil pH Meter",
+      price: "$14.99",
+      description: "An essential tool for flower enthusiasts, this soil pH meter helps you monitor and adjust the acidity of your garden soil. Ensure optimal growing conditions for your flowers by accurately measuring the pH level, promoting healthy and vibrant blooms.",
+    }),
+    createProduct({
+      product_type: "planter",
+      product_image_path: "",
+      name: "Small Ceramic Flower Pot",
+      price: "$12.99",
+      description: "A charming small ceramic flower pot, perfect for showcasing individual blooms or creating a mini flower arrangement. Its stylish design adds a touch of elegance to any space, making it an ideal choice for windowsills or tabletops.",
+    }),
+    createProduct({
+      product_type: "planter",
+      product_image_path: "",
+      name: "Medium Wooden Planter Box",
+      price: "$24.99",
+      description: "A versatile medium-sized wooden planter box, suitable for planting a variety of flowers or herbs. The natural wood finish adds a rustic charm to your garden, patio, or balcony. Sturdy construction ensures durability and longevity.",
+    }),
+    createProduct({
+      product_type: "planter",
+      product_image_path: "",
+      name: "Hanging Basket with Coco Liner",
+      price: "$19.99",
+      description: "Elevate your floral display with a hanging basket featuring a coco liner. Perfect for trailing flowers or vines, this medium-sized basket adds a dynamic element to your garden. The sturdy chain makes it easy to suspend from hooks or brackets.",
+    }),
+    createProduct({
+      product_type: "planter",
+      product_image_path: "",
+      name: "Large Resin Flower Pot",
+      price: "$34.99",
+      description: "A spacious and durable large resin flower pot, designed for showcasing abundant floral arrangements or larger plants. The lightweight yet sturdy construction makes it easy to move around, while the sleek design complements various outdoor settings.",
     }),
   ]);
-  const [oneMonthCourse, twoMonthCourse, threeMonthCourse, sixMonthCourse] =
-    await Promise.all([
-      createProductDeets({
-        name: "1 Month Course",
-        price: 1000,
-        materials:
-          "During this course each student will receive valuable materials. This material includes, a journal, a course assigned book, several study guides, and an academy designed calendar to stay up-to-date with your work. The course is offered online, as well as a few days on campus. Each student will receive free and vital information for their course. As a bonus, a recording off all lectures and demos will be provided to students. These videos provide all the information learned during the course. Each student will receive a Certificate of Completion at the end of the course!",
-        subjects:
-          " Many subjects are taught during this course. Starting your first day, each student will be introduced to the fundamentals of HTML. The fundamentals of HTML will teach you how to build structure for a webpage. You then will moved forward to the fundamentals of CSS to learn how to apply styling. Once HTML & CSS is established, we will move on to learning how to store our code with GITHUB. Students will also have three webpages, developed with HTML && CSS to show off what they've learned! Each student will leave this course feeling confident enough to build a basic webpage on their own!",
-      }),
-      createProductDeets({
-        name: "2 Month Course",
-        price: 2000,
-        materials:
-          "For the two month program, each student receives, two course assigned books, two journals, multiple study guides & not to mention, a two-month calendar with new reminder features. Each student also will have access to a portal with all of the course materials learned. Students will receive a book of notes to go through as lectures are being taught. A breakdown book for HTML,CSS and Javascript is available to the students as well. The course is offered online, as well as a few days on campus. Each student will receive free and vital information for their course. As a bonus, a recording off all lectures and demos will be provided to students. These videos provide all the information learned during the course.Each student is also able to sign-up for a 30-day mentorship after the course ends. Each student will receive a Certificate of Completion at the end of the course!",
-        subjects:
-          " Many subjects are taught during this course. Starting your first day, each student will be introduced to the fundamentals of HTML, CSS and Javascript. The fundamentals of HTML and CSS will teach you how to build structure for a webpage. While, Javascript helps with the functioning. Each student will have established their GITHUB accounts. Several projects using HTML,CSS & JS will help create the perfect portfolio for students. Students will also have a six webpages, developed with HTML,CSS & JS, to show off what they've learned. Students will leave the course confident enough to create basic webpages for friends and family!",
-      }),
-      createProductDeets({
-        name: "Three Month Course",
-        price: 2800,
-        materials:
-          "During this course each student will receive valuable materials. This material includes, three journals, three course assigned books, several study guides, & not to mention, a three-month calendar with new reminder features. Each student also will have access to a portal with all of the course materials learned. Students will receive a book of notes to go through as lectures are being taught. A breakdown book for HTML,CSS and Javascript is available to the students as well. The course is offered online, as well as a few days on campus. Each student will receive free and vital information for their course. As a bonus, a recording off all lectures and demos will be provided to students. These videos provide all the information learned during the course. Each student is also able to sign-up for a 90-day mentorship after the course ends. Each student will receive a Certificate of Completion at the end of the course!",
-        subjects:
-          " Many subjects are taught during this course. Starting your first day, each student will be introduced to the fundamentals of HTML, CSS and Javascript. The fundamentals of HTML and CSS will teach you how to build structure for a webpage. While, Javascript helps with the functioning. Each student will have established their GITHUB accounts. Several projects using HTML,CSS & JS will help create the perfect portfolio for students. Students will learn how to create and deploy live web pages. Students will also have, twelve webpages developed with HTML,CSS & JS to show off what they've learned. This course will leave each student feeling confident enough to start a web-developing business, LOL!",
-      }),
-      createProductDeets({
-        name: "Six Month Course",
-        price: 5000,
-        materials:
-          "During this course each student will receive valuable materials. This material includes, six journals, six course assigned books, several study guides, & not to mention, a six-month calendar with new reminder features. Each student also will have access to a portal with all of the course materials learned. Students will receive a book of notes to go through as lectures are being taught. A breakdown book for HTML,CSS,JS & REACT, is available to students as well. The course is offered online, as well as a few days on campus. Each student will receive free and vital information for their course. As a bonus, a recording off all lectures and demos will be provided to students. These videos provide all the information learned during the course. Each student is also able to sign-up for a 180-day mentorship after the course ends. Each student will receive a Certificate of Completion at the end of the course!",
-        subjects:
-          " Many subjects are taught during this course. Starting your first day, each student will be introduced to the fundamentals of HTML, CSS and Javascript. The fundamentals of HTML and CSS will teach you how to build structure for a webpage. While, Javascript helps with the functioning. Each student will have established their GITHUB accounts. Several projects using HTML,CSS & JS REACT will help create the perfect portfolio for students. Students will learn how to create and deploy live web pages. Students will also have, twenty-four webpages developed with HTML,CSS & JS REACT to show off what they've learned. Students will use these tools to create functional webpages in-depth! This course will have you feeling confident enough to change your title to a WEB-DEVELOPER!",
-      }),
-    ]);
 
   let orders = await fetchOrders(dylan.id);
   let cart = orders.find((order) => order.is_cart);
   let lineItem = await createLineItem({
     order_id: cart.id,
-    product_id: fourWeekCourse.id,
+    product_id: sixWeekCourse.id,
   });
   lineItem.quantity++;
   await updateLineItem(lineItem);
@@ -212,7 +281,6 @@ const seed = async () => {
     state: ""
   }
   await submitShip(formData);
-  let productDeets = await fetchProductDeets(oneMonthCourse.id);
 };
 
 module.exports = {
@@ -240,7 +308,5 @@ module.exports = {
   changeProductDescription,
   changeProductPrice,
   createProduct,
-  changeItemVipStatus,
-  fetchProductDeets,
-  createProductDeets
+  changeItemVipStatus
 };

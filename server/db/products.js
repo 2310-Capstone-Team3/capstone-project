@@ -13,14 +13,17 @@ const fetchProducts = async () => {
 
 const createProduct = async (product) => {
   const SQL = `
-    INSERT INTO products (id, name, price, description) VALUES($1, $2, $3, $4) RETURNING *
+    INSERT INTO products (id, name, price, description, product_type, plant_type, workshop_duration, product_image_path) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *
   `;
   const response = await client.query(SQL, [
     uuidv4(),
     product.name,
     product.price,
     product.description,
-
+    product.product_type,
+    product.plant_type,
+    product.workshop_duration,
+    product.image_path
   ]);
   return response.rows[0];
 };
@@ -32,7 +35,7 @@ const changeProductName = async (productId, name) => {
       UPDATE products
       SET name = $1
       WHERE id = $2
-      RETURNING id, name, description, price, vip_status;
+      RETURNING id, name, price, description, product_type, plant_type, workshop_duration, product_image_path, vip_status;
       `
 
       const response = await client.query(SQL, [name, productId])
@@ -53,7 +56,7 @@ const changeProductDescription = async (productId, description) => {
       UPDATE products
       SET description = $1
       WHERE id = $2
-      RETURNING id, name, description, price, vip_status;
+      RETURNING id, name, price, description, product_type, plant_type, workshop_duration, product_image_path, vip_status;      
       `
 
       const response = await client.query(SQL, [description, productId])
@@ -74,7 +77,7 @@ const changeProductPrice = async (productId, price) => {
       UPDATE products
       SET price = $1
       WHERE id = $2
-      RETURNING id, name, description, price, vip_status;
+      RETURNING id, name, price, description, product_type, plant_type, workshop_duration, product_image_path, vip_status;
       `
 
       const response = await client.query(SQL, [price, productId])
@@ -95,7 +98,7 @@ const changeItemVipStatus = async (productId, status) => {
       UPDATE products
       SET vip_status = $1
       WHERE id = $2
-      RETURNING id, name, description, price, vip_status;
+      RETURNING id, name, price, description, product_type, plant_type, workshop_duration, product_image_path, vip_status;      
       `
 
       const response = await client.query(SQL, [status, productId])

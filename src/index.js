@@ -15,7 +15,6 @@ import DisplaySingleUser from './accountComponents/DisplaySingleUser';
 import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
-import ProductDeets from "./ProductDeets"
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
 
@@ -26,7 +25,6 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
   const [users, setUsers] = useState({ data: [] });
-  const [productDeets, setProductDeets] = useState([]);
 
   const attemptLoginWithToken = async () => {
     await api.attemptLoginWithToken(setAuth);
@@ -49,16 +47,6 @@ const App = () => {
     };
     fetchData();
   }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      response = await api.fetchProductDeets
-      setProductDeets(response.data);
-    };
-    fetchData();
-  }, []);
-
-  
 
   useEffect(() => {
     if (auth.id) {
@@ -189,11 +177,6 @@ const App = () => {
       console.log("Users is empty?", users)
     }
   };
-  const fetchProductDeets = () => {
-    const ProductDeets = ProductDeets.find((productdeet) => productdeet.id === productdeet.id);
-    return productDeets;
-  };
-  
 
   return (
     <div className='mainBorder'>
@@ -225,14 +208,6 @@ const App = () => {
                       cartItems={cartItems}
                       createLineItem={createLineItem}
                       updateLineItem={updateLineItem}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/productdeets"
-                  element={
-                    <ProductDeets
-                    ProductDeets={ProductDeets}
                     />
                   }
                 ></Route>
@@ -353,13 +328,6 @@ const App = () => {
                 updateLineItem = { updateLineItem }
                 auth = { auth }
               />}></Route>
-              <Route
-                  path="/productdeets"
-                  element={
-                    <ProductDeets
-                  ProductDeets={ProductDeets}
-                    />
-                  }></Route>
               <Route path='/register' element={<Register
                   users = { users }
                   signUp = { signUp }
