@@ -185,7 +185,7 @@ const seed = async () => {
       plant_type: "hybrid",
       name: "Anthuriums",
       price: "$189.99",
-      description: "The favorite flower to a painter. Known for its beautiful “palette”,  which are bright red waxy, heart shaped flowers of the Anthurium plant. In fact they are not actually flowers at all but rather modified leaves called spathes. The flowers of the Anthurium are considered small and located on the spike or spadix in the center of the spathe. The spathe serves to attract pollinators, such as hummingbirds, to the plant. They typically grow about two to three feet tall. This flower is considered to be a symbol of strength and perseverance.",
+      description: "The favorite flower known to a painter. Known for its beautiful “palette”,  which are bright red waxy, heart shaped flowers of the Anthurium plant. In fact they are not actually flowers at all but rather modified leaves called spathes. The flowers of the Anthurium are considered small and located on the spike or spadix in the center of the spathe. The spathe serves to attract pollinators, such as hummingbirds, to the plant. They typically grow about two to three feet tall. This flower is considered to be a symbol of strength and perseverance.",
     }),
     createProduct({
       product_type: "flower",
