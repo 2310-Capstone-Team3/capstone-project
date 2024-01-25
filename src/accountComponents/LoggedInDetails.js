@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => {
+const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail, logout} ) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
@@ -101,6 +101,7 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail} ) => 
                     style={{ width: '20px', height: '20px', paddingRight: '5px' }}
                 />
                 <h4>You are a vip member!</h4> 
+                <button onClick={logout}></button>
                 </span>
                 </div>
             )}
