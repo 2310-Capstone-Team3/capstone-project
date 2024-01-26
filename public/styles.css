@@ -1,11 +1,4 @@
-/* COLORS: 
-purple: #a723b5	(167,35,181)
-pink: #e72aa3	(231,42,163)
-white: #f7f2f6	(247,242,246)
-teal: #44BBA4	
-blue: #031572	(3,21,114)
-text/button black: rgb(46, 44, 44)
- */
+
   
 @import url('https://fonts.googleapis.com/css2?family=Overpass&family=Roboto+Mono:wght@200;400;700&family=Roboto:wght@100;400&display=swap');
 
@@ -113,7 +106,7 @@ form > * {
   .homeContainer .homeReviewsContainer {
     background-color: #93B48B;
     border: 3px solid #a3c59b;
-    height: 250px;
+    height: 400px;
     display: flex;
   }
 
@@ -258,15 +251,6 @@ form > * {
     height: auto;
   }
 
-  /* .homeContainer .FillerDiv {
-    width: 100%;
-    height: 150px;
-    background-color: #93B48B;
-  } */
-
-/* Home Page Items End */
-
-/* Nav Bar Items Start */
 
   .navFooter {
     height: 65px;
@@ -633,18 +617,43 @@ form > * {
   border: 3px solid #f0ecec;
   display: flex;
   width: 90%;
-  margin: 10;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  margin: 10px;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .productContainerMain .productDisplay .product {
-  width: 24%;
+  width: 22%; 
+  padding: 10px;
   text-align: center;
+  border: 3px solid #f0ecec;
+  margin: 15px;
+  box-sizing: border-box; 
+}
+
+.productContainerMain .product img {
+  max-width: 90%;
 }
 
 /* Product Items End */
+
+/* SingleProduct --------------------------------------------------------------------------------------------------------------- */
+
+.singleProduct{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.singleProduct img {
+  width: 400px;
+  height: 400px;
+}
+
+.singleProduct h4 {
+  margin-left: 10%;
+  margin-right: 10%;
+}
 
 /* .break{
   background-color: white;
@@ -772,13 +781,7 @@ ul {
 }
 
 li {
-    border: black solid 2px;
-    background-color: rgba(25,108,140,255);
 
-    width: 400px;
-    height: 150px;
-    padding: 50px;
-    margin: 2rem;
 
     color: #f7f2f6;
 
@@ -795,9 +798,12 @@ li {
 
 
 button {
-  color: #f7f2f6;
-  font-family: Manrope, sans-serif;
-  background-color: rgba(103,178,207,255);
+  color: white;
+  background-color: rgb(111, 62, 126);
+
+  text-transform: uppercase;  
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
 
   padding: 1rem;
   margin: 1rem;

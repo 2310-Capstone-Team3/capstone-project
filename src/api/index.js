@@ -201,6 +201,18 @@ const resetEmail = async ({ user, email }) => {
   }
 };
 
+const resetAddress = async ({ user, address }) => {
+  try {
+    return await axios.patch(`/api/users/${user.id}/reset-address`, {
+      id: user.id,
+      address: address,
+    });
+  } catch (error) {
+    console.error("Error during address change:", error);
+    throw error;
+  }
+};
+
 const changeVipStatus = async ({ user, status }) => {
   try {
     return await axios.patch(`/api/users/${user.id}/change-vip-status`, {
@@ -327,6 +339,7 @@ const api = {
   resetPassword,
   resetUsername,
   resetEmail,
+  resetAddress,
   changeVipStatus,
   changeAdminStatus,
   changeProductName,

@@ -17,10 +17,7 @@ import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
-import Workshops from './Workshops';
-import Flowers from './Flowers';
-import SingleFlower from './SingleFlower';
-import SingleWorkshop from './SingleWorkshop';
+import SingleProduct from './SingleProduct';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -35,28 +32,15 @@ const App = () => {
   };
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await api.fetchFlowers(setFlowers);
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      await api.fetchWorkshops(setWorkshops);
-    };
-    fetchData();
-  }, []);
 
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      await api.fetchReviews(setReviews);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     await api.fetchReviews(setReviews);
+  //   };
+  //   fetchData();
+  // }, []);
 
 
   useEffect(() => {
@@ -158,6 +142,11 @@ const App = () => {
     return response.data;
   };
 
+  const resetAddress = async (user, address) => {
+    const response = await api.resetAddress({ user, address });
+    return response.data;
+  };
+
   const changeVipStatus = async(user, status) => {
     const response = await api.changeVipStatus({ user, status })
     return response.data
@@ -188,20 +177,12 @@ const App = () => {
     return response
   }
 
-  const createReviews = async(name, body) => {
-    const response = await api.createReviews({ name, body })
-    return response
-  }
+  // const createReviews = async(name, title, body) => {
+  //   const response = await api.createReviews({ name, title, body })
+  //   return response
+  // }
 
-  const createWorkshops = async(name, body) => {
-    const response = await api.createWorkshops({ name, body })
-    return response
-  }
 
-  const createFlowers = async(name, body) => {
-    const response = await api.createFlowers({ name, body })
-    return response
-  }
 
   const changeItemVipStatus = async(productId, status) => {
     const response = await api.changeItemVipStatus({ productId, status })
@@ -243,119 +224,68 @@ const App = () => {
             </div>
             <main>
               <Routes>
-              <Route path ='/flowers/:id' element={<SingleFlower flowers={flowers}/> }  />
-              <Route path ='/workshops/:id' element={<SingleWorkshop workshops={workshops}/> }  />
-
-
-              <Route path='/flowers' element={<Flowers
-                flowers = { flowers }
-                createFlowers = { createFlowers}
-                fetchFlowers = {fetchFlowers}
-                />}></Route>
-              <Route path='/workshops' element={<Workshops
-                workshops = { workshops }
-                createWorkshops = { createWorkshops}
-                fetchWorkshops = {fetchWorkshops}
-                />}></Route>
-                <Route
-                  path="/products"
-                  element={
-                    <Products
-                      auth={auth}
-                      products={products}
-                      cartItems={cartItems}
-                      createLineItem={createLineItem}
-                      updateLineItem={updateLineItem}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/cart"
-                  element={
-                    <Cart
-                      cart={cart}
-                      lineItems={lineItems}
-                      products={products}
-                      updateOrder={updateOrder}
-                      removeFromCart={removeFromCart}
-                      plusOne={plusOne}
-                      minusOne={minusOne}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/orders"
-                  element={
-                    <Orders
-                      orders={orders}
-                      products={products}
-                      lineItems={lineItems}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/account"
-                  element={
-                    <Account
-                      authId={auth.id}
-                      user={fetchUser()}
-                      resetPassword={resetPassword}
-                      resetUsername={resetUsername}
-                      resetEmail={resetEmail}
-                      logout = {logout}
-                    />
-                  }
-                ></Route>
-                <Route 
-                  path='/security/*'
-                    element={
-                      <Security
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/users/*'
-                    element={
-                      <SecurityUsers
-                        users = { users }
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/products/*' 
-                    element={<SecurityProducts
-                      products = { products }
-                      createProduct = { createProduct }
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/orders'
-                    element={<SecurityOrders
-                      orders = { orders }
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/users/:userId' 
-                    element={<DisplaySingleUser
-                      users = { users }
-                      changeVipStatus = { changeVipStatus }
-                      changeAdminStatus = { changeAdminStatus }
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/products/:productId'
-                    element={<DisplaySingleProduct
-                      products = { products }
-                      changeProductName= { changeProductName }
-                      changeProductDescription= { changeProductDescription }
-                      changeProductPrice = { changeProductPrice }
-                      changeItemVipStatus = { changeItemVipStatus }
-                    />
-                  }
-                ></Route>
+              <Route path='/products/:productId' element={<SingleProduct
+                products = { products }
+                cartItems = { cartItems }
+                createLineItem = { createLineItem }
+                updateLineItem = { updateLineItem }
+                auth = { auth }
+              />}></Route>                <Route path='/products' element={<Products
+                auth = { auth }
+                products={ products }
+                cartItems = { cartItems }
+                createLineItem = { createLineItem }
+                updateLineItem = { updateLineItem }
+              />}></Route>
+                <Route path='/cart' element={<Cart
+                cart = { cart }
+                lineItems = { lineItems }
+                products = { products }
+                updateOrder = { updateOrder }
+                removeFromCart = { removeFromCart }
+                plusOne = { plusOne }
+                minusOne = { minusOne }
+                submitShip = { submitShip }
+                user = { fetchUser() }
+              />}></Route>
+                <Route path='/orders' element={<Orders
+                orders = { orders }
+                products = { products }
+                lineItems = { lineItems }
+              />}></Route>
+                <Route path='/account' element={<Account
+                authId = { auth.id }
+                user = { fetchUser() }
+                resetPassword = { resetPassword }
+                resetUsername = { resetUsername }
+                resetEmail = { resetEmail }
+                resetAddress = { resetAddress }
+                logout = {logout}
+              />}></Route>
+              <Route path='/security/*' element={<Security
+              />}></Route>
+              <Route path='/security/users/*' element={<SecurityUsers
+                users = { users }
+              />}></Route>
+              <Route path='/security/products/*' element={<SecurityProducts
+                products = { products }
+                createProduct = { createProduct }
+              />}></Route>
+              <Route path='/security/orders' element={<SecurityOrders
+                orders = { orders }
+              />}></Route>
+              <Route path='/security/users/:userId' element={<DisplaySingleUser
+                users = { users }
+                changeVipStatus = { changeVipStatus }
+                changeAdminStatus = { changeAdminStatus }
+              />}></Route>
+              <Route path='/security/products/:productId' element={<DisplaySingleProduct
+                products = { products }
+                changeProductName= { changeProductName }
+                changeProductDescription= { changeProductDescription }
+                changeProductPrice = { changeProductPrice }
+                changeItemVipStatus = { changeItemVipStatus }
+              />}></Route>
               </Routes>
             </main>
           </>
@@ -370,23 +300,20 @@ const App = () => {
             </nav>
             </div>
             <Routes>
-            <Route path ='/flowers/:id' element={<SingleFlower flowers={flowers}/> }  />
-              <Route path ='/workshops/:id' element={<SingleWorkshop workshops={workshops}/> }  />
-            <Route path='/flowers' element={<Flowers
-                flowers = { flowers }
-                createFlowers = { createFlowers}
-                fetchFlowers = {fetchFlowers}
-                />}></Route>
-            <Route path='/workshops' element={<Workshops
-                workshops = { workshops }
-                createWorkshops = { createWorkshops}
-                fetchWorkshops = {fetchWorkshops}
-                />}></Route>
-            <Route path='/reviews' element={<Reviews
+            <Route path='/products/:productId' element={<SingleProduct
+              products={ products }
+              cartItems = { cartItems }
+              createLineItem = { createLineItem }
+              updateLineItem = { updateLineItem }
+              auth = { auth }
+              />}></Route>
+
+          
+            {/* <Route path='/reviews' element={<Reviews
                   reviews = { reviews }
                   createReviews = { createReviews}
                   fetchReviews = { fetchReviews }
-                  />}></Route>
+                  />}></Route>  */}
               <Route path='/account/*' element={<Account 
               login = {login} 
               signUp = {signUp} 
@@ -401,16 +328,7 @@ const App = () => {
               updateLineItem = { updateLineItem }
               auth = { auth }
             />}></Route>
-             <Route
-                path="/productdeets"
-                element={
-                  <ProductDeets
-                 
-                ProductDeets={ProductDeets}
-              
-                  />
-                }></Route>
-            
+    
             <Route path='/register' element={<Register
                 users = { users }
                 signUp = { signUp }

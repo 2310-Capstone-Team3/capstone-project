@@ -14,6 +14,7 @@ const {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  resetUserAddress,
   changeVipStatus,
   changeAdminStatus
 } = require('./users');
@@ -35,20 +36,11 @@ const {
   fetchOrders,
 } = require('./cart');
 
-const {
-  fetchReviews, 
-  createReviews
-} = require('./reviews');
+// const {
+//   fetchReviews, 
+//   createReviews
+// } = require('./reviews');
 
-const {
-  fetchWorkshops,
-  createWorkshops,
-} = require ('./workshops');
-
-const {
-  fetchFlowers, 
-  createFlowers,
-} = require ('./flowers');
 
 
 const seed = async () => {
@@ -58,8 +50,6 @@ const seed = async () => {
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS reviews;
-    DROP TABLE IF EXISTS flowers;
-    DROP TABLE IF EXISTS workshops;
   
     CREATE TABLE users(
       id UUID PRIMARY KEY,
@@ -68,7 +58,8 @@ const seed = async () => {
       password VARCHAR(100) NOT NULL,
       email VARCHAR(256) UNIQUE NOT NULL,
       is_admin BOOLEAN DEFAULT false NOT NULL,
-      is_vip BOOLEAN DEFAULT false NOT NULL
+      is_vip BOOLEAN DEFAULT false NOT NULL,
+      address VARCHAR(256)
     );
 
     CREATE TABLE products(
@@ -153,7 +144,7 @@ const seed = async () => {
   ] = await Promise.all([
     createProduct({
       product_type: "workshop",
-      product_image_path: "",
+      product_image_path: "/public/productImages/cartoongarden.png",
       workshop_duration: "6 weeks",
       name: "Mastering Flowering Plants",
       price: "$359.99",
@@ -163,7 +154,7 @@ const seed = async () => {
     createProduct({
       product_type: "workshop",
       workshop_duration: "8 weeks",
-      product_image_path: "",
+      product_image_path: "/public/productImages/cartoongarden.png",
       name: "Floral Landscape Design",
       price: "$379.99",
       description:
@@ -171,7 +162,7 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "workshop",
-      product_image_path: "",
+      product_image_path: "/public/productImages/cartoongarden.png",
       workshop_duration: "5 weeks",
       name: "Urban Flower Gardening Mastery",
       price: "$369.99",
@@ -180,7 +171,7 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "workshop",
-      product_image_path: "",
+      product_image_path: "/public/productImages/cartoongarden.png",
       workshop_duration: "10 weeks",
       name: "Sustainable Flower Farming Practices",
       price: "$389.99",
@@ -189,7 +180,7 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "flower",
-      product_image_path: "",
+      product_image_path: "/public/productImages/birdsofparadise.webp",
       plant_type: "hybrid",
       name: "Birds of Paradise",
       price: "$149.99",
@@ -197,7 +188,15 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "flower",
-      product_image_path: "",
+      product_image_path: "/public/productImages/rose.webp",
+      plant_type: "hybrid",
+      name: "Roses",
+      price: "$79.99",
+      description: "Indulge in the timeless allure of our Enchanting Red Roses Bouquet. This carefully curated bouquet features a dozen of the finest red roses, each meticulously selected for its vibrant color, lush petals, and captivating fragrance. Whether you're expressing love, celebrating a special occasion, or simply brightening someone's day, this bouquet is a symbol of elegance and passion.",
+    }),
+    createProduct({
+      product_type: "flower",
+      product_image_path: "/public/productImages/anthuriums.webp",
       plant_type: "hybrid",
       name: "Anthuriums",
       price: "$189.99",
@@ -205,7 +204,7 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "flower",
-      product_image_path: "",
+      product_image_path: "/public/productImages/orchid.png",
       plant_type: "hybrid",
       name: "Orchids",
       price: "$239.99",
@@ -213,7 +212,7 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "flower",
-      product_image_path: "",
+      product_image_path: "/public/productImages/lotuses.png",
       plant_type: "outdoor",
       name: "Lotuses",
       price: "$299.99",
@@ -221,56 +220,56 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "tool",
-      product_image_path: "",
+      product_image_path: "/public/productImages/pruningshears.png",
       name: "Pruning Shears",
       price: "$24.99",
       description: "High-quality pruning shears designed for precision trimming of flowers and plants. These ergonomic shears feature sharp blades, a comfortable grip, and are perfect for maintaining the health and shape of your garden blooms.",
     }),
     createProduct({
       product_type: "tool",
-      product_image_path: "",
+      product_image_path: "/public/productImages/trowelandtransplanting.webp",
       name: "Garden Trowel and Transplanter Set",
       price: "$29.99",
       description: "A versatile set including a durable garden trowel and transplanter. Ideal for planting and transplanting flowers with ease. The ergonomic handles ensure a comfortable grip, and the rust-resistant construction guarantees longevity.",
     }),
     createProduct({
       product_type: "tool",
-      product_image_path: "",
+      product_image_path: "/public/productImages/wateringcan.png",
       name: "Flower Watering Can",
       price: "$19.99",
       description: "A stylish and functional watering can designed specifically for delicate flowers. The long spout provides a gentle and precise water flow, preventing soil erosion and ensuring your flowers receive the right amount of hydration.",
     }),
     createProduct({
       product_type: "tool",
-      product_image_path: "",
+      product_image_path: "/public/productImages/phmeter.png",
       name: "Soil pH Meter",
       price: "$14.99",
       description: "An essential tool for flower enthusiasts, this soil pH meter helps you monitor and adjust the acidity of your garden soil. Ensure optimal growing conditions for your flowers by accurately measuring the pH level, promoting healthy and vibrant blooms.",
     }),
     createProduct({
       product_type: "planter",
-      product_image_path: "",
+      product_image_path: "/public/productImages/smallpots.webp",
       name: "Small Ceramic Flower Pot",
       price: "$12.99",
       description: "A charming small ceramic flower pot, perfect for showcasing individual blooms or creating a mini flower arrangement. Its stylish design adds a touch of elegance to any space, making it an ideal choice for windowsills or tabletops.",
     }),
     createProduct({
       product_type: "planter",
-      product_image_path: "",
+      product_image_path: "/public/productImages/mediumbox.png",
       name: "Medium Wooden Planter Box",
       price: "$24.99",
       description: "A versatile medium-sized wooden planter box, suitable for planting a variety of flowers or herbs. The natural wood finish adds a rustic charm to your garden, patio, or balcony. Sturdy construction ensures durability and longevity.",
     }),
     createProduct({
       product_type: "planter",
-      product_image_path: "",
+      product_image_path: "/public/productImages/hangingcoco.png",
       name: "Hanging Basket with Coco Liner",
       price: "$19.99",
       description: "Elevate your floral display with a hanging basket featuring a coco liner. Perfect for trailing flowers or vines, this medium-sized basket adds a dynamic element to your garden. The sturdy chain makes it easy to suspend from hooks or brackets.",
     }),
     createProduct({
       product_type: "planter",
-      product_image_path: "",
+      product_image_path: "public/productImages/resinpots.png",
       name: "Large Resin Flower Pot",
       price: "$34.99",
       description: "A spacious and durable large resin flower pot, designed for showcasing abundant floral arrangements or larger plants. The lightweight yet sturdy construction makes it easy to move around, while the sleek design complements various outdoor settings.",
@@ -287,7 +286,7 @@ const seed = async () => {
   await updateLineItem(lineItem);
   lineItem = await createLineItem({
     order_id: cart.id,
-    product_id: eightWkCourse.id,
+    product_id: eightWeekCourse.id,
   });
   cart.is_cart = false;
   await updateOrder(cart);
@@ -318,6 +317,7 @@ module.exports = {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  resetUserAddress,
   changeVipStatus,
   changeAdminStatus,
   changeProductName,

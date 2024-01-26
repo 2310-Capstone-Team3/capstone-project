@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 const Products = ({
   products,
@@ -53,15 +53,21 @@ const Products = ({
     <div className="productDisplay">
       {productsToDisplay.map((product) => (
         <div className="product" key={product.id}>
-          <NavLink to={`/products/${product.id}`}>
-          <img src=""></img>
-          <h5>{product.name}</h5>
+          <NavLink style={{padding: "0"}} to={`/products/${product.id}`}>
+          <img src={product.product_image_path}></img>
+          <h5>
+            <Link to ={`/products/${product.id}`}>
+              {product.name}
+              </Link>
+              </h5>
           </NavLink>
         </div>
       ))}
     </div>
   );
   };
+
+  console.log(products.id)
 
   return (
     <main className="productContainerMain">
@@ -70,11 +76,31 @@ const Products = ({
         <br></br>
         <br></br>
         <br></br>
+        <h2>Flowers</h2>
         {displayProducts("flowers")}
+        <h2>Tools</h2>
         {displayProducts("tools")}
+        <h2>Planters</h2>
         {displayProducts("planters")}
-        {displayProducts("workshops")}
+
+
+
+
+
+
+
+
+
     </main>
+
+
+
+
+
+
+
+
+
   );
 };
 
