@@ -194,7 +194,7 @@ const App = () => {
               <nav>
                 <Link to="/products" className='navComponent'>Products</Link>
                 <Link to="/services" className='navComponent'>Services</Link>
-                <Link to='/' className='navComponent, navTitle'><h1>Company Title</h1></Link>
+                <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
                 <div className='navComponent navPictures'>
                   <Link to="/cart"><img src='/public/cart-30-32.png'></img></Link>
@@ -271,7 +271,7 @@ const App = () => {
               <nav>
                 <Link to="/products" className='navComponent'>Products</Link>
                 <Link to="/services" className='navComponent'>Services</Link>
-                <Link to='/' className='navComponent, navTitle'><h1>Company Title</h1></Link>
+                <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
                 <Link to="/login" className='navComponent'>Sign in</Link>
               </nav>
