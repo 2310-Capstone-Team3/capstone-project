@@ -17,9 +17,11 @@ const FrequentQuestions = () => {
                         <div className="frequentQuestion">
                             <span className="frequentQuestionTitle">Question</span>
                             <br></br>
-                            <span>What is the proper maintenance routine?</span>
+                            <span>What is the proper maintenance routine for my flowers?</span>
                             <br />
                             <span className="frequentQuestionContent">Answer</span>
+                            <br />
+                            <span>You want to clean your vase thoroughly, fill your vase with two-thirds of lukewarm water and add flower food. Make sure to remove any foliage that can possibly cause debris build-up. Keep yor flowers out of direct sunlight to prolong their life. Change your water regularly, flowers love clean water. Talk to your flowers and make sure to show them love.   </span>
                         </div>
                         <br></br>
                         <div className="frequentQuestion">
