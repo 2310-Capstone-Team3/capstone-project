@@ -15,10 +15,14 @@ import DisplaySingleUser from './accountComponents/DisplaySingleUser';
 import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
+import Reviews from './Reviews';
+import ProductDeets from "./ProductDeets";
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
-import SingleProduct from './SingleProduct';
-
+import Workshops from './Workshops';
+import Flowers from './Flowers';
+import SingleFlower from './SingleFlower';
+import SingleWorkshop from './SingleWorkshop';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -27,6 +31,10 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
   const [users, setUsers] = useState({ data: [] });
+  const [productDeets, setProductDeets] = useState([]);
+  const [reviews, setReviews] = useState ([]);
+  const [workshops, setWorkshops] = useState([]);
+  const [flowers, setFlowers] = useState ([]);
 
 
   const attemptLoginWithToken = async () => {
@@ -34,22 +42,28 @@ const App = () => {
   };
 
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchFlowers(setFlowers);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchWorkshops(setWorkshops);
+    };
+    fetchData();
+  }, []);
 
 
 
-
-
-
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     await api.fetchReviews(setReviews);
-  //   };
-  //   fetchData();
-  // }, []);
-
-
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchReviews(setReviews);
+    };
+    fetchData();
+  }, []);
 
 
   useEffect(() => {
@@ -59,11 +73,9 @@ const App = () => {
     fetchData();
   }, []);
 
-
   useEffect(() => {
     attemptLoginWithToken();
   }, []);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,6 +84,15 @@ const App = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      response = await api.fetchProductDeets
+      setProductDeets(response.data);
+    };
+    fetchData();
+  }, []);
+
+  
 
   useEffect(() => {
     if (auth.id) {
@@ -81,7 +102,6 @@ const App = () => {
       fetchData();
     }
   }, [auth]);
-
 
   useEffect(() => {
     if (auth.id) {
@@ -93,147 +113,122 @@ const App = () => {
   }, [auth]);
 
 
-
-
   const createLineItem = async (product) => {
     await api.createLineItem({ product, cart, lineItems, setLineItems });
   };
-
 
   const updateLineItem = async (lineItem) => {
     await api.updateLineItem({ lineItem, cart, lineItems, setLineItems });
   };
 
-
   const submitShip = async (formData, order) => {
     await api.submitShip({ formData, order, setOrders, cart, orders })
   }
-
 
   const updateOrder = async (order) => {
     await api.updateOrder({ order, setOrders });
   };
 
-
   const removeFromCart = async (lineItem) => {
     await api.removeFromCart({ lineItem, lineItems, setLineItems });
   };
-
 
   const plusOne = async (lineItem) => {
     await api.plusOne({ lineItem, lineItems, setLineItems, cart });
   };
 
-
   const minusOne = async (lineItem) => {
     await api.minusOne({ lineItem, lineItems, setLineItems, cart });
   };
 
-
   const cart = orders.find((order) => order.is_cart) || {};
-
 
   const cartItems = lineItems.filter(
     (lineItem) => lineItem.order_id === cart.id
   );
 
-
   const cartCount = cartItems.reduce((acc, item) => {
     return (acc += item.quantity);
   }, 0);
 
-
   const login = async (credentials) => {
     await api.login({ credentials, setAuth });
   };
-
 
   const signUp = async (credentials) => {
     const response = await api.signUp({ credentials });
     return response.data;
   };
 
-
   const resetPassword = async (user, password) => {
     const response = await api.resetPassword({ user, password });
     return response.data;
   };
-
 
   const resetUsername = async (user, username) => {
     const response = await api.resetUsername({ user, username });
     return response.data;
   };
 
-
   const resetEmail = async (user, email) => {
     const response = await api.resetEmail({ user, email });
     return response.data;
   };
-
-
-  const resetAddress = async (user, address) => {
-    const response = await api.resetAddress({ user, address });
-    return response.data;
-  };
-
 
   const changeVipStatus = async(user, status) => {
     const response = await api.changeVipStatus({ user, status })
     return response.data
   }
 
-
   const changeAdminStatus = async(user, status) => {
     const response = await api.changeAdminStatus({ user, status })
     return response.data
   }
-
 
   const changeProductName = async(productId, name) => {
     const response = await api.changeProductName({ productId, name })
     return response
   }
 
-
   const changeProductDescription = async(productId, description) => {
     const response = await api.changeProductDescription({ productId, description })
     return response
   }
-
 
   const changeProductPrice = async(productId, price) => {
     const response = await api.changeProductPrice({ productId, price })
     return response
   }
 
-
   const createProduct = async(name, description, price) => {
     const response = await api.createProduct({ name, description, price })
     return response
   }
 
+  const createReviews = async(name, body) => {
+    const response = await api.createReviews({ name, body })
+    return response
+  }
 
-  // const createReviews = async(name, title, body) => {
-  //   const response = await api.createReviews({ name, title, body })
-  //   return response
-  // }
+  const createWorkshops = async(name, body) => {
+    const response = await api.createWorkshops({ name, body })
+    return response
+  }
 
-
-
-
-
+  const createFlowers = async(name, body) => {
+    const response = await api.createFlowers({ name, body })
+    return response
+  }
 
   const changeItemVipStatus = async(productId, status) => {
     const response = await api.changeItemVipStatus({ productId, status })
     return response
   }
- 
+  
   const logout = () => {
     api.logout(setAuth);
     navigate("/");
   };
-
 
   const fetchUser = () => {
     if (users) {
@@ -243,7 +238,26 @@ const App = () => {
       console.log("Users is empty?", users)
     }
   };
+  const fetchProductDeets = () => {
+    const ProductDeets = ProductDeets.find((productdeet) => productdeet.id === productdeet.id);
+    return productDeets;
+  };
 
+  const fetchWorkshops = () => {
+    const Workshops = Workshops.find((workshop) => workshop.id === workshop.id);
+    return workshop;
+  };
+
+  const fetchReviews = () => {
+    const Reviews = Reviews.find((review) => review.id === review.id);
+    return review;
+  };
+
+  const fetchFlowers = () => {
+    const Flowers = Flowers.find((flower) => flower.id === flower.id);
+    return flower;
+  };
+  
 
   return (
     <div className='mainBorder'>
@@ -266,75 +280,134 @@ const App = () => {
             </div>
             <main>
               <Routes>
-              <Route path='/products/:productId' element={<SingleProduct
-                products = { products }
-                cartItems = { cartItems }
-                createLineItem = { createLineItem }
-                updateLineItem = { updateLineItem }
-                auth = { auth }
-              />}></Route>                <Route path='/products' element={<Products
-                auth = { auth }
-                products={ products }
-                cartItems = { cartItems }
-                createLineItem = { createLineItem }
-                updateLineItem = { updateLineItem }
-              />}></Route>
-                <Route path='/cart' element={<Cart
-                cart = { cart }
-                lineItems = { lineItems }
-                products = { products }
-                updateOrder = { updateOrder }
-                removeFromCart = { removeFromCart }
-                plusOne = { plusOne }
-                minusOne = { minusOne }
-                submitShip = { submitShip }
-                user = { fetchUser() }
-              />}></Route>
-                <Route path='/orders' element={<Orders
-                orders = { orders }
-                products = { products }
-                lineItems = { lineItems }
-              />}></Route>
-                <Route path='/account' element={<Account
-                authId = { auth.id }
-                user = { fetchUser() }
-                resetPassword = { resetPassword }
-                resetUsername = { resetUsername }
-                resetEmail = { resetEmail }
-                resetAddress = { resetAddress }
-                logout = {logout}
-              />}></Route>
-              <Route path='/security/*' element={<Security
-              />}></Route>
-              <Route path='/security/users/*' element={<SecurityUsers
-                users = { users }
-              />}></Route>
-              <Route path='/security/products/*' element={<SecurityProducts
-                products = { products }
-                createProduct = { createProduct }
-              />}></Route>
-              <Route path='/security/orders' element={<SecurityOrders
-                orders = { orders }
-              />}></Route>
-              <Route path='/security/users/:userId' element={<DisplaySingleUser
-                users = { users }
-                changeVipStatus = { changeVipStatus }
-                changeAdminStatus = { changeAdminStatus }
-              />}></Route>
-              <Route path='/security/products/:productId' element={<DisplaySingleProduct
-                products = { products }
-                changeProductName= { changeProductName }
-                changeProductDescription= { changeProductDescription }
-                changeProductPrice = { changeProductPrice }
-                changeItemVipStatus = { changeItemVipStatus }
-              />}></Route>
+              <Route path ='/flowers/:id' element={<SingleFlower flowers={flowers}/> }  />
+              <Route path ='/workshops/:id' element={<SingleWorkshop workshops={workshops}/> }  />
+
+
+              <Route path='/flowers' element={<Flowers
+                flowers = { flowers }
+                createFlowers = { createFlowers}
+                fetchFlowers = {fetchFlowers}
+                />}></Route>
+              <Route path='/workshops' element={<Workshops
+                workshops = { workshops }
+                createWorkshops = { createWorkshops}
+                fetchWorkshops = {fetchWorkshops}
+                />}></Route>
+                <Route
+                  path="/products"
+                  element={
+                    <Products
+                      auth={auth}
+                      products={products}
+                      cartItems={cartItems}
+                      createLineItem={createLineItem}
+                      updateLineItem={updateLineItem}
+                    />
+                  }
+                ></Route>
+                <Route path='/reviews' element={<Reviews
+                reviews = { reviews }
+                createReviews = { createReviews}
+                fetchReviews = { fetchReviews }
+                />}></Route>
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="/cart"
+                  element={
+                    <Cart
+                      cart={cart}
+                      lineItems={lineItems}
+                      products={products}
+                      updateOrder={updateOrder}
+                      removeFromCart={removeFromCart}
+                      plusOne={plusOne}
+                      minusOne={minusOne}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="/orders"
+                  element={
+                    <Orders
+                      orders={orders}
+                      products={products}
+                      lineItems={lineItems}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="/account"
+                  element={
+                    <Account
+                      authId={auth.id}
+                      user={fetchUser()}
+                      resetPassword={resetPassword}
+                      resetUsername={resetUsername}
+                      resetEmail={resetEmail}
+                      logout = {logout}
+                    />
+                  }
+                ></Route>
+                <Route 
+                  path='/security/*'
+                    element={
+                      <Security
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/users/*'
+                    element={
+                      <SecurityUsers
+                        users = { users }
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/products/*' 
+                    element={<SecurityProducts
+                      products = { products }
+                      createProduct = { createProduct }
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/orders'
+                    element={<SecurityOrders
+                      orders = { orders }
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/users/:userId' 
+                    element={<DisplaySingleUser
+                      users = { users }
+                      changeVipStatus = { changeVipStatus }
+                      changeAdminStatus = { changeAdminStatus }
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/products/:productId'
+                    element={<DisplaySingleProduct
+                      products = { products }
+                      changeProductName= { changeProductName }
+                      changeProductDescription= { changeProductDescription }
+                      changeProductPrice = { changeProductPrice }
+                      changeItemVipStatus = { changeItemVipStatus }
+                    />
+                  }
+                ></Route>
               </Routes>
             </main>
           </>
         ) : (
           <div>
             <div className='navi'>
-         
+          
             <nav>
               <Link to='/'>Home</Link>
               <Link to='/account'>Account</Link>
@@ -342,20 +415,27 @@ const App = () => {
             </nav>
             </div>
             <Routes>
-            <Route path='/products/:productId' element={<SingleProduct
-              products={ products }
-              cartItems = { cartItems }
-              createLineItem = { createLineItem }
-              updateLineItem = { updateLineItem }
-              auth = { auth }
-              />}></Route>
-
-
-       
-              <Route path='/account/*' element={<Account
-              login = {login}
-              signUp = {signUp}
-              users = {users}
+            <Route path ='/flowers/:id' element={<SingleFlower flowers={flowers}/> }  />
+              <Route path ='/workshops/:id' element={<SingleWorkshop workshops={workshops}/> }  />
+            <Route path='/flowers' element={<Flowers
+                flowers = { flowers }
+                createFlowers = { createFlowers}
+                fetchFlowers = {fetchFlowers}
+                />}></Route>
+            <Route path='/workshops' element={<Workshops
+                workshops = { workshops }
+                createWorkshops = { createWorkshops}
+                fetchWorkshops = {fetchWorkshops}
+                />}></Route>
+            <Route path='/reviews' element={<Reviews
+                  reviews = { reviews }
+                  createReviews = { createReviews}
+                  fetchReviews = { fetchReviews }
+                  />}></Route>
+              <Route path='/account/*' element={<Account 
+              login = {login} 
+              signUp = {signUp} 
+              users = {users} 
               setUsers = {setUsers}
               />}></Route>
               <Route path='/' element={<Home/>}></Route>
@@ -366,7 +446,16 @@ const App = () => {
               updateLineItem = { updateLineItem }
               auth = { auth }
             />}></Route>
-   
+             <Route
+                path="/productdeets"
+                element={
+                  <ProductDeets
+                 
+                ProductDeets={ProductDeets}
+              
+                  />
+                }></Route>
+            
             <Route path='/register' element={<Register
                 users = { users }
                 signUp = { signUp }
@@ -394,10 +483,10 @@ const App = () => {
               </nav>
               </div>
               <Routes>
-                <Route path='/login/*' element={<Account
-                login = {login}
-                signUp = {signUp}
-                users = {users}
+                <Route path='/login/*' element={<Account 
+                login = {login} 
+                signUp = {signUp} 
+                users = {users} 
                 setUsers = {setUsers}
                 />}></Route>
                 <Route path='/products' element={<Products
@@ -407,6 +496,13 @@ const App = () => {
                 updateLineItem = { updateLineItem }
                 auth = { auth }
               />}></Route>
+              <Route
+                  path="/productdeets"
+                  element={
+                    <ProductDeets
+                  ProductDeets={ProductDeets}
+                    />
+                  }></Route>
               <Route path='/register' element={<Register
                   users = { users }
                   signUp = { signUp }
@@ -421,24 +517,23 @@ const App = () => {
               </Routes>
             </div>
 
-
         <Routes>
           <Route
             path="/frequent-questions"
             element={
-              <FrequentQuestions    
+              <FrequentQuestions     
               />
             }
           ></Route>
           <Route
-            path='/'
+            path='/' 
             element={
               <Home
               />
             }
           ></Route>
           <Route
-            path='/contact'
+            path='/contact' 
             element={
               <Contact
               />
@@ -471,10 +566,9 @@ const App = () => {
                     </div>
                 </section>
       </div>
-   
+    
   );
 };
-
 
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(
