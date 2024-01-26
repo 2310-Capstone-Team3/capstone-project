@@ -14,6 +14,7 @@ const {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  resetUserAddress,
   changeVipStatus,
   changeAdminStatus
 } = require('./users')
@@ -51,7 +52,8 @@ const seed = async () => {
       password VARCHAR(100) NOT NULL,
       email VARCHAR(256) UNIQUE NOT NULL,
       is_admin BOOLEAN DEFAULT false NOT NULL,
-      is_vip BOOLEAN DEFAULT false NOT NULL
+      is_vip BOOLEAN DEFAULT false NOT NULL,
+      address VARCHAR(256)
     );
 
     CREATE TABLE products(
@@ -309,6 +311,7 @@ module.exports = {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  resetUserAddress,
   changeVipStatus,
   changeAdminStatus,
   changeProductName,

@@ -129,6 +129,11 @@ const App = () => {
     return response.data;
   };
 
+  const resetAddress = async (user, address) => {
+    const response = await api.resetAddress({ user, address });
+    return response.data;
+  };
+
   const changeVipStatus = async(user, status) => {
     const response = await api.changeVipStatus({ user, status })
     return response.data
@@ -199,105 +204,62 @@ const App = () => {
             </div>
             <main>
               <Routes>
-                <Route
-                  path="/products"
-                  element={
-                    <Products
-                      auth={auth}
-                      products={products}
-                      cartItems={cartItems}
-                      createLineItem={createLineItem}
-                      updateLineItem={updateLineItem}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/cart"
-                  element={
-                    <Cart
-                      cart={cart}
-                      lineItems={lineItems}
-                      products={products}
-                      updateOrder={updateOrder}
-                      removeFromCart={removeFromCart}
-                      plusOne={plusOne}
-                      minusOne={minusOne}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/orders"
-                  element={
-                    <Orders
-                      orders={orders}
-                      products={products}
-                      lineItems={lineItems}
-                    />
-                  }
-                ></Route>
-                <Route
-                  path="/account"
-                  element={
-                    <Account
-                      authId={auth.id}
-                      user={fetchUser()}
-                      resetPassword={resetPassword}
-                      resetUsername={resetUsername}
-                      resetEmail={resetEmail}
-                      logout = {logout}
-                    />
-                  }
-                ></Route>
-                <Route 
-                  path='/security/*'
-                    element={
-                      <Security
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/users/*'
-                    element={
-                      <SecurityUsers
-                        users = { users }
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/products/*' 
-                    element={<SecurityProducts
-                      products = { products }
-                      createProduct = { createProduct }
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/orders'
-                    element={<SecurityOrders
-                      orders = { orders }
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/users/:userId' 
-                    element={<DisplaySingleUser
-                      users = { users }
-                      changeVipStatus = { changeVipStatus }
-                      changeAdminStatus = { changeAdminStatus }
-                    />
-                  }
-                ></Route>
-                <Route
-                  path='/security/products/:productId'
-                    element={<DisplaySingleProduct
-                      products = { products }
-                      changeProductName= { changeProductName }
-                      changeProductDescription= { changeProductDescription }
-                      changeProductPrice = { changeProductPrice }
-                      changeItemVipStatus = { changeItemVipStatus }
-                    />
-                  }
-                ></Route>
+                <Route path='/products' element={<Products
+                auth = { auth }
+                products={ products }
+                cartItems = { cartItems }
+                createLineItem = { createLineItem }
+                updateLineItem = { updateLineItem }
+              />}></Route>
+                <Route path='/cart' element={<Cart
+                cart = { cart }
+                lineItems = { lineItems }
+                products = { products }
+                updateOrder = { updateOrder }
+                removeFromCart = { removeFromCart }
+                plusOne = { plusOne }
+                minusOne = { minusOne }
+                submitShip = { submitShip }
+                user = { fetchUser() }
+              />}></Route>
+                <Route path='/orders' element={<Orders
+                orders = { orders }
+                products = { products }
+                lineItems = { lineItems }
+              />}></Route>
+                <Route path='/account' element={<Account
+                authId = { auth.id }
+                user = { fetchUser() }
+                resetPassword = { resetPassword }
+                resetUsername = { resetUsername }
+                resetEmail = { resetEmail }
+                resetAddress = { resetAddress }
+                logout = {logout}
+              />}></Route>
+              <Route path='/security/*' element={<Security
+              />}></Route>
+              <Route path='/security/users/*' element={<SecurityUsers
+                users = { users }
+              />}></Route>
+              <Route path='/security/products/*' element={<SecurityProducts
+                products = { products }
+                createProduct = { createProduct }
+              />}></Route>
+              <Route path='/security/orders' element={<SecurityOrders
+                orders = { orders }
+              />}></Route>
+              <Route path='/security/users/:userId' element={<DisplaySingleUser
+                users = { users }
+                changeVipStatus = { changeVipStatus }
+                changeAdminStatus = { changeAdminStatus }
+              />}></Route>
+              <Route path='/security/products/:productId' element={<DisplaySingleProduct
+                products = { products }
+                changeProductName= { changeProductName }
+                changeProductDescription= { changeProductDescription }
+                changeProductPrice = { changeProductPrice }
+                changeItemVipStatus = { changeItemVipStatus }
+              />}></Route>
               </Routes>
             </main>
           </>

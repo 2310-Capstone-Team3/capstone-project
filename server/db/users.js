@@ -19,7 +19,7 @@ const resetUserPassword = async (userId, newPassword) => {
         UPDATE users
         SET password = $1
         WHERE id = $2
-        RETURNING id, username, email, is_admin, is_vip;
+        RETURNING id, username, email, address, is_admin, is_vip;
         `;
         
         const response = await client.query(SQL, [hashedPassword, userId])
@@ -40,7 +40,7 @@ const resetUserUsername = async (userId, newUsername) => {
         UPDATE users
         SET username = $1
         WHERE id = $2
-        RETURNING id, username, email, is_admin, is_vip;
+        RETURNING id, username, email, address, is_admin, is_vip;
         `;
         
         const response = await client.query(SQL, [newUsername, userId])
@@ -62,10 +62,32 @@ const resetUserEmail = async (userId, newEmail) => {
         UPDATE users
         SET email = $1
         WHERE id = $2
-        RETURNING id, username, email, is_admin, is_vip;
+        RETURNING id, username, email, address, is_admin, is_vip;
         `;
         
         const response = await client.query(SQL, [newEmail, userId])
+        
+        if (!response.rows.length) {
+            throw Error('User not found')
+        }
+        
+        return response.rows[0]
+    } catch (error) {
+        throw error
+    }
+}
+
+const resetUserAddress = async (userId, newAddress) => {
+    try {
+        
+        const SQL = `
+        UPDATE users
+        SET address = $1
+        WHERE id = $2
+        RETURNING id, username, email, address, is_admin, is_vip;
+        `;
+        
+        const response = await client.query(SQL, [newAddress, userId])
         
         if (!response.rows.length) {
             throw Error('User not found')
@@ -124,6 +146,7 @@ module.exports = {
     resetUserPassword,
     resetUserUsername,
     resetUserEmail,
+    resetUserAddress,
     changeVipStatus,
     changeAdminStatus
 };
