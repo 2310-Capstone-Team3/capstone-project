@@ -125,7 +125,11 @@ const LoggedInDetails = ( {user, resetPassword, resetUsername, resetEmail, logou
             if (user != undefined){
                 setDisplayName(user.username)
                 setDisplayEmail(user.email)
+                if(!user.address) {
+                    setDisplayAddress("No Home Set!")
+                } else {
                 setDisplayAddress(user.address.replace(/[{}"]/g, ""))
+                }
             } else {
                 console.log("User doesnt exist")
             }
