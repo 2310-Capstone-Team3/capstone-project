@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 
-const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne, minusOne, submitShip })=> {
+const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne, minusOne, submitShip, user })=> {
   let totalItems = []
   let totalPrice = 0
+  let [isChecked, setIsChecked] = useState(false)
   let [street, setStreet] = useState("");
   let [zip, setZip] = useState("");
   let [state, setState] = useState("");
@@ -64,6 +65,10 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne,
     {stateName: 'WY'}
   ]
 
+  const checkHandler = () => {
+    setIsChecked(!isChecked)
+  }
+
   return (
     <div>
       <h2>Cart</h2>
@@ -89,17 +94,21 @@ const Cart = ({ updateOrder, removeFromCart, lineItems, cart, products, plusOne,
       Total Price: ${totalPrice}
       <br />
       <form onClick={() => setFormData({street, zip, state})} onSubmit={() => submitShip(formData)}>
-        <input placeholder="Street" type="text" value={street} onChange={street => setStreet(street.target.value)} required></input>
-        <input placeholder="Zip/Postal Code" type="text" value={zip} onChange={zip => setZip(zip.target.value)} required></input>
-        <select onChange={state => setState(state.target.value)}>
+        <input placeholder="Street" type="text" value={street} onChange={street => setStreet(street.target.value)} required disabled = {isChecked}></input>
+        <input placeholder="Zip/Postal Code" type="text" value={zip} onChange={zip => setZip(zip.target.value)} required disabled = {isChecked}></input>
+        <select onChange={state => setState(state.target.value)} disabled = {isChecked}>
           <option value={!state}>-- State --</option>
           {stateArray.map((state) => <option key={state.stateName}>{state.stateName}</option>)}
         </select>
       </form>
+      <form onClick={() => {setFormData(user.address)}}  onSubmit={() => submitShip(formData)}>
+        <input type="checkbox" checked={isChecked} onChange={checkHandler}/>
+        <label>Use Home Address</label>
+      </form>
       {
         lineItems.filter(lineItem => lineItem.order_id === cart.id ).length ? <button onClick={()=> {
           updateOrder({...cart, is_cart: false, shipping: formData, priceTotal: totalPrice });
-        }} disabled={street==='' || zip==='' || state==='' || state === "false"}>Create Order</button>: null
+        }} disabled={formData === "" || !formData}>Create Order</button>: null
       }
     </div>
   );
