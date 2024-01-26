@@ -16,7 +16,6 @@ import DisplaySingleProduct from './accountComponents/DisplaySingleProduct';
 import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
 import Reviews from './Reviews';
-import ProductDeets from "./ProductDeets";
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
 import Workshops from './Workshops';
@@ -31,7 +30,6 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
   const [users, setUsers] = useState({ data: [] });
-  const [productDeets, setProductDeets] = useState([]);
   const [reviews, setReviews] = useState ([]);
   const [workshops, setWorkshops] = useState([]);
   const [flowers, setFlowers] = useState ([]);
@@ -238,10 +236,6 @@ const App = () => {
       console.log("Users is empty?", users)
     }
   };
-  const fetchProductDeets = () => {
-    const ProductDeets = ProductDeets.find((productdeet) => productdeet.id === productdeet.id);
-    return productDeets;
-  };
 
   const fetchWorkshops = () => {
     const Workshops = Workshops.find((workshop) => workshop.id === workshop.id);
@@ -282,8 +276,6 @@ const App = () => {
               <Routes>
               <Route path ='/flowers/:id' element={<SingleFlower flowers={flowers}/> }  />
               <Route path ='/workshops/:id' element={<SingleWorkshop workshops={workshops}/> }  />
-
-
               <Route path='/flowers' element={<Flowers
                 flowers = { flowers }
                 createFlowers = { createFlowers}
@@ -311,9 +303,6 @@ const App = () => {
                 createReviews = { createReviews}
                 fetchReviews = { fetchReviews }
                 />}></Route>
-                    />
-                  }
-                ></Route>
                 <Route
                   path="/cart"
                   element={
@@ -446,16 +435,6 @@ const App = () => {
               updateLineItem = { updateLineItem }
               auth = { auth }
             />}></Route>
-             <Route
-                path="/productdeets"
-                element={
-                  <ProductDeets
-                 
-                ProductDeets={ProductDeets}
-              
-                  />
-                }></Route>
-            
             <Route path='/register' element={<Register
                 users = { users }
                 signUp = { signUp }
@@ -496,13 +475,6 @@ const App = () => {
                 updateLineItem = { updateLineItem }
                 auth = { auth }
               />}></Route>
-              <Route
-                  path="/productdeets"
-                  element={
-                    <ProductDeets
-                  ProductDeets={ProductDeets}
-                    />
-                  }></Route>
               <Route path='/register' element={<Register
                   users = { users }
                   signUp = { signUp }
