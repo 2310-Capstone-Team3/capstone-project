@@ -17,7 +17,7 @@ const {
   resetUserAddress,
   changeVipStatus,
   changeAdminStatus
-} = require('./users')
+} = require('./users');
 
 const {
   createUser,
@@ -36,6 +36,13 @@ const {
   fetchOrders,
 } = require('./cart');
 
+// const {
+//   fetchReviews, 
+//   createReviews
+// } = require('./reviews');
+
+
+
 const seed = async () => {
   const SQL = `
     DROP TABLE IF EXISTS line_items;
@@ -43,7 +50,6 @@ const seed = async () => {
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS reviews;
-    DROP TABLE IF EXISTS workshops;
   
     CREATE TABLE users(
       id UUID PRIMARY KEY,

@@ -291,7 +291,20 @@ const createProduct = async ({ name, description, price }) => {
   } catch (error) {
     console.log(error);
   }
+}
+
+const fetchReviews = async(setReviews)=> {
+  const response = await axios.get('/api/reviews');
+  setReviews(response.data);
 };
+
+const createReviews = async({ name, body }) => {
+  try {
+    return await axios.post('/api/reviews', { name: name, body: body, })
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const logout = (setAuth) => {
   window.localStorage.removeItem("token");
@@ -334,7 +347,8 @@ const api = {
   changeProductPrice,
   createProduct,
   changeItemVipStatus,
-  fetchProductDeets,
+  createReviews,
+  fetchReviews,
 };
 
 export default api;
