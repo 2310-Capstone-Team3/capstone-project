@@ -80,7 +80,7 @@ const DisplaySingleProduct = ({ products, changeProductName, changeProductDescri
                 />
                 <button disabled={!name}>Change Name</button>
             </form>
-            <h4>Product description: {product.description}</h4>
+            <h4>Product decription: {product.description}</h4>
             <form name='changeDescription' onSubmit = {_changeDescription}>
                 <input
                     placeholder='description'

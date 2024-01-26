@@ -48,27 +48,30 @@ const Home = () => {
                 <section className="homeReviewsContainer">
                     <div className="homeReviews">
                         <span className="reviewPreview">
-                            {/* <img src="/public/5starpng.png"></img> */}
-                            <h3>Exceptional service!</h3>
-                            <h5>What truly sets Bloom Room apart is not just the quality of their floral arrangements, but the exceptional service provided by their knowledgeable staff. The team here goes above and beyond to ensure that every customer finds the perfect arrangement to complement their style and vision.</h5>
+                            <img src="/public/5starpng.png"></img>
+                            <h3>Sample Title</h3>
+                            <h5>Sample Text</h5>
                             <span className="customerDetails">
-                                <h5>Jasmine Anderson</h5>
+                                <h5>Customer Name</h5>
+                                <h5>Review Date</h5>
                             </span>
                         </span>
                         <span className="reviewPreview">
-                            {/* <img src="/public/5starpng.png"></img> */}
-                            <h3>Timeless beauty.</h3>
-                            <h5>In a world where beauty fades all too quickly, Bloom Room offers a timeless elegance that endures. Whether you're seeking a thoughtful gift or looking to add a touch of sophistication to your space, I wholeheartedly recommend paying a visit to this floral paradise.</h5>
+                            <img src="/public/5starpng.png"></img>
+                            <h3>Sample Title</h3>
+                            <h5>Sample Text</h5>
                             <span className="customerDetails">
-                                <h5>Tyler Smith</h5>
+                                <h5>Customer Name</h5>
+                                <h5>Review Date</h5>
                             </span>
                         </span>
                         <span className="reviewPreview">
-                            {/* <img src="/public/5starpng.png"></img> */}
-                            <h3>Nature heals</h3>
-                            <h5>As someone who appreciates the beauty of flowers but lacks the green thumb to maintain them, I am delighted to have discovered Bloom Room. Their stunning creations have brought a touch of everlasting beauty to my home, brightening even the dreariest of days.</h5>
+                            <img src="/public/5starpng.png"></img>
+                            <h3>Sample Title</h3>
+                            <h5>Sample Text</h5>
                             <span className="customerDetails">
-                                <h5>Sofia Martinez</h5>
+                                <h5>Customer Name</h5>
+                                <h5>Review Date</h5>
                             </span>
                         </span>
                     </div>
