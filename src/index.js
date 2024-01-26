@@ -179,11 +179,6 @@ const App = () => {
     return response.data;
   };
 
-  const changeVipStatus = async(user, status) => {
-    const response = await api.changeVipStatus({ user, status })
-    return response.data
-  }
-
   const changeAdminStatus = async(user, status) => {
     const response = await api.changeAdminStatus({ user, status })
     return response.data
@@ -265,7 +260,6 @@ const App = () => {
     return flower;
   };
   
-
   return (
     <div className='mainBorder'>
       <div>
