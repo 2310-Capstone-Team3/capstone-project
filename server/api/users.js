@@ -5,6 +5,7 @@ const {
     resetUserPassword,
     resetUserUsername,
     resetUserEmail,
+    resetUserAddress,
     changeVipStatus,
     changeAdminStatus
 } = require('../db');
@@ -67,6 +68,17 @@ app.patch("/:userId/reset-email", async (req, res, next) => {
     const userId = req.params.userId;
     const newEmail = req.body.email;
     const updatedUser = await resetUserEmail(userId, newEmail);
+    res.send(updatedUser);
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.patch("/:userId/reset-address", async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const newAddress = req.body.address;
+    const updatedUser = await resetUserAddress(userId, newAddress);
     res.send(updatedUser);
   } catch (error) {
     next(error);

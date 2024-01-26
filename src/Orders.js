@@ -1,7 +1,5 @@
 import React from 'react';
 
-// Total Price: ${totalItems.reduce((arr, curr) => arr += curr, 0)}
-
 const Orders = ({ orders, products, lineItems })=> {
   return (
     <div>

@@ -14,9 +14,10 @@ const {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  resetUserAddress,
   changeVipStatus,
   changeAdminStatus
-} = require('./users')
+} = require('./users');
 
 const {
   createUser,
@@ -35,6 +36,13 @@ const {
   fetchOrders,
 } = require('./cart');
 
+// const {
+//   fetchReviews, 
+//   createReviews
+// } = require('./reviews');
+
+
+
 const seed = async () => {
   const SQL = `
     DROP TABLE IF EXISTS line_items;
@@ -42,7 +50,6 @@ const seed = async () => {
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS reviews;
-    DROP TABLE IF EXISTS workshops;
   
     CREATE TABLE users(
       id UUID PRIMARY KEY,
@@ -51,7 +58,8 @@ const seed = async () => {
       password VARCHAR(100) NOT NULL,
       email VARCHAR(256) UNIQUE NOT NULL,
       is_admin BOOLEAN DEFAULT false NOT NULL,
-      is_vip BOOLEAN DEFAULT false NOT NULL
+      is_vip BOOLEAN DEFAULT false NOT NULL,
+      address VARCHAR(256)
     );
 
     CREATE TABLE products(
@@ -309,6 +317,7 @@ module.exports = {
   resetUserPassword,
   resetUserUsername,
   resetUserEmail,
+  resetUserAddress,
   changeVipStatus,
   changeAdminStatus,
   changeProductName,
