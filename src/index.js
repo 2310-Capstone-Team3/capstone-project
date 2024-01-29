@@ -129,6 +129,11 @@ const App = () => {
     return response.data;
   };
 
+  const resetAddress = async (user, address) => {
+    const response = await api.resetAddress({ user, address });
+    return response.data;
+  };
+
   const changeVipStatus = async(user, status) => {
     const response = await api.changeVipStatus({ user, status })
     return response.data
@@ -450,5 +455,3 @@ root.render(
     <App />
   </HashRouter>
 );
-
-// hello
