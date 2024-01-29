@@ -1,73 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from 'react-router-dom'
 
-const DisplaySingleProduct = ({ products, changeProductName, changeProductDescription, changeProductPrice, changeItemVipStatus, resetAddress }) => {
+const DisplaySingleProduct = ({ products, changeProductName, changeProductDescription, changeProductPrice, changeItemVipStatus}) => {
     const [product, setProduct] = useState('')
     const { productId } = useParams()
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
-    const [displayAddress, setDisplayAddress] = useState('')
-    const [addressStreet, setAddressStreet] = useState("")
-    const [addressZip, setAddressZip] = useState("")
-    const [addressState, setAddressState] = useState("")
-    const [address, setAddress] = useState({
-        street: "",
-        zip: "",
-        state: ""
-    })
-    let stateArray = [
-        {stateName: 'AL'},
-        {stateName: 'AK'},
-        {stateName: 'AZ'},
-        {stateName: 'AR'},
-        {stateName: 'CA'},
-        {stateName: 'CO'},
-        {stateName: 'CT'},
-        {stateName: 'DE'},
-        {stateName: 'FL'},
-        {stateName: 'GA'},
-        {stateName: 'HI'},
-        {stateName: 'ID'},
-        {stateName: 'IL'},
-        {stateName: 'IN'},
-        {stateName: 'IA'},
-        {stateName: 'KS'},
-        {stateName: 'KY'},
-        {stateName: 'LA'},
-        {stateName: 'ME'},
-        {stateName: 'MD'},
-        {stateName: 'MA'},
-        {stateName: 'MI'},
-        {stateName: 'MN'},
-        {stateName: 'MS'},
-        {stateName: 'MO'},
-        {stateName: 'MT'},
-        {stateName: 'NE'},
-        {stateName: 'NV'},
-        {stateName: 'NH'},
-        {stateName: 'NJ'},
-        {stateName: 'NM'},
-        {stateName: 'NY'},
-        {stateName: 'NC'},
-        {stateName: 'ND'},
-        {stateName: 'OH'},
-        {stateName: 'OK'},
-        {stateName: 'OR'},
-        {stateName: 'PA'},
-        {stateName: 'RI'},
-        {stateName: 'SC'},
-        {stateName: 'SD'},
-        {stateName: 'TN'},
-        {stateName: 'TX'},
-        {stateName: 'UT'},
-        {stateName: 'VT'},
-        {stateName: 'VA'},
-        {stateName: 'WA'},
-        {stateName: 'WV'},
-        {stateName: 'WI'},
-        {stateName: 'WY'}
-    ]
 
     useEffect(() => {
         const targetProduct = products.find(product => product.id === productId)
