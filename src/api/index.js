@@ -333,8 +333,7 @@ const api = {
   changeProductDescription,
   changeProductPrice,
   createProduct,
-  changeItemVipStatus,
-  fetchProductDeets,
+  changeItemVipStatus
 };
 
 export default api;

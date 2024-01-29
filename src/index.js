@@ -269,6 +269,7 @@ const App = () => {
                       orders = {orders}
                       products = {products}
                       lineItems = {lineItems}
+                      resetAddress = { resetAddress }
                     />
                   }
                 ></Route>
