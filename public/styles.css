@@ -315,6 +315,10 @@ form > * {
     margin-left: 5px;
   }
 
+  .navButton {
+    all: unset;
+  }
+
 /* Nav Bar Items End */
 
 /* Login Form Items Start */
@@ -653,6 +657,138 @@ form > * {
 
 /* Product Items End */
 
+/* Account Items Start */
+
+.indivAccountContainerMain {
+  background-color: white;
+  border: 3px solid #ebeae5;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.indivAccountContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.indivAccountContainerMain h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainerMain .accountDetailsContainer {
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.accountDetailsContainer h5,
+.accountDetailsContainer h4,
+.accountDetailsContainer h3,
+.accountDetailsContainer h2,
+.accountDetailsContainer h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainerMain .accountDetails {
+  background-color: #fbfbfb;
+  border: 3px solid #f0ecec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  height: 100%;
+}
+
+.indivAccountContainerMain .detailsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.indivAccountContainerMain .detailsForm input {
+  width: 100%;
+  height: 50px;
+}
+
+.indivAccountContainerMain .detailsForm button {
+  background-color: rgb(46, 44, 44);
+  width: 100%;
+  max-width: 650px;
+}
+
+.indivAccountContainerMain button {
+  background-color: rgb(46, 44, 44);
+  width: 100%;
+  max-width: 650px;
+  color: white;
+}
+
+.indivAccountContainerMain .accountOrdersContainer {
+  width: 40%;
+  max-height: 675px;
+}
+
+.accountOrdersContainer h5,
+.accountOrdersContainer h4,
+.accountOrdersContainer h3,
+.accountOrdersContainer h1,
+.accountOrdersContainer h2 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainerMain .accountOrdersContainer hr {
+  width: 75%;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainer .ordersDisplayDiv {
+  background-color: #3E5641;
+  border: 3px solid #354b38;
+  width: 90%;
+  height: 90%;
+  overflow-y: auto;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.orderDetails h4 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.orderDetails h5,
+.orderDetails h6 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainer .orderDetails {
+  min-height: 250px;
+  background-color: white;
+  border: 3px solid #ebeae5;
+  margin-top: 10px;
+  width: 95%;
+  text-align: center;
+}
+
+/* Account Items End */
+
 /* .break{
   background-color: white;
   height:300px;
@@ -800,9 +936,6 @@ button {
 
   padding: 1rem;
   margin: 1rem;
-  
-
-
 }
 
 a {
