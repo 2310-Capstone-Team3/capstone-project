@@ -3,14 +3,14 @@ import Login from './accountComponents/Login'
 import { Link } from 'react-router-dom'
 import LoggedInDetails from './accountComponents/LoggedInDetails';
 
-const Account = ({ login, users, authId, user, resetPassword, resetUsername, resetEmail, resetAddress, logout })=> {
+const Account = ({ login, users, authId, user, resetPassword, resetUsername, resetEmail, logout, orders, products, lineItems, resetAddress })=> {
 
   return (
     <div className='login'>
       {
         authId ? (
           <div>
-            {<LoggedInDetails logout = { logout } user = { user } resetPassword = { resetPassword } resetUsername = { resetUsername } resetEmail = { resetEmail } resetAddress={ resetAddress }></LoggedInDetails>}
+            {<LoggedInDetails resetAddress = { resetAddress } lineItems = { lineItems } products = { products } orders = { orders } logout = { logout } user = { user } resetPassword = { resetPassword } resetUsername = { resetUsername } resetEmail = { resetEmail }></LoggedInDetails>}
           </div>
         ) : (
         <div className='loginMain'>

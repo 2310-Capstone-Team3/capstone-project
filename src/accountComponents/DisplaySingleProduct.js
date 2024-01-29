@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from 'react-router-dom'
 
-const DisplaySingleProduct = ({ products, changeProductName, changeProductDescription, changeProductPrice, changeItemVipStatus }) => {
+const DisplaySingleProduct = ({ products, changeProductName, changeProductDescription, changeProductPrice, changeItemVipStatus}) => {
     const [product, setProduct] = useState('')
     const { productId } = useParams()
     const [name, setName] = useState('')
