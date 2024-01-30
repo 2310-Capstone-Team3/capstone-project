@@ -6,7 +6,7 @@ const {
   changeProductName,
   changeProductDescription,
   changeProductPrice,
-  changeItemVipStatus,
+  changeItemVipStatus
 } = require("./products");
 
 const {

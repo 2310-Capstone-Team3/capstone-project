@@ -17,6 +17,7 @@ import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
+import searchBar from './SearchBar';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -244,6 +245,7 @@ const App = () => {
                 cartItems = { cartItems }
                 createLineItem = { createLineItem }
                 updateLineItem = { updateLineItem }
+            
               />}></Route>
                 <Route path='/cart' element={<Cart
                 cart = { cart }

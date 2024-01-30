@@ -111,6 +111,7 @@ const changeItemVipStatus = async (productId, status) => {
   } catch (error) {
       throw error
   }
+
 }
 
 module.exports = {
@@ -120,4 +121,5 @@ module.exports = {
   changeProductDescription,
   changeProductPrice,
   changeItemVipStatus
+  
 };

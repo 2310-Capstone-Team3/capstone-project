@@ -294,8 +294,6 @@ const logout = (setAuth) => {
   setAuth({});
 };
 
-  
-
 const api = {
   login,
   logout,

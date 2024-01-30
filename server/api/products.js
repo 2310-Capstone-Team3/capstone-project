@@ -4,11 +4,12 @@ const {
   changeProductDescription,
   changeProductPrice,
   createProduct,
-  changeItemVipStatus
+  changeItemVipStatus,
 } = require('../db');
 
 const express = require('express');
 const app = express.Router();
+const {isLoggedIn, isAdmin } = require('./middleware')
 
 app.get('/', async(req, res, next)=> {
   try {
@@ -27,8 +28,8 @@ app.post('/', async(req, res, next) => {
   }
 })
 
-app.put('/products/:id', (req, res, next)=> {
-  res.send('hello world');
+app.put('/:id', isLoggedIn, isAdmin, async (req, res, next)=> {
+  res.send(await createProduct({id: req.params.id, ...req.body}));
 });
 
 app.patch('/:productId/change-product-name', async (req, res, next) => {

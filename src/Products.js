@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const Products = ({
   products,
@@ -50,6 +51,8 @@ const Products = ({
         return null;
     }
     return (
+        
+      
     <div className="productDisplay">
       {productsToDisplay.map((product) => (
         <div className="product" key={product.id}>
@@ -64,7 +67,13 @@ const Products = ({
   };
 
   return (
+
     <main className="productContainerMain">
+      <br />
+      <div className="search">
+        <SearchBar products={products} />
+      </div>
+     
         <br></br>
         <h2>Our Collection</h2>
         <br></br>
