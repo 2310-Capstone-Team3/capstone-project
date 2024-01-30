@@ -202,7 +202,7 @@ const App = () => {
                 <button className='navButton' onClick={handleNavClick}>
                 <Link to="/services" className='navComponent'>Services</Link>
                 </button>
-                <button className='navButton' onClick={handleNavClick}>
+                <button style={{padding:'0', margin:'0', border:'0'}} className='navButton' onClick={handleNavClick}>
                 <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
                 </button>
                 <button className='navButton' onClick={handleNavClick}>
