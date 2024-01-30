@@ -50,31 +50,16 @@ const Login = ({ login, users })=> {
                         />
                     </div>
                     <button className='loginButton' disabled={!username || !password}>Sign In</button>
-            
-                    {loginStatus === "na" && (
-                    <span style={{ display: 'flex', alignItems: 'center'}}>
-                    <img
-                        src='https://static-00.iconduck.com/assets.00/dialog-error-icon-2048x2046-iguhlihj.png'
-                        alt='null'
-                        style={{ width: '20px', height: '20px', paddingRight: '5px' }}
-                    />
-                    <h4>Couldn't find a user with these credentials, create an account below</h4> 
-                    </span>
-                )}
-                {loginStatus === "wrongPass" && (
-                    <div>
-                    <span style={{ display: 'flex', alignItems: 'center'}}>
-                    <img
-                        src='https://static.vecteezy.com/system/resources/previews/012/042/289/original/warning-sign-icon-transparent-background-png.png'
-                        alt='null'
-                        style={{ width: '20px', height: '20px', paddingRight: '5px' }}
-                    />
-                    <h4>The password associated with this username is different than the one provided, please try again. If you have forgotten your password you may reset it below</h4> 
-                    </span>
-                    <Link to='/passreset'>Reset Password</Link>
-                    </div>
-                )}
+                <Link to='/register'>
+                    <h4 className='loginText'>Dont have an account? Click here to register.</h4>
+                </Link>
                 </form>
+                {loginStatus === "wrongPass" && (
+                    <span className='resetBox'>
+                    <h4 className='resetText'>The password associated with this username is different than the one provided, please try again. If you have forgotten your password you may reset it below</h4> 
+                    <Link className='resetText' to='/passreset'>Reset Password</Link>
+                    </span>
+                )}
             </div>
         </main>
     );

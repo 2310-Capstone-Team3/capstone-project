@@ -319,9 +319,14 @@ form > * {
     all: unset;
   }
 
+  .navButton h1 {
+    padding: 0;
+    margin: 0;
+  }
+
 /* Nav Bar Items End */
 
-/* Login Form Items Start */
+/* Login/Register Form Items Start */
 
   .login {
     align-items: center;
@@ -331,7 +336,8 @@ form > * {
     width: 100%;
     margin: 0;
     background-color: yellow;
-    height: 700px;
+    height: 800px;
+    align-items: center;
   }
 
   .loginFormContainer {
@@ -388,7 +394,244 @@ form > * {
     max-width: 650px;
   }
 
-/* Login Form Items End */
+  .signup {
+    align-items: center;
+  }
+
+  .signupMain {
+    width: 100%;
+    margin: 0;
+    background-color: yellow;
+    height: 700px;
+  }
+
+  .signUpFormContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .signUpContainer {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    align-items: center;
+  }
+
+  .signUpContainer .signUpForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .signUpContainer .signUpInputBox {
+    width: 650px;
+    height: 65px;
+    border: 1px solid #ebeae5;
+  }
+
+  .signUpContainer .signUpFormDiv {
+    display: flex;
+    flex-direction: row;
+  }  
+
+  .signUpContainer .signUpTitle {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .signUpContainer .signUpText {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  .signUpButton {
+    background-color: rgb(46, 44, 44);
+    width: 100%;
+    margin-left: 7.5;
+    max-width: 650px;
+  }
+
+  .signUpContainer .successBox {
+    border: 2px solid #a3c59b;
+    color: black;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .signUpContainer .successText {
+    color: #a3c59b;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .signUpContainer .failedBox {
+    border: 2px solid rgb(171, 18, 18);
+    color: black;
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 120px;
+    text-align: center;
+  }
+
+  .signUpContainer .failedText {
+    color: rgb(171, 18, 18);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .signUpContainer .existsBox {
+    border: 2px solid rgb(184, 184, 19);
+    color: black;
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 120px;
+    text-align: center;
+  }
+
+  .signUpContainer .existsText {
+    color: rgb(184, 184, 19);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .loginContainer .resetBox {
+    border: 2px solid rgb(171, 18, 18);
+    color: black;
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 120px;
+    text-align: center;
+  }
+
+  .loginContainer .resetText {
+    color: rgb(171, 18, 18);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .reset {
+    align-items: center;
+  }
+
+  .resetMain {
+    width: 100%;
+    margin: 0;
+    background-color: yellow;
+    height: 900px;
+    align-items: center;
+  }
+
+  .resetFormContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .resetContainer {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    height: 900px;
+  }
+
+  .resetContainer .resetForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .resetContainer .resetInputBox {
+    width: 650px;
+    height: 65px;
+    border: 1px solid #ebeae5;
+  }
+
+  .resetContainer .resetFormDiv {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .resetContainer .resetTitle {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .resetContainer .resetText {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  .resetButton {
+    background-color: rgb(46, 44, 44);
+    width: 100%;
+    margin-left: 7.5;
+    max-width: 650px;
+  }
+
+  .resetContainer .successBox {
+    border: 2px solid #a3c59b;
+    color: black;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .resetContainer .successText {
+    color: #a3c59b;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .resetContainer .failedBox {
+    border: 2px solid rgb(171, 18, 18);
+    color: black;
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 120px;
+    text-align: center;
+  }
+
+  .resetContainer .failedText {
+    color: rgb(171, 18, 18);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+
+
+/* Login/Register Form Items End */
 
 /* Frequent Questions Items Start */
 

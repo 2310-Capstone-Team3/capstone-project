@@ -38,83 +38,75 @@ const PassReset = ({users, resetPassword}) => {
     };
 
     return (
-        <div>
-        <form name='passreset' onSubmit = {_resetPassword}>
-        <input
-            placeholder='username'
+        <main className='resetContainer'>
+            <div className='resetFormContainer'>
+                <br></br>
+                <h2 className='resetTitle'>Reset Password</h2>
+        <form className='resetForm' name='passreset' onSubmit = {_resetPassword}>
+        <h5 className='resetText'>Username</h5>
+        <div className='resetFormDiv'>
+            <input className='usernameInput resetInputBox'
             value={ username }
             onChange={ ev => setUsername(ev.target.value)}
-        />
-        <input
-            type='email'
-            placeholder='email'
+            />
+        </div>
+        <h5 className='resetText'>Email</h5>
+        <div className='resetFormDiv'>
+            <input className='emailInput resetInputBox'
             value={ email }
+            type='email'
             onChange={ ev => setEmail(ev.target.value)}
-        />
-        <input
-            type='password'
-            placeholder='password'
+            />
+        </div>
+        <h5 className='resetText'>Password</h5>
+        <div className='resetFormDiv'>
+            <input className='passwordInput resetInputBox'
             value={ password }
-            onChange={ ev => setPassword(ev.target.value)}
-        />
-        <input
             type='password'
-            placeholder='confirm password'
+            onChange={ ev => setPassword(ev.target.value)}
+            />
+        </div>
+        <h5 className='resetText'>Confirm Password</h5>
+        <div className='resetFormDiv'>
+            <input className='passwordInput resetInputBox'
             value={ passwordConfirmation }
+            type='password'
             onChange={ ev => setPasswordConfirmation(ev.target.value)}
-        />
-        <button disabled={!username || !email || !password || !passwordConfirmation}>Reset Password</button>
+            />
+        </div>
+        <button className='resetButton' disabled={!username || !email || !password || !passwordConfirmation}>Reset Password</button>
+        </form>
         {resetStatus === "success" && (
             <div>
-            <span style={{ display: 'flex', alignItems: 'center'}}>
-            <img
-                src='https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-and-shapes-7/177800/338-512.png'
-                alt='null'
-                style={{ width: '20px', height: '20px', paddingRight: '5px' }}
-            />
-            <h4>Your password has been reset successfully, you may login with your new details below</h4> 
+            <span className='successBox' style={{ display: 'flex', alignItems: 'center'}}>
+            <h4 className='successText'>Your password has been reset successfully, you may login with your new details below</h4> 
+            <Link className='successText' to='/account'>Login</Link>
             </span>
-            <Link to='/account'>Login</Link>
             </div>
         )}
         {resetStatus === "failure" && (
             <div>
-            <span style={{ display: 'flex', alignItems: 'center'}}>
-            <img
-                src='https://static-00.iconduck.com/assets.00/dialog-error-icon-2048x2046-iguhlihj.png'
-                alt='null'
-                style={{ width: '20px', height: '20px', paddingRight: '5px' }}
-            />
-            <h4>Something went wrong and we were unable to reset your password, please try again</h4> 
+            <span className='failedBox' style={{ display: 'flex', alignItems: 'center'}}>
+            <h4 className='failedText'>Something went wrong and we were unable to reset your password, please try again</h4> 
             </span>
             </div>
         )}
         {resetStatus === "notmatching" && (
             <div>
-            <span style={{ display: 'flex', alignItems: 'center'}}>
-            <img
-                src='https://static.vecteezy.com/system/resources/previews/012/042/289/original/warning-sign-icon-transparent-background-png.png'
-                alt='null'
-                style={{ width: '20px', height: '20px', paddingRight: '5px' }}
-            />
-            <h4>The passwords you provided are different, please make sure they are the same</h4> 
+            <span className='failedBox' style={{ display: 'flex', alignItems: 'center'}}>
+            <h4 className='failedText'>The passwords you provided are different, please make sure they are the same</h4> 
             </span>
             </div>
         )}
         {resetStatus === "missinguser" && (
             <div>
-            <span style={{ display: 'flex', alignItems: 'center'}}>
-            <img
-                src='https://static.vecteezy.com/system/resources/previews/012/042/289/original/warning-sign-icon-transparent-background-png.png'
-                alt='null'
-                style={{ width: '20px', height: '20px', paddingRight: '5px' }}
-            />
-            <h4>There is no account with the username entered, please check and try again</h4> 
+            <span className='failedBox' style={{ display: 'flex', alignItems: 'center'}}>
+            <h4 className='failedText'>There is no account with the information entered, please check and try again</h4> 
             </span>
             </div>
         )}
-        </form>
         </div>
+        </main>
     )
 }
 
