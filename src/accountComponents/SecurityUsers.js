@@ -5,9 +5,9 @@ const SecurityUsers = ({ users }) => {
     
     const listUsers = () => {
         return users.data.map((user) => (
-            <span key={user.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
+            <span key={user.id}>
                 <Link to={`${user.id}`}>
-                    <button>
+                    <button className="securityUser">
                         <h3>User: {user.username}</h3>
                     </button>
                 </Link>
@@ -20,8 +20,8 @@ const SecurityUsers = ({ users }) => {
         <nav>
             <Link to='/security'>Back to security</Link>
         </nav>
-        <main>
-            <h1>Security Users</h1>
+        <main className="secUserMain">
+            <h1 style={{ textAlign: 'center', textDecoration: 'underline' }}>Security Users</h1>
             {listUsers()}
         </main>
     </div>

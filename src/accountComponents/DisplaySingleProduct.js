@@ -71,25 +71,25 @@ const DisplaySingleProduct = ({ products, changeProductName, changeProductDescri
             <h2>Product details for {product.id}</h2>
             </span>
             <br></br>
-            <h4>Product name: {product.name}</h4>
+            <h4 style={{marginLeft: '1%'}}>Product name: {product.name}</h4>
             <form name='changeName' onSubmit = {_changeName}>
                 <input
                     placeholder='name'
                     value={ name }
                     onChange={ ev => setName(ev.target.value)}
                 />
-                <button disabled={!name}>Change Name</button>
+                <button disabled={!name} style={{backgroundColor: '#478a5d', boxShadow: '2px 2px black'}}>Change Name</button>
             </form>
-            <h4>Product decription: {product.description}</h4>
+            <h4 style={{marginLeft: '1%'}}>Product decription: {product.description}</h4>
             <form name='changeDescription' onSubmit = {_changeDescription}>
                 <input
                     placeholder='description'
                     value={ description }
                     onChange={ ev => setDescription(ev.target.value)}
                 />
-                <button disabled={!description}>Change Description</button>
+                <button disabled={!description} style={{backgroundColor: '#478a5d', boxShadow: '2px 2px black'}}>Change Description</button>
             </form>
-            <h4>Product price: ${product.price}</h4>
+            <h4 style={{marginLeft: '1%'}}>Product price: {product.price}</h4>
             <form name='changePrice' onSubmit = {_changePrice}>
                 <input
                     type="number"
@@ -97,10 +97,10 @@ const DisplaySingleProduct = ({ products, changeProductName, changeProductDescri
                     value={ price }
                     onChange={ ev => setPrice(ev.target.value)}
                 />
-                <button disabled={!price}>Change Price</button>
+                <button disabled={!price} style={{backgroundColor: '#478a5d', boxShadow: '2px 2px black'}}>Change Price</button>
             </form>
-            <h4>Vip Only: {product.vip_status ? "true" : "false"}</h4>
-            {product.vip_status ? <button onClick={() => {_changeItemVipStatus(false)}}>Make Item Public</button> : <button onClick={() => {_changeItemVipStatus(true)}}>Make Vip Only</button>}
+            <h4 style={{marginLeft: '1%'}}>Vip Only: {product.vip_status ? "true" : "false"}</h4>
+            {product.vip_status ? <button onClick={() => {_changeItemVipStatus(false)}} style={{backgroundColor: '#478a5d', boxShadow: '2px 2px black'}}>Make Item Public</button> : <button onClick={() => {_changeItemVipStatus(true)}} style={{backgroundColor: '#478a5d', boxShadow: '2px 2px black'}}>Make Vip Only</button>}
             </div>
         </div>
         )

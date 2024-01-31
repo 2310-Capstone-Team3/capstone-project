@@ -1198,4 +1198,52 @@ a {
   padding: 4rem;
 }}
 
+.securityUser {
+  display: flex;
+  flex-direction: column;
+  background-color: #a3c59b;
+  margin-top: -15%;
+}
 
+
+.singleUserSecurity {
+  width: 98%;
+  margin-left: 1%;
+  background-color:#59865f75;
+}
+
+.singleUserSecButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.singleUserSecOrders {
+  text-align: center;
+  width: 98%;
+  margin-left: 1%;
+  background-color:#59865f75;
+}
+
+.secUserMain {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+background-color:#59865f75;
+}
+
+.secProdMain {
+  text-align: center;
+  background-color:#517756;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.secProductButton {
+  background-color:#478a5d;
+  box-shadow: 3px 3px #354b38;
+}
