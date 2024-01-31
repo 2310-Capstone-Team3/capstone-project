@@ -80,7 +80,7 @@ const PassReset = ({users, resetPassword}) => {
             <div>
             <span className='successBox' style={{ display: 'flex', alignItems: 'center'}}>
             <h4 className='successText'>Your password has been reset successfully, you may login with your new details below</h4> 
-            <Link className='successText' to='/account'>Login</Link>
+            <Link className='successText' to='/login'>Login</Link>
             </span>
             </div>
         )}

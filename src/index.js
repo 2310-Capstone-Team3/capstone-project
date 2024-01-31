@@ -217,6 +217,15 @@ const App = () => {
     return flower;
   };
 
+  const handleNavClick = () => {
+    window.location.reload()
+  }
+
+  const handleLogout = () => {
+    logout()
+    navigate('/')
+  }
+
   return (
     <div className='mainBorder'>
       <div>
@@ -226,13 +235,25 @@ const App = () => {
             </div>
             <div className="navi">
               <nav>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/products" className='navComponent'>Products</Link>
+                </button>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/frequent-questions" className='navComponent'>FAQ Forum</Link>
+                </button>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
+                </button>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
+                </button>
                 <div className='navComponent navPictures'>
+                  <button className='navButton' onClick={handleNavClick}>
                   <Link to="/cart"><img src='/public/cart-30-32.png'></img></Link>
+                  </button>
+                  <button className='navButton' onClick={handleNavClick}>
                   <Link to="/account"><img src='/public/contacts-32.png'></img></Link>
+                  </button>              
                 </div>
               </nav>
             </div>
@@ -308,12 +329,21 @@ const App = () => {
             </div>
             <div className="navi">
               <nav>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/products" className='navComponent'>Products</Link>
+                </button> 
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/frequent-questions" className='navComponent'>FAQ Forum</Link>
-                <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
+                </button> 
+                <button className='navButton' onClick={handleNavClick}>
+                  <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
+                </button> 
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
+                </button> 
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/login" className='navComponent'>Sign in</Link>
-              </nav>
+                </button>               </nav>
               </div>
               <Routes>
                 <Route path='/login/*' element={<Account 
@@ -386,10 +416,13 @@ const App = () => {
                             {!auth.id ? 
                               <NavLink to='/login' className="FooterNavTextLink">Sign In</NavLink>
                               :
-                              <NavLink onClick={logout} className="FooterNavTextLink">Log Out</NavLink>
+                              <NavLink onClick={handleLogout} className="FooterNavTextLink">Log Out</NavLink>
                             }
-                            <NavLink to='/register' className="FooterNavTextLink">Register</NavLink>
+                            {auth.id ?
                             <NavLink to='/account' className="FooterNavTextLink">Account</NavLink>
+                            :
+                            <NavLink to='/register' className="FooterNavTextLink">Register</NavLink>
+                            }
                         </div>
                         <NavLink className='FooterNavLink' to='/socials'>
                         <img src="/public/socials.webp" className="FooterNavImage"></img>
