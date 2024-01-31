@@ -138,7 +138,7 @@ const seed = async () => {
   ] = await Promise.all([
     createProduct({
       product_type: "workshop",
-      product_image_path: "/public/productImages/cartoongarden.png",
+      product_image_path: "/public/productImages/masteringworkshop.png",
       workshop_duration: "6 weeks",
       name: "Mastering Flowering Plants",
       price: "$359.99",
@@ -148,7 +148,7 @@ const seed = async () => {
     createProduct({
       product_type: "workshop",
       workshop_duration: "8 weeks",
-      product_image_path: "/public/productImages/cartoongarden.png",
+      product_image_path: "/public/productImages/floralworkshop.png",
       name: "Floral Landscape Design",
       price: "$379.99",
       description:
@@ -156,7 +156,7 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "workshop",
-      product_image_path: "/public/productImages/cartoongarden.png",
+      product_image_path: "/public/productImages/urbanworkshop.png",
       workshop_duration: "5 weeks",
       name: "Urban Flower Gardening Mastery",
       price: "$369.99",
@@ -165,7 +165,7 @@ const seed = async () => {
     }),
     createProduct({
       product_type: "workshop",
-      product_image_path: "/public/productImages/cartoongarden.png",
+      product_image_path: "/public/productImages/sustainableworkshop.png",
       workshop_duration: "10 weeks",
       name: "Sustainable Flower Farming Practices",
       price: "$389.99",
