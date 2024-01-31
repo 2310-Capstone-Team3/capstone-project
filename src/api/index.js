@@ -13,10 +13,6 @@ const fetchProducts = async (setProducts) => {
   setProducts(response.data);
 };
 
-const fetchProductDeets = async (setProductDeets) => {
-  const response = await axios.get("/api/productdeets");
-  setProductDeets(response.data);
-};
 
 const fetchUsers = async (setUsers) => {
   const response = await axios.get("/api/users");
@@ -297,15 +293,6 @@ const logout = (setAuth) => {
   window.localStorage.removeItem("token");
   setAuth({});
 };
-
-// const createDeets = async({ product, deets, setDeets}) => {
-//   const response = await axios.post('/api/details/deets', {
-//     product_id: product.id,
-//     product_name: product.name,
-//     product_price: product.price,
-//     product_description: product.description,
-//   }, getHeaders());
-//   setDeets([...deets, response.data]);
 
 const api = {
   login,

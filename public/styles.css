@@ -679,10 +679,12 @@ form > * {
 
   .frequentQuestionsContainer .frequentQuestionTitle {
     font-size: large;
+    text-align: center;
   }
 
   .frequentQuestionsContainer .frequentQuestionContent {
     font-size: medium;
+    text-align: center;
   }
 
   .frequentQuestionsContainer .frequentQuestionsFormContainer {
