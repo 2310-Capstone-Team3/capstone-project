@@ -29,23 +29,24 @@ const fetchLineItems = async (setLineItems) => {
   setLineItems(response.data);
 };
 
-const createLineItem = async ({ product, cart, lineItems, setLineItems }) => {
+const createLineItem = async ({ product, cart, lineItems, setLineItems, lineItemQuantity }) => {
   const response = await axios.post(
     "/api/lineItems",
     {
       order_id: cart.id,
       product_id: product.id,
+      quantity: lineItemQuantity,
     },
     getHeaders()
   );
   setLineItems([...lineItems, response.data]);
 };
 
-const updateLineItem = async ({ lineItem, cart, lineItems, setLineItems }) => {
+const updateLineItem = async ({ lineItem, cart, lineItems, setLineItems, lineItemQuantity }) => {
   const response = await axios.put(
     `/api/lineItems/${lineItem.id}`,
     {
-      quantity: lineItem.quantity + 1,
+      quantity: lineItem.quantity*1 + lineItemQuantity*1,
       order_id: cart.id,
     },
     getHeaders()

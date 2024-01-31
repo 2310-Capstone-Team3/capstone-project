@@ -1073,9 +1073,56 @@ form > * {
   text-align: center;
 }
 
-
-
 /* Search Items End */
+
+/* Single Product Items Start */
+
+.SingleProductContainer {
+  background-color: white;
+  border: 3px solid #ebeae5;
+  display: flex;
+}
+
+.SingleProductContainer .productImage {
+  border: 3px solid #ebeae5;
+  background-color: #fbfbfb;
+  width: 40%;
+  margin: 15;
+}
+
+.SingleProductContainer .productImage img {
+  width: 500px;
+}
+
+.SingleProductContainer .productDetails h4,
+.SingleProductContainer .productDetails h3,
+.SingleProductContainer .productDetails h2,
+.SingleProductContainer .productDetails h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.SingleProductContainer .productDetails button {
+  background-color: rgb(46, 44, 44);
+  width: 100%;
+  max-width: 650px;
+}
+
+.SingleProductContainer .incrementButtons {
+  display: flex;
+  align-items: center;
+}
+
+.SingleProductContainer .incrementInput {
+  border: 3px solid #ebeae5;
+  background-color: #fbfbfb;
+  font-family: 'Roboto Mono', monospace;
+  height: 50px;
+  text-align: center;
+}
+
+/* Single Product Items End */
 
 /* .break{
   background-color: white;

@@ -18,6 +18,7 @@ import Home from './Home';
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
 import searchBar from './SearchBar';
+import SingleProduct from './accountComponents/SingleProduct'
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -67,12 +68,12 @@ const App = () => {
     }
   }, [auth]);
 
-  const createLineItem = async (product) => {
-    await api.createLineItem({ product, cart, lineItems, setLineItems });
+  const createLineItem = async (product, lineItemQuantity) => {
+    await api.createLineItem({ product, cart, lineItems, setLineItems, lineItemQuantity });
   };
 
-  const updateLineItem = async (lineItem) => {
-    await api.updateLineItem({ lineItem, cart, lineItems, setLineItems });
+  const updateLineItem = async (lineItem, lineItemQuantity) => {
+    await api.updateLineItem({ lineItem, cart, lineItems, setLineItems, lineItemQuantity });
   };
 
   const submitShip = async (formData, order) => {
@@ -200,7 +201,6 @@ const App = () => {
       console.log("Users is empty?", users);
     }
   };
- 
 
   const fetchWorkshops = () => {
     const Workshops = Workshops.find((workshop) => workshop.id === workshop.id);
@@ -265,7 +265,14 @@ const App = () => {
                 cartItems = { cartItems }
                 createLineItem = { createLineItem }
                 updateLineItem = { updateLineItem }
-            
+              />}></Route>
+              <Route path='/products/:productId' element={<SingleProduct
+                auth = { auth }
+                products={ products }
+                cartItems = { cartItems }
+                createLineItem = { createLineItem }
+                updateLineItem = { updateLineItem }
+                lineItems = { lineItems }
               />}></Route>
                 <Route path='/cart' element={<Cart
                 cart = { cart }
@@ -353,6 +360,13 @@ const App = () => {
                 setUsers = {setUsers}
                 />}></Route>
                 <Route path='/products' element={<Products
+                products={ products }
+                cartItems = { cartItems }
+                createLineItem = { createLineItem }
+                updateLineItem = { updateLineItem }
+                auth = { auth }
+              />}></Route>
+              <Route path='/products/:productId' element={<SingleProduct
                 products={ products }
                 cartItems = { cartItems }
                 createLineItem = { createLineItem }

@@ -4,11 +4,7 @@ import { NavLink } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
 const Products = ({
-  products,
-  cartItems,
-  createLineItem,
-  updateLineItem,
-  auth,
+  products
 }) => {
   const [flowers, setFlowers] = useState([])
   const [tools, setTools] = useState([])
