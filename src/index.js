@@ -227,7 +227,7 @@ const App = () => {
             <div className="navi">
               <nav>
                 <Link to="/products" className='navComponent'>Products</Link>
-                <Link to="/services" className='navComponent'>Services</Link>
+                <Link to="/frequent-questions" className='navComponent'>FAQ Forum</Link>
                 <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
                 <div className='navComponent navPictures'>
@@ -309,7 +309,7 @@ const App = () => {
             <div className="navi">
               <nav>
                 <Link to="/products" className='navComponent'>Products</Link>
-                <Link to="/services" className='navComponent'>Services</Link>
+                <Link to="/frequent-questions" className='navComponent'>FAQ Forum</Link>
                 <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
                 <Link to="/login" className='navComponent'>Sign in</Link>
@@ -379,12 +379,15 @@ const App = () => {
                         <div className="FooterNavServices">
                             <h3 className="FooterNavText" style={{ paddingLeft: "5px" }}>Collection</h3>
                             <NavLink to='/products' className="FooterNavTextLink">Products</NavLink>
-                            <NavLink to='/contact' className="FooterNavTextLink">Services</NavLink>
-                            <NavLink to='/frequent-questions' className="FooterNavTextLink">Information</NavLink>
+                            <NavLink to='/contact' className="FooterNavTextLink">Information</NavLink>
                         </div>
                         <div className="FooterNavUser">
                             <h3 className="FooterNavText" style={{ paddingLeft: "5px" }}>User</h3>
-                            <NavLink to='/login' className="FooterNavTextLink">Sign In</NavLink>
+                            {!auth.id ? 
+                              <NavLink to='/login' className="FooterNavTextLink">Sign In</NavLink>
+                              :
+                              <NavLink onClick={logout} className="FooterNavTextLink">Log Out</NavLink>
+                            }
                             <NavLink to='/register' className="FooterNavTextLink">Register</NavLink>
                             <NavLink to='/account' className="FooterNavTextLink">Account</NavLink>
                         </div>

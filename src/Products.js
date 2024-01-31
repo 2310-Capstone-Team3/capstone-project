@@ -84,6 +84,8 @@ const Products = ({
         {displayProducts("tools")}
         <h2>Planters</h2>
         {displayProducts("planters")}
+        <h2>Workshops</h2>
+        {displayProducts("workshops")}
     </main>
   );
 };
