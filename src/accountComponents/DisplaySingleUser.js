@@ -1,25 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from 'react-router-dom'
 
-const DisplaySingleUser = ({users, changeVipStatus, changeAdminStatus}) => {
+const DisplaySingleUser = ({users, changeVipStatus, changeAdminStatus, orders}) => {
     const { userId } = useParams();
     const [userDetails, setUserDetails] = useState([])
     const [vipStatus, setVipStatus] = useState('')
     const [adminStatus, setAdminStatus] = useState('')
-    
-    
-    useEffect(() => {
-        const user = users.data.find(user => user.id === userId)
-        console.log(user)
-        if (user != undefined){
-            setUserDetails(user)
-            setVipStatus(user.is_vip)
-            setAdminStatus(user.is_admin)
-        } else {
-            console.log("User not found")
-        }
-    }, [userId, users.data])
+    const [allOrders, setOrders] = useState([])
 
+    useEffect(() => {
+        setOrders(orders)
+    }, [orders])
+
+    const displayOrders = () => {
+        useEffect(() => {
+            const user = users.data.find(user => user.id === userId)
+            // console.log(user)
+            if (user != undefined){
+                setUserDetails(user)
+                setVipStatus(user.is_vip)
+                setAdminStatus(user.is_admin)
+            } else {
+                console.log("User not found")
+            }
+        }, [userId, users.data])
+        return allOrders.length > 0 ? (
+            allOrders.filter(order => order.user_id === userId).map((order) => (
+                <div key={order.id}>
+                    <hr></hr>
+                    <h3>Order id: {order.id}</h3>
+                    <ul>
+                        <h4>Cart Status: {order.is_cart ? "true" : "false"}</h4>
+                        <h4>Created Date: {order.created_at}</h4>
+                    </ul>
+                    <hr></hr>
+                </div>
+            ))
+        ) : (
+            <p>No Orders Have Been Made</p>
+        );
+    };
+    
     if (!userDetails) {
         console.log(userDetails)
         return <p>Loading...</p>
@@ -51,18 +72,24 @@ const DisplaySingleUser = ({users, changeVipStatus, changeAdminStatus}) => {
             <nav>
                 <Link to='/security/users'>Return to all users</Link>
             </nav>
-            <h2>User Details</h2>
-            <h3>Account Details</h3>
-            <span>
+            <div className="singleUserSecurity">
+            <h2 style={{ textDecoration: 'underline' }}>User Account Details</h2>
+            <span style={{ textAlign: 'center'}}>
                 <h4>User id: {userDetails.id}</h4>
-                <h4>User username: {userDetails.username}</h4>
-                <h4>User email: {userDetails.email}</h4>
-                <h4>User vip status: {vipStatus ? 'true' : 'false' }</h4>
-                <h4>User admin status: {adminStatus ? 'true' : 'false' }</h4>
-                {vipStatus ? <button onClick={() => {_changeVipStatus(false)}}>Remove Vip Status</button> : <button onClick={() => {_changeVipStatus(true)}}>Make User Vip</button>}
-                {adminStatus ? <button onClick={() => {_changeAdminStatus(false)}}>Remove Admin Status</button> : <button onClick={() => {_changeAdminStatus(true)}}>Make User Admin</button>}
+                <h4>Username: {userDetails.username}</h4>
+                <h4>Email: {userDetails.email}</h4>
+                <h4>VIP Status: {vipStatus ? 'true' : 'false' }</h4>
+                <h4>Admin Status: {adminStatus ? 'true' : 'false' }</h4>
+                <div className="singleUserSecButton">
+                {vipStatus ? <button onClick={() => {_changeVipStatus(false)}} style={{backgroundColor: '#2c583b', boxShadow: '1px 2px red'}}>Remove Vip Status</button> : <button onClick={() => {_changeVipStatus(true)}} style={{backgroundColor: '#4F9D69', boxShadow: '1px 2px grey'}}>Make User Vip</button>}
+                {adminStatus ? <button onClick={() => {_changeAdminStatus(false)}} style={{backgroundColor: '#2c583b', boxShadow: '1px 2px red'}}>Remove Admin Status</button> : <button onClick={() => {_changeAdminStatus(true)}} style={{backgroundColor: '#4F9D69', boxShadow: '1px 2px grey'}}>Make User Admin</button>}
+                </div>
             </span>
-            <h3>User Orders</h3>
+            </div>
+            <div className="singleUserSecOrders">
+                <h3>User Orders</h3>
+                {displayOrders()}
+            </div>
         </div>
     )
 }

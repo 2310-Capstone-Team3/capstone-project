@@ -315,9 +315,18 @@ form > * {
     margin-left: 5px;
   }
 
+  .navButton {
+    all: unset;
+  }
+
+  .navButton h1 {
+    padding: 0;
+    margin: 0;
+  }
+
 /* Nav Bar Items End */
 
-/* Login Form Items Start */
+/* Login/Register Form Items Start */
 
   .login {
     align-items: center;
@@ -327,7 +336,8 @@ form > * {
     width: 100%;
     margin: 0;
     background-color: yellow;
-    height: 700px;
+    height: 800px;
+    align-items: center;
   }
 
   .loginFormContainer {
@@ -384,7 +394,244 @@ form > * {
     max-width: 650px;
   }
 
-/* Login Form Items End */
+  .signup {
+    align-items: center;
+  }
+
+  .signupMain {
+    width: 100%;
+    margin: 0;
+    background-color: yellow;
+    height: 700px;
+  }
+
+  .signUpFormContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .signUpContainer {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    align-items: center;
+  }
+
+  .signUpContainer .signUpForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .signUpContainer .signUpInputBox {
+    width: 650px;
+    height: 65px;
+    border: 1px solid #ebeae5;
+  }
+
+  .signUpContainer .signUpFormDiv {
+    display: flex;
+    flex-direction: row;
+  }  
+
+  .signUpContainer .signUpTitle {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .signUpContainer .signUpText {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  .signUpButton {
+    background-color: rgb(46, 44, 44);
+    width: 100%;
+    margin-left: 7.5;
+    max-width: 650px;
+  }
+
+  .signUpContainer .successBox {
+    border: 2px solid #a3c59b;
+    color: black;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .signUpContainer .successText {
+    color: #a3c59b;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .signUpContainer .failedBox {
+    border: 2px solid rgb(171, 18, 18);
+    color: black;
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 120px;
+    text-align: center;
+  }
+
+  .signUpContainer .failedText {
+    color: rgb(171, 18, 18);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .signUpContainer .existsBox {
+    border: 2px solid rgb(184, 184, 19);
+    color: black;
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 120px;
+    text-align: center;
+  }
+
+  .signUpContainer .existsText {
+    color: rgb(184, 184, 19);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .loginContainer .resetBox {
+    border: 2px solid rgb(171, 18, 18);
+    color: black;
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 120px;
+    text-align: center;
+  }
+
+  .loginContainer .resetText {
+    color: rgb(171, 18, 18);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .reset {
+    align-items: center;
+  }
+
+  .resetMain {
+    width: 100%;
+    margin: 0;
+    background-color: yellow;
+    height: 900px;
+    align-items: center;
+  }
+
+  .resetFormContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .resetContainer {
+    background-color: white;
+    border: 3px solid #ebeae5;
+    height: 900px;
+  }
+
+  .resetContainer .resetForm {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .resetContainer .resetInputBox {
+    width: 650px;
+    height: 65px;
+    border: 1px solid #ebeae5;
+  }
+
+  .resetContainer .resetFormDiv {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .resetContainer .resetTitle {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    padding: 10px;
+    margin: 0;
+  }
+
+  .resetContainer .resetText {
+    color: rgb(46, 44, 44);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    width: 100%;
+    padding-left: 15px;
+  }
+
+  .resetButton {
+    background-color: rgb(46, 44, 44);
+    width: 100%;
+    margin-left: 7.5;
+    max-width: 650px;
+  }
+
+  .resetContainer .successBox {
+    border: 2px solid #a3c59b;
+    color: black;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  .resetContainer .successText {
+    color: #a3c59b;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+  .resetContainer .failedBox {
+    border: 2px solid rgb(171, 18, 18);
+    color: black;
+    width: 950px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-bottom: 120px;
+    text-align: center;
+  }
+
+  .resetContainer .failedText {
+    color: rgb(171, 18, 18);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+  }
+
+
+
+/* Login/Register Form Items End */
 
 /* Frequent Questions Items Start */
 
@@ -653,6 +900,139 @@ form > * {
 
 /* Product Items End */
 
+/* Account Items Start */
+
+.indivAccountContainerMain {
+  background-color: white;
+  border: 3px solid #ebeae5;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.indivAccountContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.indivAccountContainerMain h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainerMain .accountDetailsContainer {
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.accountDetailsContainer h5,
+.accountDetailsContainer h4,
+.accountDetailsContainer h3,
+.accountDetailsContainer h2,
+.accountDetailsContainer h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainerMain .accountDetails {
+  background-color: #fbfbfb;
+  border: 3px solid #f0ecec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  height: 100%;
+}
+
+.indivAccountContainerMain .detailsForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.indivAccountContainerMain .detailsForm input {
+  width: 100%;
+  height: 50px;
+}
+
+.indivAccountContainerMain .detailsForm button {
+  background-color: rgb(46, 44, 44);
+  width: 100%;
+  max-width: 650px;
+}
+
+.indivAccountContainerMain button {
+  background-color: rgb(46, 44, 44);
+  width: 100%;
+  max-width: 650px;
+  color: white;
+}
+
+.indivAccountContainerMain .accountOrdersContainer {
+  width: 40%;
+  max-height: 675px;
+}
+
+.accountOrdersContainer h5,
+.accountOrdersContainer h4,
+.accountOrdersContainer h3,
+.accountOrdersContainer h1,
+.accountOrdersContainer h2 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainerMain .accountOrdersContainer hr {
+  width: 75%;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainer .ordersDisplayDiv {
+  background-color: #3E5641;
+  border: 3px solid #354b38;
+  width: 90%;
+  height: 90%;
+  overflow-y: auto;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.orderDetails h4 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+}
+
+.orderDetails h5,
+.orderDetails h6 {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  color: rgb(46, 44, 44);
+}
+
+.indivAccountContainer .orderDetails {
+  min-height: 250px;
+  background-color: white;
+  border: 3px solid #ebeae5;
+  margin-top: 10px;
+  width: 95%;
+  text-align: center;
+}
+
+/* Account Items End */
+
 /* .break{
   background-color: white;
   height:300px;
@@ -800,9 +1180,6 @@ button {
 
   padding: 1rem;
   margin: 1rem;
-  
-
-
 }
 
 a {
@@ -821,4 +1198,52 @@ a {
   padding: 4rem;
 }}
 
+.securityUser {
+  display: flex;
+  flex-direction: column;
+  background-color: #a3c59b;
+  margin-top: -15%;
+}
 
+
+.singleUserSecurity {
+  width: 98%;
+  margin-left: 1%;
+  background-color:#59865f75;
+}
+
+.singleUserSecButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.singleUserSecOrders {
+  text-align: center;
+  width: 98%;
+  margin-left: 1%;
+  background-color:#59865f75;
+}
+
+.secUserMain {
+display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+background-color:#59865f75;
+}
+
+.secProdMain {
+  text-align: center;
+  background-color:#517756;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.secProductButton {
+  background-color:#478a5d;
+  box-shadow: 3px 3px #354b38;
+}

@@ -16,10 +16,10 @@ const SecurityProducts = ({ products, createProduct }) => {
         console.log("inlist", allProducts)
         if (allProducts) {
             return allProducts.map((product) => (
-                <span key={product.id} style={{ display: 'flex', flexDirection: 'column', alignItems: 'left' }}>
+                <span key={product.id}>
                     <Link to={`${product.id}`}>
-                        <button>
-                            <h3>User: {product.name}</h3>
+                        <button className="secProductButton">
+                            <h3>Product/Service: {product.name}</h3>
                         </button>
                     </Link>
                 </span>
@@ -43,7 +43,7 @@ const SecurityProducts = ({ products, createProduct }) => {
         <nav>
             <Link to='/security'>Back to security</Link>
         </nav>
-        <main>
+        <main className="secProdMain">
             <h1>Security Products</h1>
             {listProducts()}
             <br></br>
@@ -65,7 +65,7 @@ const SecurityProducts = ({ products, createProduct }) => {
                         value={ price }
                         onChange={ ev => setPrice(ev.target.value)}
                     />
-                    <button disabled={!name || !description || !price}>Create Product</button>
+                    <button disabled={!name || !description || !price} style={{backgroundColor: '#478a5d', boxShadow: '2px 2px black'}}>Create Product</button>
                 </form>
             </div>
         </main>

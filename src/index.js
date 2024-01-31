@@ -183,6 +183,10 @@ const App = () => {
     }
   };
 
+  const handleNavClick = () => {
+    window.location.reload()
+  }
+
   return (
     <div className='mainBorder'>
       <div>
@@ -192,74 +196,137 @@ const App = () => {
             </div>
             <div className="navi">
               <nav>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/products" className='navComponent'>Products</Link>
+                </button>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/services" className='navComponent'>Services</Link>
+                </button>
+                <button style={{padding:'0', margin:'0', border:'0'}} className='navButton' onClick={handleNavClick}>
                 <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
+                </button>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
+                </button>
+                <button className='navButton' onClick={handleNavClick}>
+                <Link to='/security' className='navComponent'>Security</Link>
+                </button>
                 <div className='navComponent navPictures'>
+                  <button className='navButton' onClick={handleNavClick}>
                   <Link to="/cart"><img src='/public/cart-30-32.png'></img></Link>
+                  </button>
+                  <button className='navButton' onClick={handleNavClick}>
                   <Link to="/account"><img src='/public/contacts-32.png'></img></Link>
+                  </button>
                 </div>
               </nav>
             </div>
             <main>
               <Routes>
-                <Route path='/products' element={<Products
-                auth = { auth }
-                products={ products }
-                cartItems = { cartItems }
-                createLineItem = { createLineItem }
-                updateLineItem = { updateLineItem }
-              />}></Route>
-                <Route path='/cart' element={<Cart
-                cart = { cart }
-                lineItems = { lineItems }
-                products = { products }
-                updateOrder = { updateOrder }
-                removeFromCart = { removeFromCart }
-                plusOne = { plusOne }
-                minusOne = { minusOne }
-                submitShip = { submitShip }
-                user = { fetchUser() }
-              />}></Route>
-                <Route path='/orders' element={<Orders
-                orders = { orders }
-                products = { products }
-                lineItems = { lineItems }
-              />}></Route>
-                <Route path='/account' element={<Account
-                authId = { auth.id }
-                user = { fetchUser() }
-                resetPassword = { resetPassword }
-                resetUsername = { resetUsername }
-                resetEmail = { resetEmail }
-                resetAddress = { resetAddress }
-                logout = {logout}
-              />}></Route>
-              <Route path='/security/*' element={<Security
-              />}></Route>
-              <Route path='/security/users/*' element={<SecurityUsers
-                users = { users }
-              />}></Route>
-              <Route path='/security/products/*' element={<SecurityProducts
-                products = { products }
-                createProduct = { createProduct }
-              />}></Route>
-              <Route path='/security/orders' element={<SecurityOrders
-                orders = { orders }
-              />}></Route>
-              <Route path='/security/users/:userId' element={<DisplaySingleUser
-                users = { users }
-                changeVipStatus = { changeVipStatus }
-                changeAdminStatus = { changeAdminStatus }
-              />}></Route>
-              <Route path='/security/products/:productId' element={<DisplaySingleProduct
-                products = { products }
-                changeProductName= { changeProductName }
-                changeProductDescription= { changeProductDescription }
-                changeProductPrice = { changeProductPrice }
-                changeItemVipStatus = { changeItemVipStatus }
-              />}></Route>
+                <Route
+                  path="/products"
+                  element={
+                    <Products
+                      auth={auth}
+                      products={products}
+                      cartItems={cartItems}
+                      createLineItem={createLineItem}
+                      updateLineItem={updateLineItem}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="/cart"
+                  element={
+                    <Cart
+                      cart={cart}
+                      lineItems={lineItems}
+                      products={products}
+                      updateOrder={updateOrder}
+                      removeFromCart={removeFromCart}
+                      plusOne={plusOne}
+                      minusOne={minusOne}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="/orders"
+                  element={
+                    <Orders
+                      orders={orders}
+                      products={products}
+                      lineItems={lineItems}
+                    />
+                  }
+                ></Route>
+                <Route
+                  path="/account"
+                  element={
+                    <Account
+                      authId={auth.id}
+                      user={fetchUser()}
+                      resetPassword={resetPassword}
+                      resetUsername={resetUsername}
+                      resetEmail={resetEmail}
+                      logout = {logout}
+                      orders = {orders}
+                      products = {products}
+                      lineItems = {lineItems}
+                      resetAddress = { resetAddress }
+                    />
+                  }
+                ></Route>
+                <Route 
+                  path='/security/*'
+                    element={
+                      <Security
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/users/*'
+                    element={
+                      <SecurityUsers
+                        users = { users }
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/products/*' 
+                    element={<SecurityProducts
+                      products = { products }
+                      createProduct = { createProduct }
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/orders'
+                    element={<SecurityOrders
+                      orders = { orders }
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/users/:userId' 
+                    element={<DisplaySingleUser
+                      users = { users }
+                      changeVipStatus = { changeVipStatus }
+                      changeAdminStatus = { changeAdminStatus }
+                      orders = { orders }
+                    />
+                  }
+                ></Route>
+                <Route
+                  path='/security/products/:productId'
+                    element={<DisplaySingleProduct
+                      products = { products }
+                      changeProductName= { changeProductName }
+                      changeProductDescription= { changeProductDescription }
+                      changeProductPrice = { changeProductPrice }
+                      changeItemVipStatus = { changeItemVipStatus }
+                    />
+                  }
+                ></Route>
               </Routes>
             </main>
           </>
@@ -269,11 +336,21 @@ const App = () => {
             </div>
             <div className="navi">
               <nav>
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/products" className='navComponent'>Products</Link>
+                </button> 
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/services" className='navComponent'>Services</Link>
-                <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
+                </button> 
+                <button className='navButton' onClick={handleNavClick}>
+                  <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
+                </button> 
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
+                </button> 
+                <button className='navButton' onClick={handleNavClick}>
                 <Link to="/login" className='navComponent'>Sign in</Link>
+                </button> 
               </nav>
               </div>
               <Routes>
@@ -333,21 +410,39 @@ const App = () => {
                     <div className="FooterNavContent">
                         <div className="FooterNavCompany">
                             <h3 className="FooterNavText" style={{ paddingLeft: "5px" }}>Company</h3>
-                            <NavLink to='/' className="FooterNavTextLink">Home</NavLink>
+                            <button className='navButton' onClick={handleNavClick}>
+                              <NavLink to='/' className="FooterNavTextLink">Home</NavLink>
+                            </button>
+                            <button className='navButton' onClick={handleNavClick}>
                             <NavLink to='/contact' className="FooterNavTextLink">Contact</NavLink>
+                            </button>     
+                            <button className='navButton' onClick={handleNavClick}>
                             <NavLink to='/frequent-questions' className="FooterNavTextLink">FAQ Forum</NavLink>
+                            </button>  
                         </div>
                         <div className="FooterNavServices">
                             <h3 className="FooterNavText" style={{ paddingLeft: "5px" }}>Collection</h3>
-                            <NavLink to='/' className="FooterNavTextLink">Products</NavLink>
-                            <NavLink to='/contact' className="FooterNavTextLink">Services</NavLink>
-                            <NavLink to='/frequent-questions' className="FooterNavTextLink">Information</NavLink>
+                            <button className='navButton' onClick={handleNavClick}>
+                            <NavLink to='/products' className="FooterNavTextLink">Products</NavLink>
+                            </button>
+                            <button className='navButton' onClick={handleNavClick}>
+                            <NavLink to='/services' className="FooterNavTextLink">Services</NavLink>
+                            </button>
+                            <button className='navButton' onClick={handleNavClick}>
+                            <NavLink to='/contact' className="FooterNavTextLink">Information</NavLink>
+                            </button>
                         </div>
                         <div className="FooterNavUser">
                             <h3 className="FooterNavText" style={{ paddingLeft: "5px" }}>User</h3>
+                            <button className='navButton' onClick={handleNavClick}>
                             <NavLink to='/login' className="FooterNavTextLink">Sign In</NavLink>
+                            </button>
+                            <button className='navButton' onClick={handleNavClick}>
                             <NavLink to='/register' className="FooterNavTextLink">Register</NavLink>
+                            </button>
+                            <button className='navButton' onClick={handleNavClick}>
                             <NavLink to='/account' className="FooterNavTextLink">Account</NavLink>
+                            </button>
                         </div>
                         <NavLink className='FooterNavLink' to='/socials'>
                         <img src="/public/socials.webp" className="FooterNavImage"></img>
