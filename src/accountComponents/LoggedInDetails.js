@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const LoggedInDetails = ( { user, resetPassword, resetUsername, resetEmail, logout, orders, products, lineItems, resetAddress } ) => {
     const [username, setUsername] = useState('')
@@ -257,6 +258,7 @@ const LoggedInDetails = ( { user, resetPassword, resetUsername, resetEmail, logo
                         </div>
                     </div>
                 </div>
+                {user.is_admin ? <Link style={{color:"black"}} to='/security'>Admin Portal</Link> : null}
             </main>
         )
     } else {
