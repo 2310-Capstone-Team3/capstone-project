@@ -1,48 +1,39 @@
-     import React from "react";
-     import { Link, useSearchParams } from "react-router-dom";
+import React from "react";
+import { NavLink, createSearchParams, useSearchParams } from "react-router-dom";
     
     const SearchBar = ({products}) => {
     const [searchParams, setSearchParams] = useSearchParams({})
-    //console.log(searchParams.get('search'))
     const filteredParams = products.filter((product) => {
         let lowerCaseProduct = product.name.toLowerCase()
         return !searchParams.get('search') || lowerCaseProduct.indexOf(searchParams.get('search')) !== -1 })
-
     return (
         <div className="searchBar">
-
             <input placeholder='Search Products' value={searchParams.get('search') || ''} onChange={(ev)=> {setSearchParams(ev.target.value.toLowerCase() ? {search: ev.target.value.toLowerCase()} : {})}} />
-        
                 { 
                 filteredParams.length > 0 ?
-                <div className="filter-list">
-              
-               
-                    <h5>Viewing {filteredParams.length} Products</h5>
-                    <ul>
-                    {
-                            filteredParams.map((product) => {
-                            return <li key={product.id}> 
-                           
-                            <Link to={`/products/${product.id}`}>
-                                {product.name}
- 
-                            </Link>
-                        
-                       </li>
-                          })
-                        }
-                       </ul>
+                searchParams.get('search') != undefined ?
+                filteredParams.map((product) => {
+                    return (
+                        <div className="filter-list">
+                                <h5>Viewing {filteredParams.length} Products</h5>
+                                <ul style={{padding:'0'}}>
+                                <div className="searchProduct" key={product.id}>
+                                    <NavLink style={{padding: "0"}} to={`/products/${product.id}`}>
+                                    <img src={product.product_image_path}></img>
+                                    <h5>{product.name}</h5>
+                                    </NavLink>
+                                </div>
+                            </ul>
+                            </div>
+                            )
+                    })
+                    : null
             
-                       </div>
-                       : null
+                    : null
                     }
                     </div>
     )
-                    }
-            
-                      
-  
+}
                 
 export default SearchBar;
 

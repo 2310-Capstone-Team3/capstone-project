@@ -1035,6 +1035,48 @@ form > * {
 
 /* Account Items End */
 
+/* Search Items Begin */
+
+.searchBar { 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.searchProduct {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 200;
+  color: rgb(46, 44, 44);
+  width: 22%; 
+  padding: 10px;
+  text-align: center;
+  border: 3px solid #f0ecec;
+}
+
+.searchProduct ul {
+  padding: 0;
+}
+
+.searchProduct img {
+  max-width: 90%;
+}
+
+.searchBar input {
+  width: 350px;
+  height: 65px;
+  border: 3px solid #ebeae5;
+  background-color: #fbfbfb;
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+}
+
+
+
+/* Search Items End */
+
 /* .break{
   background-color: white;
   height:300px;
