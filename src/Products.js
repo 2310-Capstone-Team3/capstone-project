@@ -92,7 +92,7 @@ const Products = ({
 export default Products;
 
 
-{/* <ul>
+/* <ul>
   {products.map((product) => {
     const cartItem = cartItems.find(
       (lineItem) => lineItem.product_id === product.id
@@ -117,4 +117,4 @@ export default Products;
       </li>
     );
   })}
-</ul> */}
+</ul> */

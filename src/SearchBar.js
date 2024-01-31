@@ -1,45 +1,49 @@
-import React from "react";
-     import { useState } from "react";
-     import { Link } from "react-router-dom";
+     import React from "react";
+     import { Link, useSearchParams } from "react-router-dom";
+    
     const SearchBar = ({products}) => {
-    const [searchTerm, setSearchTerm] = useState("")
-    const filteredTerms = products.filter((product) => {
+    const [searchParams, setSearchParams] = useSearchParams({})
+    //console.log(searchParams.get('search'))
+    const filteredParams = products.filter((product) => {
         let lowerCaseProduct = product.name.toLowerCase()
-        return lowerCaseProduct.indexOf(searchTerm) !== -1
+        return !searchParams.get('search') || lowerCaseProduct.indexOf(searchParams.get('search')) !== -1 })
 
-    })
-    return(
+    return (
         <div className="searchBar">
 
-            <label>
-                <input placeholder="Search Products" value={searchTerm} onChange={(ev) => {setSearchTerm(ev.target.value.toLowerCase())}} />
-            </label>
-            {
-             searchTerm.length > 0 ? 
-                <div className="filter-list"> 
-                    <h5>Viewing {filteredTerms.length} of {products.length} Products</h5>
+            <input placeholder='Search Products' value={searchParams.get('search') || ''} onChange={(ev)=> {setSearchParams(ev.target.value.toLowerCase() ? {search: ev.target.value.toLowerCase()} : {})}} />
+        
+                { 
+                filteredParams.length > 0 ?
+                <div className="filter-list">
+              
+               
+                    <h5>Viewing {filteredParams.length} Products</h5>
                     <ul>
-                        {
-                          filteredTerms.map((product) => {
+                    {
+                            filteredParams.map((product) => {
                             return <li key={product.id}> 
                            
-                            <Link to={`/products`}>
+                            <Link to={`/products/${product.id}`}>
                                 {product.name}
  
                             </Link>
-                            
-                          
-                                </li>
-
-
-                            })
+                        
+                       </li>
+                          })
                         }
                        </ul>
             
-                      </div>
-                    : null
+                       </div>
+                       : null
                     }
-                   </div>
-                   ) 
-                   }
+                    </div>
+    )
+                    }
+            
+                      
+  
+                
 export default SearchBar;
+
+     {/* <input placeholder="Search Products" value={searchTerm} onChange={(ev) => {setSearchTerm(ev.target.value.toLowerCase())}} /> */}
