@@ -66,9 +66,9 @@ const updateLineItem = async(lineItem)=> {
 const createLineItem = async(lineItem)=> {
   await ensureCart(lineItem);
   const SQL = `
-  INSERT INTO line_items (product_id, order_id, id) VALUES($1, $2, $3) RETURNING *
+  INSERT INTO line_items (product_id, order_id, quantity, id) VALUES($1, $2, $3, $4) RETURNING *
 `;
-  response = await client.query(SQL, [ lineItem.product_id, lineItem.order_id, uuidv4()]);
+  response = await client.query(SQL, [ lineItem.product_id, lineItem.order_id, lineItem.quantity, uuidv4()]);
   return response.rows[0];
 };
 
