@@ -73,7 +73,6 @@ const Products = ({
       <div className="search">
         <SearchBar products={products} />
       </div>
-     
         <br></br>
         <h2>Our Collection</h2>
         <br></br>
