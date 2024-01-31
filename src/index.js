@@ -216,7 +216,6 @@ const App = () => {
     const Flowers = Flowers.find((flower) => flower.id === flower.id);
     return flower;
   };
-  
 
   return (
     <div className='mainBorder'>
@@ -271,6 +270,9 @@ const App = () => {
                 resetEmail = { resetEmail }
                 resetAddress = { resetAddress }
                 logout = {logout}
+                orders = {orders}
+                products = {products}
+                lineItems = {lineItems}
               />}></Route>
               <Route path='/security/*' element={<Security
               />}></Route>
@@ -288,6 +290,7 @@ const App = () => {
                 users = { users }
                 changeVipStatus = { changeVipStatus }
                 changeAdminStatus = { changeAdminStatus }
+                orders = { orders }
               />}></Route>
               <Route path='/security/products/:productId' element={<DisplaySingleProduct
                 products = { products }
@@ -375,7 +378,7 @@ const App = () => {
                         </div>
                         <div className="FooterNavServices">
                             <h3 className="FooterNavText" style={{ paddingLeft: "5px" }}>Collection</h3>
-                            <NavLink to='/' className="FooterNavTextLink">Products</NavLink>
+                            <NavLink to='/products' className="FooterNavTextLink">Products</NavLink>
                             <NavLink to='/contact' className="FooterNavTextLink">Services</NavLink>
                             <NavLink to='/frequent-questions' className="FooterNavTextLink">Information</NavLink>
                         </div>
@@ -401,3 +404,4 @@ root.render(
     <App />
   </HashRouter>
 );
+

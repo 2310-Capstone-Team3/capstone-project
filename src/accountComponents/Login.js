@@ -25,7 +25,7 @@ const Login = ({ login, users }) => {
     setUsername("");
     setPassword("");
   };
-
+  
   return (
     <main className="loginContainer">
       <div className="loginFormContainer">
@@ -53,8 +53,10 @@ const Login = ({ login, users }) => {
           <button className="loginButton" disabled={!username || !password}>
             Sign In
           </button>
-
-          {loginStatus === "na" && (
+          <Link to='/register'>
+            <h4 className='loginText'>Dont have an account? Click here to register.</h4>
+          </Link>
+          {loginStatus === "N/A" && (
             <span style={{ display: "flex", alignItems: "center" }}>
               <img
                 src="https://static-00.iconduck.com/assets.00/dialog-error-icon-2048x2046-iguhlihj.png"
@@ -82,6 +84,7 @@ const Login = ({ login, users }) => {
                 </h4>
               </span>
               <Link to="/passreset">Reset Password</Link>
+
             </div>
           )}
         </form>

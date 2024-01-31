@@ -31,8 +31,8 @@ const SecurityOrders = ({ orders }) => {
             <nav>
                 <Link to='/security'>Back to security</Link>
             </nav>
-            <main>
-                <h1>Existing Orders</h1>
+            <main style={{backgroundColor: '#517756'}}>
+                <h1 style={{textAlign: 'center'}}>Existing Orders</h1>
                 {displayOrders()}
             </main>
         </div>
