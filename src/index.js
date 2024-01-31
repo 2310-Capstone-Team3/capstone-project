@@ -208,9 +208,6 @@ const App = () => {
                 <button className='navButton' onClick={handleNavClick}>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
                 </button>
-                <button className='navButton' onClick={handleNavClick}>
-                <Link to='/security' className='navComponent'>Security</Link>
-                </button>
                 <div className='navComponent navPictures'>
                   <button className='navButton' onClick={handleNavClick}>
                   <Link to="/cart"><img src='/public/cart-30-32.png'></img></Link>
