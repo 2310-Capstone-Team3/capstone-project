@@ -235,16 +235,16 @@ const App = () => {
             </div>
             <div className="navi">
               <nav>
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                 <Link to="/products" className='navComponent'>Products</Link>
                 </button>
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                 <Link to="/frequent-questions" className='navComponent'>FAQ Forum</Link>
                 </button>
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                 <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
                 </button>
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
                 </button>
                 <div className='navComponent navPictures'>
@@ -336,19 +336,19 @@ const App = () => {
             </div>
             <div className="navi">
               <nav>
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                 <Link to="/products" className='navComponent'>Products</Link>
                 </button> 
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                 <Link to="/frequent-questions" className='navComponent'>FAQ Forum</Link>
                 </button> 
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                   <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
                 </button> 
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                 <Link to='/contact' className='navComponent'>Contact Us</Link>
                 </button> 
-                <button className='navButton' onClick={handleNavClick}>
+                <button className='navButton'>
                 <Link to="/login" className='navComponent'>Sign in</Link>
                 </button>               </nav>
               </div>
