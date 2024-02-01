@@ -15,24 +15,24 @@ const Home = () => {
                 <div className="catalogPreview">
                     <section className="catalogProduct">
                         <span className="productContainer">
-                                <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'> 
+                                <img src="/public/productimages/anthuriums.webp" alt="ProductImage"></img>
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products'> 
                                 Explore This Product
                             </NavLink>     
                         </span>  
                     </section>
                     <section className="catalogProduct">
                         <span className="productContainer">
-                            <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'>
+                            <img src="/public/productimages/orchid.png" alt="ProductImage"></img>
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products'>
                                 Explore This Product
                             </NavLink>
                         </span>
                     </section>
                     <section className="catalogProduct">
                         <span className="productContainer">
-                            <img src="/public/tempProduct.webp" alt="ProductImage"></img>
-                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'>
+                            <img src="/public/productimages/lotuses.png" alt="ProductImage"></img>
+                            <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products'>
                                 Explore This Product
                             </NavLink>     
                         </span>         
@@ -47,31 +47,31 @@ const Home = () => {
             </section> 
                 <section className="homeReviewsContainer">
                     <div className="homeReviews">
+                    <span className="reviewPreview">
+                        <img src="/public/5starpng.png" alt="5 stars"></img>
+                        <h3>Exquisite Orchids!</h3>
+                        <h5>The orchids I ordered were stunning! The vibrant colors and delicate petals exceeded my expectations. Highly recommended!</h5>
+                        <span className="customerDetails">
+                            <h5>FloralEnthusiast123</h5>
+                            <h5>January 31, 2024</h5>
+                        </span>
+                        </span>
                         <span className="reviewPreview">
-                            <img src="/public/5starpng.png"></img>
-                            <h3>Sample Title</h3>
-                            <h5>Sample Text</h5>
+                            <img src="/public/5starpng.png" alt="5 stars"></img>
+                            <h3>Ravishing Roses</h3>
+                            <h5>I purchased a bouquet of roses for a special occasion, and they were absolutely breathtaking. A delightful purchase!</h5>
                             <span className="customerDetails">
-                                <h5>Customer Name</h5>
-                                <h5>Review Date</h5>
+                                <h5>RoseLover567</h5>
+                                <h5>January 31, 2024</h5>
                             </span>
                         </span>
                         <span className="reviewPreview">
-                            <img src="/public/5starpng.png"></img>
-                            <h3>Sample Title</h3>
-                            <h5>Sample Text</h5>
+                            <img src="/public/5starpng.png" alt="5 stars"></img>
+                            <h3>Birds of Paradise Elegance</h3>
+                            <h5>The birds of paradise arrangement I received was incredible. The vibrant colors added a touch of tropical paradise to my home.</h5>
                             <span className="customerDetails">
-                                <h5>Customer Name</h5>
-                                <h5>Review Date</h5>
-                            </span>
-                        </span>
-                        <span className="reviewPreview">
-                            <img src="/public/5starpng.png"></img>
-                            <h3>Sample Title</h3>
-                            <h5>Sample Text</h5>
-                            <span className="customerDetails">
-                                <h5>Customer Name</h5>
-                                <h5>Review Date</h5>
+                                <h5>TropicalOasis89</h5>
+                                <h5>January 31, 2024</h5>
                             </span>
                         </span>
                     </div>

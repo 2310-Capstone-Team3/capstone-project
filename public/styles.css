@@ -97,6 +97,8 @@ form > * {
   .homeContainer .productContainer {
     position: relative;
     width: 100%;
+    border: 1px solid #ebeae5;
+    background-color: #fbfbfb;
   }
 
   .homeContainer .homeMainSection > h1 {
@@ -154,7 +156,8 @@ form > * {
     padding-right: 15px;
     font-family: 'Roboto Mono', monospace;
     font-weight: 400;
-    transform: translateY(-10px);
+    margin: 0;
+    margin-bottom: 10;
   }
 
   .homeContainer .homeAbout {
