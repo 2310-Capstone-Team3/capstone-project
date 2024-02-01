@@ -133,7 +133,7 @@ form > * {
   }
 
   .homeContainer .reviewPreview > img {
-    width: 40%;
+    width: 100px;
     margin: 10 10 0 10;
     padding: 0;
   }
