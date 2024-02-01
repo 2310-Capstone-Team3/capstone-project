@@ -116,7 +116,7 @@ const LoggedInDetails = ( { user, resetPassword, resetUsername, resetEmail, logo
                 })
             }
         })
-        return total
+        return total.toFixed(2)
     }
 
     const _changeUsername = async (ev) => {

@@ -1115,15 +1115,94 @@ form > * {
 }
 
 .SingleProductContainer .incrementInput {
-  border: 3px solid #ebeae5;
+  border: 1px solid #ebeae5;
   background-color: #fbfbfb;
   font-family: 'Roboto Mono', monospace;
   height: 50px;
   text-align: center;
 }
 
+
 /* Single Product Items End */
 
+/* Cart Items Start */
+
+.CartContainer {
+  background-color: white;
+  border: 3px solid #ebeae5;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.productListItem {
+  font-family: 'Roboto Mono', monospace;
+  color: rgb(46, 44, 44);  
+  padding: 0;
+  margin: 5;
+  padding: 10;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.productListItem button {
+  background-color: rgb(46, 44, 44);
+  width: 100px;
+  max-width: 650px;
+}
+
+.CartText {
+  font-family: 'Roboto Mono', monospace;
+  color: rgb(46, 44, 44);
+  font-weight: 400;
+}
+
+.CartTextLink {
+  font-family: 'Roboto Mono', monospace;
+  color: #354b38;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.CartContainer .cartItemsContainer {
+  border: 3px solid #ebeae5;
+  background-color: #fbfbfb;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.CartContainer .cartInput {
+  border: 1px solid #ebeae5;
+  background-color: #fbfbfb;
+  font-family: 'Roboto Mono', monospace;
+  height: 50px;
+  text-align: center;
+}
+
+.CartContainer .cartDetailsContainer {
+  border: 3px solid #ebeae5;
+  background-color: #fbfbfb;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.CartContainer .cartCheckbox {
+  margin-left: 30%;
+}
+
+.CartContainer .cartButton {
+  background-color: rgb(46, 44, 44);
+  width: 80%;
+  max-width: 650px;
+}
+
+/* Cart Items End */
 /* .break{
   background-color: white;
   height:300px;
