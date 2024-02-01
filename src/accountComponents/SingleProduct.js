@@ -51,44 +51,67 @@ const SingleProduct = ({auth, products, cartItems, createLineItem, updateLineIte
     if (product) {
         return (
             <main className='SingleProductContainer'>
-                <div className='productImage'>
-                    <img src={product.product_image_path}></img>
-                </div>
-                <div className='productDetails'>
-                    <h1>{product.name}</h1>
-                    <h3>{product.description}</h3>
-                    <h3>Price : {product.price}</h3>
-                    {auth.id ? (
-                        <span className='incrementButtons'>
-                            <button style={{width: "25%"}} onClick={() => addAmount()}>+</button>
-                            <input
-                            placeholder='amount to add'
-                            value={incrementAmount}
-                            className='incrementInput'
-                            onChange={ ev => setIncrementAmount(ev.target.value*1)}
-                            ></input>
-                            <button style={{width: "25%"}} onClick={() => minusAmount()}>-</button>
-                        </span>
-                    ) : (
-                        null
-                    )}
-                    {auth.id ? (
-                        cartItem ? (
-                        <button onClick={() => updateProduct()}>
-                            Add More to Cart
-                        </button>
-                        
-                    ) : (
-                        <button onClick={() => createProduct()}>Add to Cart</button>
-                    )
-                    ) : null}
-                    {auth.id ? (
-                        <h4 style={{marginLeft:"30%"}}>Cart Amount : {cartItem ? cartItem.quantity : 0}</h4>
+                <div className='productContainer'>
+                    <div className='productImage'>
+                        <img src={product.product_image_path}></img>
+                    </div>
+                    <div className='productDetails'>
+                        <h1>{product.name}</h1>
+                        <h3>{product.description}</h3>
+                        <h3>Price : {product.price}</h3>
+                        {auth.id ? (
+                            <span className='incrementButtons'>
+                                <button style={{width: "25%"}} onClick={() => addAmount()}>+</button>
+                                <input
+                                placeholder='amount to add'
+                                value={incrementAmount}
+                                className='incrementInput'
+                                onChange={ ev => setIncrementAmount(ev.target.value*1)}
+                                ></input>
+                                <button style={{width: "25%"}} onClick={() => minusAmount()}>-</button>
+                            </span>
                         ) : (
                             null
-                            )}
-                            {cartItem ? <button onClick={() => navToCart()}>To Cart</button> : null}                 
+                        )}
+                        {auth.id ? (
+                            cartItem ? (
+                            <button onClick={() => updateProduct()}>
+                                Add More to Cart
+                            </button>
+                            
+                        ) : (
+                            <button onClick={() => createProduct()}>Add to Cart</button>
+                        )
+                        ) : null}
+                        {auth.id ? (
+                            <h4 style={{marginLeft:"30%"}}>Cart Amount : {cartItem ? cartItem.quantity : 0}</h4>
+                            ) : (
+                                null
+                                )}
+                                {cartItem ? <button onClick={() => navToCart()}>To Cart</button> : null}                 
+                    </div>
                 </div>
+                <section className="reviewsForm">
+                <div className="reviewFormContainer">
+                    <form className='reviewForm' onSubmit={(ev) => {ev.preventDefault(), console.log("pressed")}}>
+                        <h3>Leave a review!</h3>
+                        <div>
+                            <input
+                            className="inputInfo"
+                            placeholder="Name"
+                            />
+                        </div>
+                        <div>
+                            <input
+                            className="inputInfo"
+                            placeholder="Review"
+                            />
+                        </div>
+                        <button className="reviewButton" type="submit">Submit</button>
+                    </form>
+                </div>
+                <hr></hr>
+            </section>
             </main>
         )
     }

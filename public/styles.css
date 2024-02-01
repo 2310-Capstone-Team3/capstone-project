@@ -1081,9 +1081,8 @@ form > * {
 /* Single Product Items Start */
 
 .SingleProductContainer {
-  background-color: white;
-  border: 3px solid #ebeae5;
   display: flex;
+  flex-direction: column;
 }
 
 .SingleProductContainer .productImage {
@@ -1123,6 +1122,44 @@ form > * {
   font-family: 'Roboto Mono', monospace;
   height: 50px;
   text-align: center;
+}
+
+.SingleProductContainer .productContainer {
+  background-color: white;
+  border: 3px solid #ebeae5;
+  display: flex;
+}
+
+.SingleProductContainer .reviewsForm {
+  background-color: white;
+  border: 3px solid #ebeae5;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SingleProductContainer .reviewFormContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SingleProductContainer .reviewFormContainer form input {
+  width: 500px;
+  height: 50px;
+  border: 1px solid #ebeae5;
+}
+
+.SingleProductContainer form h3 {
+  color: rgb(46, 44, 44);
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+}
+
+.SingleProductContainer form button {
+    background-color: rgb(46, 44, 44);
+    width: 500px;
 }
 
 
