@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, createSearchParams, useSearchParams } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
     
     const SearchBar = ({products}) => {
     const [searchParams, setSearchParams] = useSearchParams({})
