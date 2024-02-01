@@ -36,6 +36,13 @@ const {
   fetchOrders,
 } = require('./cart');
 
+const {
+  createReview,
+  fetchReview,
+  newReview,
+  
+} = require ('./reviews');
+
 const seed = async () => {
   const SQL = `
     DROP TABLE IF EXISTS line_items;
@@ -43,7 +50,7 @@ const seed = async () => {
     DROP TABLE IF EXISTS orders;
     DROP TABLE IF EXISTS users;
     DROP TABLE IF EXISTS reviews;
-    DROP TABLE IF EXISTS workshops;
+   
   
     CREATE TABLE users(
       id UUID PRIMARY KEY,
@@ -69,12 +76,12 @@ const seed = async () => {
       vip_status BOOLEAN DEFAULT false NOT NULL
     ); 
 
-    CREATE TABLE reviews (
+    CREATE TABLE reviews(
       id UUID PRIMARY KEY,
-      name VARCHAR(50),
-      review_title VARCHAR(50),
-      body TEXT
+      name VARCHAR(50) NOT NULL,
+      body TEXT NOT NULL
     );
+    
 
     CREATE TABLE orders(
       id UUID PRIMARY KEY,
@@ -94,7 +101,24 @@ const seed = async () => {
       CONSTRAINT product_and_order_key UNIQUE(product_id, order_id)
     );
   `;
+
+
   await client.query(SQL);
+
+  const [reviewOne, reviewTwo, reviewThree] = await Promise.all([
+    createReview({
+      name: "Samantha Huntington",
+      body: "Stunning flowers, impeccable service. Highly recommend for any occasion.",
+    }),
+    createReview({
+      name: "Chris Leone",
+      body: "Exquisite bouquets, exceptional staff. Never disappoints!",
+    }),
+    createReview({
+      name: "Bob Hart",
+      body: "Fresh and unique blooms with friendly service; Always my go-to for beautiful arrangements!.",
+    }),
+  ]);
 
   const [dylan, seth, aubrionna, elly] = await Promise.all([
     createUser({
@@ -126,6 +150,8 @@ const seed = async () => {
       is_vip: true,
     }),
   ]);
+
+
   const [
     sixWeekCourse,
     eightWeekCourse,
@@ -270,6 +296,8 @@ const seed = async () => {
     }),
   ]);
 
+
+
   let orders = await fetchOrders(dylan.id);
   let cart = orders.find((order) => order.is_cart);
   let lineItem = await createLineItem({
@@ -318,5 +346,7 @@ module.exports = {
   changeProductDescription,
   changeProductPrice,
   createProduct,
-  changeItemVipStatus
+  changeItemVipStatus,
+  createReview,
+  fetchReview,
 };

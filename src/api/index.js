@@ -8,16 +8,21 @@ const getHeaders = () => {
   };
 };
 
+const NewReview = async (NewReview) => {
+  const response = await axios.get("/api/reviews", reviews);
+  console.log(response.data);
+  setNewReview([...reviews, response.data])
+};
+
+const fetchReview = async (setReview) => {
+  const response = await axios.get("/api/reviews");
+  setReview(response.data);
+};
+
 const fetchProducts = async (setProducts) => {
   const response = await axios.get("/api/products");
   setProducts(response.data);
 };
-
-const fetchProductDeets = async (setProductDeets) => {
-  const response = await axios.get("/api/productdeets");
-  setProductDeets(response.data);
-};
-
 const fetchUsers = async (setUsers) => {
   const response = await axios.get("/api/users");
   setUsers(response);
@@ -293,19 +298,23 @@ const createProduct = async ({ name, description, price }) => {
   }
 };
 
+const createReview = async ({ name, body }) => {
+  try {
+    return await axios.post("/api/reviews", {
+      name: name,
+      body: body,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
 const logout = (setAuth) => {
   window.localStorage.removeItem("token");
   setAuth({});
 };
 
-// const createDeets = async({ product, deets, setDeets}) => {
-//   const response = await axios.post('/api/details/deets', {
-//     product_id: product.id,
-//     product_name: product.name,
-//     product_price: product.price,
-//     product_description: product.description,
-//   }, getHeaders());
-//   setDeets([...deets, response.data]);
 
 const api = {
   login,
@@ -333,7 +342,9 @@ const api = {
   changeProductDescription,
   changeProductPrice,
   createProduct,
-  changeItemVipStatus
+  changeItemVipStatus,
+  createReview,
+  fetchReview,
 };
 
 export default api;

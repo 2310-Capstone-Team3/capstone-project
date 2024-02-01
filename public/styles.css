@@ -20,7 +20,7 @@ body {
 
 body {
   /* font-family: Poppins, serif; */
-  font-family: Manrope, sans-serif;
+  font-family: 'Roboto Mono', monospace;
   margin: 0;
   padding: 0;
 }
@@ -170,7 +170,7 @@ form > * {
   }
 
   .homeContainer .homeAbout .AboutContentContainer .AboutText {
-    width: 65%;
+    width: 90%;
     margin: 20px;
     display: flex;
     flex-direction: column;
@@ -1128,9 +1128,83 @@ p {
   color: white;
 }
 
+.review {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Roboto Mono', monospace;
+    font-weight: 200;
+    color:white;
+}
+
+.review button {
+  background-color: rgb(46, 44, 44);
+  width: 100%;
+  max-width: 100px;
+  color: white;
+}
+
+.singleProduct{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.singleProduct img {
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.singleProduct h4{
+  max-width: 500px;
+}
 
 
 
+.reviewTitle h1 {
+  justify-content: center;
+  padding-top: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+}
+
+.posts  > img {
+  width: 40%;
+  margin: 10 10 0 10;
+  padding: 0;
+}
+
+.posts {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.posts h2 {
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  transform: translateY(-10px);
+  color: black;
+  font-size: 20px;
+
+}
+
+.posts li {
+  color: black;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 400;
+  transform: translateY(-10px);
+  background-color: #a3c59b;
+}
 
 
 
@@ -1174,9 +1248,10 @@ li {
 
 
 button {
-  color: #f7f2f6;
-  font-family: Manrope, sans-serif;
-  background-color: rgba(103,178,207,255);
+  background-color: rgb(46, 44, 44);
+  width: 100%;
+  max-width: 100px;
+  color: white;
 
   padding: 1rem;
   margin: 1rem;

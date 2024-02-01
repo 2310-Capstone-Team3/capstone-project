@@ -17,7 +17,7 @@ const Home = () => {
                         <span className="productContainer">
                                 <img src="/public/tempProduct.webp" alt="ProductImage"></img>
                             <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'> 
-                                Explore This Product
+                                Flowers
                             </NavLink>     
                         </span>  
                     </section>
@@ -25,7 +25,7 @@ const Home = () => {
                         <span className="productContainer">
                             <img src="/public/tempProduct.webp" alt="ProductImage"></img>
                             <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'>
-                                Explore This Product
+                                Workshops
                             </NavLink>
                         </span>
                     </section>
@@ -33,7 +33,7 @@ const Home = () => {
                         <span className="productContainer">
                             <img src="/public/tempProduct.webp" alt="ProductImage"></img>
                             <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products/:productId'>
-                                Explore This Product
+                                Tools
                             </NavLink>     
                         </span>         
                     </section>
@@ -49,29 +49,24 @@ const Home = () => {
                     <div className="homeReviews">
                         <span className="reviewPreview">
                             <img src="/public/5starpng.png"></img>
-                            <h3>Sample Title</h3>
-                            <h5>Sample Text</h5>
+                 
+                            <h5>Stunning flowers, impeccable service. Highly recommend for any occasion.</h5>
                             <span className="customerDetails">
-                                <h5>Customer Name</h5>
-                                <h5>Review Date</h5>
+                                <h5>Samantha Huntington</h5>
                             </span>
                         </span>
                         <span className="reviewPreview">
                             <img src="/public/5starpng.png"></img>
-                            <h3>Sample Title</h3>
-                            <h5>Sample Text</h5>
+                            <h5>Exquisite bouquets, exceptional staff. Never disappoints!</h5>
                             <span className="customerDetails">
-                                <h5>Customer Name</h5>
-                                <h5>Review Date</h5>
+                                <h5>Chris Leone</h5>
                             </span>
                         </span>
                         <span className="reviewPreview">
                             <img src="/public/5starpng.png"></img>
-                            <h3>Sample Title</h3>
-                            <h5>Sample Text</h5>
+                            <h5>Fresh and unique blooms with friendly service; Always my go-to for beautiful arrangements!.</h5>
                             <span className="customerDetails">
-                                <h5>Customer Name</h5>
-                                <h5>Review Date</h5>
+                                <h5>Bob Hart</h5>
                             </span>
                         </span>
                     </div>

@@ -14,6 +14,7 @@ const Products = ({
   const [planters, setPlanters] = useState([])
   const [workshops, setWorkshops] = useState([])
 
+
   useEffect(() => {
     const fetchProducts = () => {
       const filteredFlowers = products.filter(product => product.product_type === 'flower');

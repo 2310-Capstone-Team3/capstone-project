@@ -17,6 +17,10 @@ import SecurityOrders from './accountComponents/SecurityOrders'
 import Home from './Home';
 import FrequentQuestions from './accountComponents/FrequentQuestions';
 import Contact from './accountComponents/Contact';
+import SingleProduct from './SingleProduct';
+import Workshops from './Workshops';
+import Reviews from './Reviews';
+import SubmitReview from './SubmitReview';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -25,9 +29,40 @@ const App = () => {
   const [auth, setAuth] = useState({});
   const navigate = useNavigate();
   const [users, setUsers] = useState({ data: [] });
+  const [reviews, setReview] = useState([]);
 
   const attemptLoginWithToken = async () => {
     await api.attemptLoginWithToken(setAuth);
+  };
+
+
+  
+  const fetchReview = async(name, body) => {
+    const response = await api.createReview({ name, body })
+    return response
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await api.fetchReview(setReview);
+    };
+    fetchData();
+  }, []);
+
+const newReview = async(nameAdd, bodyAdd) => {
+    const response = await api.newReview({nameAdd,bodyAdd})
+    return response
+}; 
+
+const sendSubmission = async(review)=>{
+  const response = await axios.post('/api/reviews', review)
+    console.log(response.data)
+}
+
+
+  const createReview = async(name, body) => {
+    const response = await api.createReview({ name, body })
+    return response
   };
 
   useEffect(() => {
@@ -200,7 +235,7 @@ const App = () => {
                 <Link to="/products" className='navComponent'>Products</Link>
                 </button>
                 <button className='navButton' onClick={handleNavClick}>
-                <Link to="/services" className='navComponent'>Services</Link>
+                <Link to="/workshops" className='navComponent'>Services</Link>
                 </button>
                 <button style={{padding:'0', margin:'0', border:'0'}} className='navButton' onClick={handleNavClick}>
                 <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
@@ -220,8 +255,55 @@ const App = () => {
             </div>
             <main>
               <Routes>
+              <Route
+                  path='/submit'
+                    element={<SubmitReview
+                      reviews = { reviews }
+                      createReview={createReview}
+                      fetchReview={fetchReview}
+                      newReview={newReview}
+                      sendSubmission = {sendSubmission}
+                    />
+                  }
+                ></Route>
+              <Route
+                  path='/reviews'
+                    element={<Reviews
+                      reviews = { reviews }
+                      createReview={createReview}
+                      fetchReview={fetchReview}
+                      sendSubmission={sendSubmission}
+                    />
+                  }
+                ></Route>
+              <Route
+                  path="/workshops"
+                  element={
+                    <Workshops
+                      auth={auth}
+                      products={products}
+                      cartItems={cartItems}
+                      createLineItem={createLineItem}
+                      updateLineItem={updateLineItem}
+                      reviews={reviews}
+
+                    />
+                  }
+                ></Route>
+                 <Route
+                  path="/products/:productId"
+                  element={
+                    <SingleProduct
+                      auth={auth}
+                      products={products}
+                      cartItems={cartItems}
+                      createLineItem={createLineItem}
+                      updateLineItem={updateLineItem}
+                    />
+                  }
+                ></Route>
                 <Route
-                  path="/products"
+                  path="/products/*"
                   element={
                     <Products
                       auth={auth}
@@ -293,6 +375,8 @@ const App = () => {
                     element={<SecurityProducts
                       products = { products }
                       createProduct = { createProduct }
+                      reviews={reviews}
+
                     />
                   }
                 ></Route>
@@ -336,7 +420,7 @@ const App = () => {
                 <Link to="/products" className='navComponent'>Products</Link>
                 </button> 
                 <button className='navButton' onClick={handleNavClick}>
-                <Link to="/services" className='navComponent'>Services</Link>
+                <Link to="/workshops" className='navComponent'>Services</Link>
                 </button> 
                 <button className='navButton' onClick={handleNavClick}>
                   <Link to='/' className='navComponent, navTitle'><h1>Bloom Room</h1></Link>
@@ -350,18 +434,66 @@ const App = () => {
               </nav>
               </div>
               <Routes>
+              <Route
+                  path='/submit'
+                    element={<SubmitReview
+                      reviews = { reviews }
+                      createReview={createReview}
+                      fetchReview={fetchReview}
+                      sendSubmission = {sendSubmission}
+                    />
+                  }
+                ></Route>
+              <Route
+                  path='/reviews'
+                    element={<Reviews
+                      reviews = { reviews }
+                      createReview={createReview}
+                      fetchReview={fetchReview}
+                      newReview={newReview}
+                      sendSubmission={sendSubmission}
+                    />
+                  }></Route>
+              <Route
+                  path="/workshops"
+                  element={
+                    <Workshops
+                      auth={auth}
+                      products={products}
+                      cartItems={cartItems}
+                      createLineItem={createLineItem}
+                      updateLineItem={updateLineItem}
+                      reviews={reviews}
+
+                    />
+                  }
+                ></Route>
+              <Route
+                  path="/products/:productId"
+                  element={
+                    <SingleProduct
+                      auth={auth}
+                      products={products}
+                      cartItems={cartItems}
+                      createLineItem={createLineItem}
+                      updateLineItem={updateLineItem}
+                      reviews={reviews}
+                    />
+                  }
+                ></Route>
                 <Route path='/login/*' element={<Account 
                 login = {login} 
                 signUp = {signUp} 
                 users = {users} 
                 setUsers = {setUsers}
                 />}></Route>
-                <Route path='/products' element={<Products
+                <Route path='/products/*' element={<Products
                 products={ products }
                 cartItems = { cartItems }
                 createLineItem = { createLineItem }
                 updateLineItem = { updateLineItem }
                 auth = { auth }
+
               />}></Route>
               <Route path='/register' element={<Register
                   users = { users }
@@ -387,13 +519,11 @@ const App = () => {
               />
             }
           ></Route>
-          <Route
-            path='/' 
+          <Route path='/' 
             element={
               <Home
-              />
-            }
-          ></Route>
+              reviews = {reviews}
+              />}></Route>
           <Route
             path='/contact' 
             element={
@@ -422,7 +552,7 @@ const App = () => {
                             <NavLink to='/products' className="FooterNavTextLink">Products</NavLink>
                             </button>
                             <button className='navButton' onClick={handleNavClick}>
-                            <NavLink to='/services' className="FooterNavTextLink">Services</NavLink>
+                            <NavLink to='/workshops' className="FooterNavTextLink">Services</NavLink>
                             </button>
                             <button className='navButton' onClick={handleNavClick}>
                             <NavLink to='/contact' className="FooterNavTextLink">Information</NavLink>
