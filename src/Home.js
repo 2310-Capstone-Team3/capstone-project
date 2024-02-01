@@ -15,7 +15,7 @@ const Home = () => {
                 <div className="catalogPreview">
                     <section className="catalogProduct">
                         <span className="productContainer">
-                                <img src="/public/productimages/anthuriums.webp" alt="ProductImage"></img>
+                                <img src="/public/productImages/anthuriums.webp" alt="ProductImage"></img>
                             <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products'> 
                                 Explore This Product
                             </NavLink>     
@@ -23,7 +23,7 @@ const Home = () => {
                     </section>
                     <section className="catalogProduct">
                         <span className="productContainer">
-                            <img src="/public/productimages/orchid.png" alt="ProductImage"></img>
+                            <img src="/public/productImages/orchid.png" alt="ProductImage"></img>
                             <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products'>
                                 Explore This Product
                             </NavLink>
@@ -31,7 +31,7 @@ const Home = () => {
                     </section>
                     <section className="catalogProduct">
                         <span className="productContainer">
-                            <img src="/public/productimages/lotuses.png" alt="ProductImage"></img>
+                            <img src="/public/productImages/lotuses.png" alt="ProductImage"></img>
                             <NavLink style={{alignSelf: "center"}} className='ProductLink' to='/products'>
                                 Explore This Product
                             </NavLink>     
